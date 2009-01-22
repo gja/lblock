@@ -1,3 +1,5 @@
+# This is the 8th Sem Project of Sourav Sarkar, Tejas Dinkar and Thejaswi K
+
 project(lblock)
 
 find_package(Qt4 REQUIRED)
