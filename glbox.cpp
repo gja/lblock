@@ -64,7 +64,6 @@ void GLBox::initializeGL()
 
 	object = glGenLists(1);
 	glNewList(object, GL_COMPILE);
-		void drawObject();
 		drawObject();
 	glEndList();
 }

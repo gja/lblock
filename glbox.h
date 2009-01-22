@@ -18,6 +18,9 @@ class GLBox : public QGLWidget
 	void paintGL();
 	void resizeGL( int w, int h );
 
+	// This is used to draw the current object
+	virtual void drawObject();
+
 	// Called Whenever a Key is Pressed
 	virtual void keyPressEvent( QKeyEvent *event );
 
