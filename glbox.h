@@ -24,6 +24,11 @@ class GLBox : public QGLWidget
 	// This is a list to hold the object we are viewing
 	GLuint object;
 
+	// These next Few Parameters set what we are looking at
+	// left_right and up_down are in degrees
+	GLdouble posx, posy, posz;
+	int left_right, up_down;
+
     public slots:
 };
 

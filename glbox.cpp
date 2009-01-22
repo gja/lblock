@@ -1,11 +1,17 @@
 #include "glbox.h"
+#include "constants.h"
+
 #include <QDebug>
 #include <QTimer>
 #include <QKeyEvent>
 
+#include <math.h>
+
 // Create a GLBox widget
 GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
 {
+	posx = posy = posz = 0.0;
+	left_right = up_down = 0;
 }
 
 // Release allocated resources
@@ -20,6 +26,14 @@ void GLBox::paintGL()
 {
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glLoadIdentity();
+
+	// This next block changes the view
+	double anglelr = left_right * M_PI / 180.;
+	double angleud = up_down * M_PI / 180.;
+
+	gluLookAt ( 	posx, posy, posz,
+			posx + sin(anglelr), posy + sin(angleud), posz - cos(anglelr),
+			0.0f, 1.0f, 0.0f);
 
 	glCallList(object);
 }
@@ -62,5 +76,31 @@ void GLBox::keyPressEvent( QKeyEvent *e)
 		case Qt::Key_Escape:
 			close();
 			break;
+
+		case Qt::Key_Left:
+			left_right -= LEFT_RIGHT_STEP;
+			if (left_right < 0)
+				left_right += 360;
+			break;
+
+		case Qt::Key_Right:
+			left_right += LEFT_RIGHT_STEP;
+			if (left_right >= 360)
+				left_right -= 360;
+			break;
+
+		case Qt::Key_PageUp:
+			up_down += UP_DOWN_STEP;
+			if (up_down > 60)
+				up_down = 60;
+			break;
+
+		case Qt::Key_PageDown:
+			up_down -= UP_DOWN_STEP;
+			if (up_down < -60)
+				up_down = -60;
+			break;
 	}
+
+	updateGL();
 }
