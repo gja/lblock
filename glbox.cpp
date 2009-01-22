@@ -38,8 +38,8 @@ void GLBox::initializeGL()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
 	object = glGenLists(1);
-	void drawObject();
 	glNewList(object, GL_COMPILE);
+		void drawObject();
 		drawObject();
 	glEndList();
 }
