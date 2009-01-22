@@ -12,7 +12,8 @@
 // Create a GLBox widget
 GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
 {
-	posx = posy = posz = 0.0;
+	posx = posz = 0.0;
+	posy = 6.0;		// 6 foot tall, caught you red handed!
 	left_right = up_down = 0;
 
 	setCursor( Qt::CrossCursor);
