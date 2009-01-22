@@ -1,6 +1,7 @@
 #include "glbox.h"
 #include <QDebug>
 #include <QTimer>
+#include <QKeyEvent>
 
 // Create a GLBox widget
 GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
@@ -43,4 +44,14 @@ void GLBox::resizeGL( int w, int h )
 	glFrustum( -1.0, 1.0, -1.0, 1.0, 5.0, 20.0 );
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
+}
+
+void GLBox::keyPressEvent( QKeyEvent *e)
+{
+	switch( e->key() )
+	{
+		case Qt::Key_Escape:
+			close();
+			break;
+	}
 }

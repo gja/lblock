@@ -17,7 +17,7 @@ int main( int argc, char **argv )
     }
 
     GLBox w;
-    w.resize( 400, 350 );
+    w.setWindowState(Qt::WindowFullScreen);
     w.show();
     return a.exec();
 }
