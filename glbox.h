@@ -21,6 +21,8 @@ class GLBox : public QGLWidget
 	// Called Whenever a Key is Pressed
 	virtual void keyPressEvent( QKeyEvent *event );
 
+	virtual void mouseMoveEvent( QMouseEvent *event);
+
 	// This is a list to hold the object we are viewing
 	GLuint object;
 
@@ -28,6 +30,9 @@ class GLBox : public QGLWidget
 	// left_right and up_down are in degrees
 	GLdouble posx, posy, posz;
 	int left_right, up_down;
+
+	// These next two variables are used to ensure that the mouse is in the center of the screen
+	int centerx, centery;
 
     public slots:
 };

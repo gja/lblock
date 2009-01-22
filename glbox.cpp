@@ -4,6 +4,8 @@
 #include <QDebug>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include <math.h>
 
@@ -12,6 +14,12 @@ GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
 {
 	posx = posy = posz = 0.0;
 	left_right = up_down = 0;
+
+	setCursor( Qt::CrossCursor);
+	setMouseTracking (true);
+
+	centerx = QApplication::desktop()->width() / 2;
+	centery = QApplication::desktop()->height() / 2;
 }
 
 // Release allocated resources
@@ -24,6 +32,8 @@ GLBox::~GLBox()
 // Paint the box. The actual openGL commands for drawing the box are performed here.
 void GLBox::paintGL()
 {
+	QCursor::setPos(centerx, centery);
+
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glLoadIdentity();
 
@@ -123,6 +133,28 @@ void GLBox::keyPressEvent( QKeyEvent *e)
 			posz += WALK_STEP * sin(angle);
 			break;
 	}
+
+	updateGL();
+}
+
+void GLBox::mouseMoveEvent (QMouseEvent *event)
+{
+	// If this is just us recentering the mouse, exit
+	if (event->pos() == QPoint( centerx, centery) )
+		return;
+
+	left_right += (event->x() - centerx) / 2;
+	up_down -= (event->y() - centery) / 2;
+
+	if (left_right >= 360)
+		left_right -= 360;
+	else if (left_right < 0)
+		left_right += 360;
+
+	if (up_down > 60)
+		up_down = 60;
+	else if (up_down < -60)
+		up_down = -60;
 
 	updateGL();
 }
