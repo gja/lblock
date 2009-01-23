@@ -18,8 +18,13 @@ class GLBox : public QGLWidget
 	void paintGL();
 	void resizeGL( int w, int h );
 
+	// This function is used to initalize a texture
+	// The RGB values are used only if the image fails to load
+	void initializeTexture(GLuint &texture_id, const char *path, const uint rgb = 0x000000);
+
 	// This is used to draw the current object
 	virtual void drawObject();
+	virtual void loadAllTextures();
 
 	// Called Whenever a Key is Pressed
 	virtual void keyPressEvent( QKeyEvent *event );
@@ -36,6 +41,10 @@ class GLBox : public QGLWidget
 
 	// These next two variables are used to ensure that the mouse is in the center of the screen
 	int centerx, centery;
+
+	// This is a List of all the textures
+	// 0 - sand
+	GLuint textures[10];
 
     public slots:
 };
