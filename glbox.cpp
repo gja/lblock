@@ -57,6 +57,9 @@ void GLBox::initializeGL()
 	glClearDepth(1.0f);
 	glShadeModel( GL_SMOOTH );
 
+	glEnable(GL_TEXTURE_2D);
+	glShadeModel(GL_SMOOTH);
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 
@@ -66,6 +69,8 @@ void GLBox::initializeGL()
 	glNewList(object, GL_COMPILE);
 		drawObject();
 	glEndList();
+
+	loadAllTextures();
 }
 
 // Set up the OpenGL view port, matrix mode, etc.
@@ -157,4 +162,24 @@ void GLBox::mouseMoveEvent (QMouseEvent *event)
 		up_down = -60;
 
 	updateGL();
+}
+
+void GLBox::initializeTexture(GLuint &texture_id, const char *path, const uint rgb)
+{
+	QImage v, t;
+
+	if (! v.load(path) ) {
+		v = QImage(16, 16, QImage::Format_ARGB32);
+		v.fill( rgb );
+	}
+
+	t = convertToGLFormat(v);
+
+	glGenTextures(1, &texture_id);
+	glBindTexture( GL_TEXTURE_2D, texture_id);
+
+	glTexImage2D( GL_TEXTURE_2D, 0, 3, t.width(), t.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, t.bits() );
+
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 }
