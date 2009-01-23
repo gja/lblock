@@ -79,7 +79,7 @@ void GLBox::resizeGL( int w, int h )
 	glViewport( 0, 0, (GLint)w, (GLint)h );
 	glMatrixMode( GL_PROJECTION );
 	glLoadIdentity();
-	gluPerspective(45.0, (double) w / (double) h, 1.0, 100.0);
+	gluPerspective(45.0, (double) w / (double) h, 1.0, 1000.0);
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
 }
