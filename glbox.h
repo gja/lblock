@@ -1,9 +1,14 @@
 #ifndef GLBOX_H
 #define GLBOX_H
 
+#include "texture.h"
+
 #include <qgl.h>
+#include <QHash>
+#include <QString>
 
 class QKeyEvent;
+class Item;
 
 class GLBox : public QGLWidget
 {
@@ -18,10 +23,6 @@ class GLBox : public QGLWidget
 	void paintGL();
 	void resizeGL( int w, int h );
 
-	// This function is used to initalize a texture
-	// The RGB values are used only if the image fails to load
-	void initializeTexture(GLuint &texture_id, const char *path, const uint rgb = 0x000000);
-
 	// This is used to draw the current object
 	virtual void drawObject();
 	virtual void loadAllTextures();
@@ -30,9 +31,6 @@ class GLBox : public QGLWidget
 	virtual void keyPressEvent( QKeyEvent *event );
 
 	virtual void mouseMoveEvent( QMouseEvent *event);
-
-	// This is a list to hold the object we are viewing
-	GLuint object;
 
 	// These next Few Parameters set what we are looking at
 	// left_right and up_down are in degrees
@@ -43,8 +41,10 @@ class GLBox : public QGLWidget
 	int centerx, centery;
 
 	// This is a List of all the textures
-	// 0 - sand
-	GLuint textures[10];
+	QHash <QString, Texture> textures;
+
+	// List of all the items on screen
+	QList <Item *> model;
 
     public slots:
 };

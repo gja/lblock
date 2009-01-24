@@ -28,7 +28,8 @@ GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
 GLBox::~GLBox()
 {
 	makeCurrent();
-	glDeleteLists(object, 1);
+	while (! model.isEmpty() )
+		delete model.takeFirst();
 }
 
 // Paint the box. The actual openGL commands for drawing the box are performed here.
@@ -47,7 +48,27 @@ void GLBox::paintGL()
 			posx + sin(anglelr), posy + sin(angleud), posz - cos(anglelr),
 			0.0f, 1.0f, 0.0f);
 
-	glCallList(object);
+	qglColor( Qt::white );	
+
+	// First we start on sand
+	glBindTexture(GL_TEXTURE_2D, textures["sand"].texture);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 0.0f); glVertex3f( -24.0f, 0.0f, 10.0f);
+		glTexCoord2f(0.0f, 3.0f); glVertex3f( -24.0f, 0.0f, -20.0f);
+		glTexCoord2f(3.0f, 3.0f); glVertex3f( 64.0f, 0.0f, -20.0f);
+		glTexCoord2f(3.0f, 0.0f); glVertex3f( 64.0f, 0.0f, 10.0f);
+
+		glTexCoord2f(0.0f, 0.0f); glVertex3f( -4.0f, 0.0f, -20.0f);
+		glTexCoord2f(0.0f, 3.0f); glVertex3f( -4.0f, 0.0f, -80.0f);
+		glTexCoord2f(2.0f, 3.0f); glVertex3f( 64.0f, 0.0f, -80.0f);
+		glTexCoord2f(2.0f, 0.0f); glVertex3f( 64.0f, 0.0f, -20.0f);
+	glEnd();
+
+	// Draw all the objects
+	QList <Item *> list = model;
+	Item *item;
+	while (! list.isEmpty() )
+		list.takeFirst()->drawObject();
 }
 
 
@@ -66,12 +87,10 @@ void GLBox::initializeGL()
 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-	object = glGenLists(1);
-	glNewList(object, GL_COMPILE);
-		drawObject();
-	glEndList();
-
 	loadAllTextures();
+
+	// Initialize all Objects
+	drawObject();
 }
 
 // Set up the OpenGL view port, matrix mode, etc.
@@ -163,24 +182,4 @@ void GLBox::mouseMoveEvent (QMouseEvent *event)
 		up_down = -60;
 
 	updateGL();
-}
-
-void GLBox::initializeTexture(GLuint &texture_id, const char *path, const uint rgb)
-{
-	QImage v, t;
-
-	if (! v.load(path) ) {
-		v = QImage(16, 16, QImage::Format_ARGB32);
-		v.fill( rgb );
-	}
-
-	t = convertToGLFormat(v);
-
-	glGenTextures(1, &texture_id);
-	glBindTexture( GL_TEXTURE_2D, texture_id);
-
-	glTexImage2D( GL_TEXTURE_2D, 0, 3, t.width(), t.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, t.bits() );
-
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 }
