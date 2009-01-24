@@ -4,6 +4,8 @@
 #include "item.h"
 #include "texture.h"
 
+#include <QList>
+
 class Wall : public Item
 {
     protected:
@@ -17,6 +19,8 @@ class Wall : public Item
     public:
 	// This is the Constructor
 	Wall(float x, float y, float z, float rotation, float length, const Texture &inner = Texture(), const Texture &outer = Texture(), float height = 10.0f, float thickness = 0.5f);
+
+	~Wall();
 
 	// These two functions manipulate the height of the wall
 	inline void setHeight(float x)  { height=x; }
@@ -36,7 +40,18 @@ class Wall : public Item
 	inline void setOuterTexture(const Texture &o) { outerTexture = o; };
 	inline const Texture &getOuterTexture() { return outerTexture; }
 
+	// This function is used to add a window
+	// Remember to add windows in order from left -> right along the wall
+	void addWindow(float position, float length, const Texture &texture = Texture(0x7F00FFFF), float lowerHeight = 3.0, float upperHeight = 7.0);
+
 	virtual void generateList();
+
+    private:
+	struct Window;
+	QList<Window *> windows;
+
+	// This draws an inner and outer segment. Not for public consumption
+	void drawSegment(float startx, float starty, float endx, float endy);
 };
 
 #endif

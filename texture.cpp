@@ -7,7 +7,7 @@ Texture::Texture() : texture(0)
 {
 }
 
-Texture::Texture(const char *path, const uint rgb, float x, float y) : sizex(x), sizey(y)
+Texture::Texture(const uint rgb, const char *path, float x, float y) : sizex(x), sizey(y)
 {
 	QImage v, t;
 
