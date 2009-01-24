@@ -30,6 +30,12 @@ class Wall : public Item
 	inline void setLength(float x)  { length=x; }
 	inline float getLength() { return length; }
 
+	inline void setInnerTexture(const Texture &i) { innerTexture = i; };
+	inline const Texture &getInnerTexture() { return innerTexture; }
+
+	inline void setOuterTexture(const Texture &o) { outerTexture = o; };
+	inline const Texture &getOuterTexture() { return outerTexture; }
+
 	virtual void generateList();
 };
 
