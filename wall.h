@@ -8,6 +8,7 @@ class Wall : public Item
     protected:
 	GLfloat height;
 	GLfloat thickness;
+        GLfloat length;
 
     public:
 
@@ -18,6 +19,10 @@ class Wall : public Item
 	// These two functions helps manipulate the thickness of the wall
 	inline void setThickness(float x)  { thickness=x;  }
 	inline float getThickness()  { return thickness; }
+
+        //These two functions manipulate the length of the wall
+        inline void setLength(float x)  { length=x; }
+        inline float getLength() { retutn length; }
 
 	virtual void compile();
 };
