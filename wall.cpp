@@ -1,6 +1,6 @@
 #include "wall.h"
 
-#include <qgl>
+#include <qgl.h>
 
 void Wall::compile()
 {
