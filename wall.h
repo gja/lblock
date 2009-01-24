@@ -2,6 +2,7 @@
 #define WALL_H
 
 #include "item.h"
+#include "texture.h"
 
 class Wall : public Item
 {
@@ -10,9 +11,12 @@ class Wall : public Item
 	GLfloat height;
 	GLfloat thickness;
 
+	Texture innerTexture;
+	Texture outerTexture;
+
     public:
 	// This is the Constructor
-	Wall(float x, float y, float z, float rotation, float length, float height = 10.0f, float thickness = 0.5f);
+	Wall(float x, float y, float z, float rotation, float length, const Texture &inner = Texture(), const Texture &outer = Texture(), float height = 10.0f, float thickness = 0.5f);
 
 	// These two functions manipulate the height of the wall
 	inline void setHeight(float x)  { height=x; }
