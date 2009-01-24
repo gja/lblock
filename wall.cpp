@@ -23,5 +23,16 @@ void Wall::generateList()
 		glTexCoord2f(0.0f, height / innerTexture.sizey); glVertex3f(0.0f, height, -thickness);
 		glTexCoord2f(length / innerTexture.sizex, height / innerTexture.sizey); glVertex3f(length, height, -thickness);
 		glTexCoord2f(length / innerTexture.sizex, 0.0f); glVertex3f(length, 0.0f, -thickness);
+
+		// Side walls
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, -thickness);
+		glTexCoord2f(0.0f, height / outerTexture.sizey); glVertex3f(0.0f, height, -thickness);
+		glTexCoord2f(thickness / outerTexture.sizex, height / outerTexture.sizey); glVertex3f(0.0f, height, 0.0f);
+		glTexCoord2f(thickness / outerTexture.sizex, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f);
+
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(length, 0.0f, -thickness);
+		glTexCoord2f(0.0f, height / outerTexture.sizey); glVertex3f(length, height, -thickness);
+		glTexCoord2f(thickness / outerTexture.sizex, height / outerTexture.sizey); glVertex3f(length, height, 0.0f);
+		glTexCoord2f(thickness / outerTexture.sizex, 0.0f); glVertex3f(length, 0.0f, 0.0f);
 	glEnd();
 }
