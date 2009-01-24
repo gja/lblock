@@ -6,11 +6,13 @@
 class Wall : public Item
 {
     protected:
+	GLfloat length;
 	GLfloat height;
 	GLfloat thickness;
-	GLfloat length;
 
     public:
+	// This is the Constructor
+	Wall(float x, float y, float z, float rotation, float length, float height = 10.0f, float thickness = 0.5f);
 
 	// These two functions manipulate the height of the wall
 	inline void setHeight(float x)  { height=x; }
@@ -24,7 +26,7 @@ class Wall : public Item
 	inline void setLength(float x)  { length=x; }
 	inline float getLength() { return length; }
 
-	virtual void compile();
+	virtual void generateList();
 };
 
 #endif
