@@ -1,6 +1,6 @@
 #include "item.h"
 
-#include <qgl>
+#include <qgl.h>
 
 void Item::drawObject()
 {
@@ -9,4 +9,8 @@ void Item::drawObject()
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
 	glCallList(object);
 	glPopMatrix();
+}
+
+Item::Item(float x, float y, float z, float r) : posx(x) , posy(y), posz(z), rotation(r)
+{
 }
