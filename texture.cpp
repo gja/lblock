@@ -11,7 +11,7 @@ Texture::Texture(const uint rgb, const char *path, float x, float y) : sizex(x),
 {
 	QImage v, t;
 
-	if (! v.load(path) ) {
+	if (! path || !v.load(path) ) {
 		v = QImage(16, 16, QImage::Format_ARGB32);
 		v.fill( rgb );
 	}
