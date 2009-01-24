@@ -14,3 +14,11 @@ void Item::drawObject()
 Item::Item(float x, float y, float z, float r) : posx(x) , posy(y), posz(z), rotation(r)
 {
 }
+
+void Item::compile()
+{
+	object = glGenLists(1);
+	glNewList(object, GL_COMPILE);
+		generateList();
+	glEndList();
+}

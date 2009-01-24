@@ -26,10 +26,14 @@ class Item
 	inline float getRotation() { return rotation; }
 	inline void setRotation(float r) { rotation = r; }
 
-	// This function MUST be overridden in every Item Class
-	virtual void compile() = 0;
+	// This function generates a callList
+	virtual void compile();
 
+	// This is the public function to draw the object
 	virtual void drawObject();
+
+	// This is the member which MUST be overridden, which generates the call list
+	virtual void generateList() = 0;
 };
 
 #endif 
