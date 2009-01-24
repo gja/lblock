@@ -22,7 +22,7 @@ class Wall : public Item
 
 	//These two functions manipulate the length of the wall
 	inline void setLength(float x)  { length=x; }
-	inline float getLength() { retutn length; }
+	inline float getLength() { return length; }
 
 	virtual void compile();
 };
