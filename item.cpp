@@ -15,6 +15,11 @@ Item::Item(float x, float y, float z, float r) : posx(x) , posy(y), posz(z), rot
 {
 }
 
+Item::~Item()
+{
+	glDeleteLists(object, 1);
+}
+
 void Item::compile()
 {
 	object = glGenLists(1);
