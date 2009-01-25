@@ -43,20 +43,4 @@ void GLBox::drawObject()
 	floor->addPoint(0.0f, -30.0f);
 	floor->compile();
 	model<<floor;
-
-	// entrance
-	glVertex3f( 0.0f, 0.0f, -79.9f);
-	glVertex3f( 0.0f, 15.0f, -79.9f);
-	glVertex3f( 20.0f, 15.0f, -79.9f);
-	glVertex3f( 20.0f, 0.0f, -79.9f);
-
-	glVertex3f( 28.0f, 3.0f, -79.9f);
-	glVertex3f( 28.0f, 7.0f, -79.9f);
-	glVertex3f( 36.0f, 7.0f, -79.9f);
-	glVertex3f( 36.0f, 3.0f, -79.9f);
-
-	glVertex3f( 40.0f, 3.0f, -79.9f);
-	glVertex3f( 40.0f, 7.0f, -79.9f);
-	glVertex3f( 48.0f, 7.0f, -79.9f);
-	glVertex3f( 48.0f, 3.0f, -79.9f);
 }
