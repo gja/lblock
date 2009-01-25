@@ -41,6 +41,7 @@ void GLBox::drawObject()
 	floor->addPoint(20.0f, -90.0f);
 	floor->addPoint(20.0f, -30.0f);
 	floor->addPoint(0.0f, -30.0f);
+	floor->compile();
 	model<<floor;
 
 	// entrance
