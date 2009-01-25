@@ -10,7 +10,7 @@
 
 void GLBox::loadAllTextures()
 {
-	textures["sand"] = Texture(0xFFE303, "data/sand.png");
+	textures["sand"] = Texture(0xFFE303, "data/sand.png", 8.0f, 8.0f);
 	textures["maroon"] = Texture(0x822222);
 	textures["glass"] = Texture(0xF000FFFF, "data/glass.png");
 }
