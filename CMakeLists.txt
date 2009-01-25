@@ -6,7 +6,7 @@ find_package(Qt4 REQUIRED)
 set(QT_USE_QTOPENGL true)
 include(${QT_USE_FILE})
 
-set (SOURCES main.cpp glbox.cpp drawobject.cpp item.cpp wall.cpp texture.cpp)
+set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp wall.cpp floor.cpp)
 
 QT4_WRAP_CPP(SOURCES glbox.h)
 

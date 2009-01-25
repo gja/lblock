@@ -1,6 +1,7 @@
 #include "glbox.h"
 #include "texture.h"
 #include "wall.h"
+#include "floor.h"
 
 #include <qgl.h>
 #include <QImage>
@@ -33,7 +34,15 @@ void GLBox::drawObject()
 	wall = new Wall(-4.0f, 0.0f, -80.0f, 0.0f, 68.0f, textures["sand"], textures["maroon"]);
 	wall->compile();
 	model<<wall;
-	
+
+	Floor *floor = new Floor (-24.0f, 0.0f, 10.0f, 0.0f, textures["sand"]);
+	floor->addPoint(88.0f, 0.0f);
+	floor->addPoint(88.0f, -90.0f);
+	floor->addPoint(20.0f, -90.0f);
+	floor->addPoint(20.0f, -30.0f);
+	floor->addPoint(0.0f, -30.0f);
+	model<<floor;
+
 	// entrance
 	glVertex3f( 0.0f, 0.0f, -79.9f);
 	glVertex3f( 0.0f, 15.0f, -79.9f);
