@@ -17,30 +17,7 @@ void GLBox::loadAllTextures()
 
 void GLBox::drawObject()
 {
-	Wall *wall;
+	// First, the left side of the building
 
-	wall = new Wall(-24.0f, 0.0f, -20.0f, 0.0f, 20.0f, textures["sand"], textures["maroon"]);
-	wall->addWindow(6.0f, 8.0f, textures["glass"]);
-	wall->compile();
-	model<<wall;
-
-	wall = new Wall(-4.0f, 0.0f, -20.0f, 90.0f, 60.0f, textures["sand"], textures["maroon"]);
-	wall->addWindow(6.0f, 8.0f, textures["glass"]);
-	wall->addWindow(20.0f, 8.0f, textures["glass"]);
-	wall->addWindow(34.0f, 8.0f, textures["glass"]);
-	wall->compile();
-	model<<wall;
-
-	wall = new Wall(-4.0f, 0.0f, -80.0f, 0.0f, 68.0f, textures["sand"], textures["maroon"]);
-	wall->compile();
-	model<<wall;
-
-	Floor *floor = new Floor (-24.0f, 0.0f, 10.0f, 0.0f, textures["sand"]);
-	floor->addPoint(88.0f, 0.0f);
-	floor->addPoint(88.0f, -90.0f);
-	floor->addPoint(20.0f, -90.0f);
-	floor->addPoint(20.0f, -30.0f);
-	floor->addPoint(0.0f, -30.0f);
-	floor->compile();
-	model<<floor;
+	// Next, the right side
 }
