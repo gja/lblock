@@ -2,13 +2,13 @@
 #define GLBOX_H
 
 #include "texture.h"
+#include "item.h"
 
 #include <qgl.h>
 #include <QHash>
 #include <QString>
 
 class QKeyEvent;
-class Item;
 
 class GLBox : public QGLWidget
 {
