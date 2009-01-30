@@ -89,16 +89,16 @@ void Wall::generateList()
 	drawSegment(startx, 0.0f, length, height);
 
 	// Side walls
-	glBindTexture(GL_TEXTURE_2D, outerTexture.texture);
+	glBindTexture(GL_TEXTURE_2D, innerTexture.texture);
 	glBegin(GL_QUADS);
 		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, -thickness);
-		glTexCoord2f(0.0f, height / outerTexture.sizey); glVertex3f(0.0f, height, -thickness);
-		glTexCoord2f(thickness / outerTexture.sizex, height / outerTexture.sizey); glVertex3f(0.0f, height, 0.0f);
-		glTexCoord2f(thickness / outerTexture.sizex, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f);
+		glTexCoord2f(0.0f, height / innerTexture.sizey); glVertex3f(0.0f, height, -thickness);
+		glTexCoord2f(thickness / innerTexture.sizex, height / innerTexture.sizey); glVertex3f(0.0f, height, 0.0f);
+		glTexCoord2f(thickness / innerTexture.sizex, 0.0f); glVertex3f(0.0f, 0.0f, 0.0f);
 
 		glTexCoord2f(0.0f, 0.0f); glVertex3f(length, 0.0f, -thickness);
-		glTexCoord2f(0.0f, height / outerTexture.sizey); glVertex3f(length, height, -thickness);
-		glTexCoord2f(thickness / outerTexture.sizex, height / outerTexture.sizey); glVertex3f(length, height, 0.0f);
-		glTexCoord2f(thickness / outerTexture.sizex, 0.0f); glVertex3f(length, 0.0f, 0.0f);
+		glTexCoord2f(0.0f, height / innerTexture.sizey); glVertex3f(length, height, -thickness);
+		glTexCoord2f(thickness / innerTexture.sizex, height / innerTexture.sizey); glVertex3f(length, height, 0.0f);
+		glTexCoord2f(thickness / innerTexture.sizex, 0.0f); glVertex3f(length, 0.0f, 0.0f);
 	glEnd();
 }
