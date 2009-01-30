@@ -76,10 +76,10 @@ void Wall::generateList()
 			glTexCoord2f(1.0, 1.0); glVertex3f(window->position + window->length, window->upperHeight, 0.0f);
 			glTexCoord2f(1.0, 0.0); glVertex3f(window->position + window->length, window->lowerHeight, 0.0f);
 
-			glTexCoord2f(1.0, 0.0); glVertex3f(window->position, window->lowerHeight, -thickness);
-			glTexCoord2f(1.0, 1.0); glVertex3f(window->position, window->upperHeight, -thickness);
-			glTexCoord2f(0.0, 1.0); glVertex3f(window->position + window->length, window->upperHeight, -thickness);
-			glTexCoord2f(0.0, 0.0); glVertex3f(window->position + window->length, window->lowerHeight, -thickness);
+			glTexCoord2f(0.0, 0.0); glVertex3f(window->position, window->lowerHeight, -thickness);
+			glTexCoord2f(0.0, 1.0); glVertex3f(window->position, window->upperHeight, -thickness);
+			glTexCoord2f(1.0, 1.0); glVertex3f(window->position + window->length, window->upperHeight, -thickness);
+			glTexCoord2f(1.0, 0.0); glVertex3f(window->position + window->length, window->lowerHeight, -thickness);
 		glEnd();
 
 		startx = window->position + window->length;
