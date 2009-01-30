@@ -11,7 +11,7 @@ void Item::drawObject()
 	glPopMatrix();
 }
 
-Item::Item(float x, float y, float z, float r) : posx(x) , posy(y), posz(z), rotation(r)
+Item::Item(float x, float y, float z, float r) : posx(x) , posy(y), posz(-z), rotation(r)
 {
 }
 
