@@ -103,24 +103,27 @@ void GLBox::drawObject()
 		addObject(floor);
 	}
 
-	wall = new Wall(-13.0f, 0.0f, 142.0f, 180.0f, 15.0f, textures["creamwall"], textures["maroon"]);
-	addObject(wall);
+	// Finally, the enclave
 
-	wall = new Wall(-32.0f, 0.0f, 142.0f, 231.0f, 5.0f, textures["creamwall"], textures["maroon"]);
-	addObject(wall);
+	for (int i = 0; i < 3; i++) {
 
-	wall = new Wall(-34.5f, 0.0f, 138.0f, 180.0f, 11.0f, textures["creamwall"], textures["maroon"]);
-	addObject(wall);
+		wall = new Wall(-13.0f, i * 10.0f, 147.0f, 180.0f, 15.0f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
 
-	wall = new Wall(-45.5f, 0.0f, 138.0f, 270.0f, 7.0f, textures["creamwall"], textures["maroon"]);
-	addObject(wall);
+		wall = new Wall(-32.0f, i * 10.0f, 147.0f, 231.0f, 5.0f, textures["creamwall"], textures["maroon"], 4.0f);
+		addObject(wall);
 
-	wall = new Wall(-45.5f, 0.0f, 131.0f, 0.0f, 15.0f, textures["creamwall"], textures["maroon"]);
-	addObject(wall);
+		wall = new Wall(-34.5f, i * 10.0f, 143.0f, 180.0f, 11.0f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
+
+		wall = new Wall(-45.5f, i * 10.0f, 143.0f, 270.0f, 12.0f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
+
+		wall = new Wall(-45.5f, i * 10.0f, 131.0f, 0.0f, 15.0f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
+	}
 
 	// Next, the right side
-
-	// Finally, the enclave
 
 	// Finally the sand
 	floor = new Floor(-50.0f, 0.0f, 0.0f, 0.0f, textures["sand"]);
