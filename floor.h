@@ -27,7 +27,7 @@ class Floor : public Item {
 		points<<point;
 	}
 
-	Floor(float x, float y, float z, float r, const Texture &lt = Texture(0xFFFFFF), const Texture &ut = Texture(0xFFFFFF), float t = 0.1f) 
+	Floor(float x, float y, float z, float r, const Texture &ut = Texture(0xFFFFFF), const Texture &lt = Texture(0xFFFFFF), float t = 0.1f) 
 		: Item(x, y, z, r), upperTexture(ut), lowerTexture(lt), thickness(t)
 	{
 		addPoint(0.0f, 0.0f);
