@@ -63,10 +63,13 @@ void GLBox::drawObject()
 		floor = new Floor(-50.0f, i * 10.0f, -50.0f, 0.0f, textures["creamwall"], textures["marblefloor"]);
 		floor->addPoint(25.0f, 0.0f);
 		floor->addPoint(25.0f, 37.0f);
-		floor->addPoint(25.0f, 81.0f);
-		floor->addPoint(19.0f, 81.0f);
-		floor->addPoint(19.0f, 37.0f);
 		floor->addPoint(0.0f, 37.0f);
+		addObject(floor);
+
+		floor = new Floor(-31.0f, i * 10.0f, -87.0f, 0.0f, textures["creamwall"], textures["marblefloor"]);
+		floor->addPoint(6.0f, 0.0f);
+		floor->addPoint(6.0f, 44.0f);
+		floor->addPoint(0.0f, 44.0f);
 		addObject(floor);
 	}
 
