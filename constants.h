@@ -3,7 +3,7 @@
 
 #define LEFT_RIGHT_STEP 4
 #define UP_DOWN_STEP 4
-#define WALK_STEP .5
+#define WALK_STEP 1.0
 #define MAX_LOOKUP 60
 
 #define ESCAPE_KEY Qt::Key_Escape
