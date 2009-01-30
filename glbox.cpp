@@ -50,22 +50,6 @@ void GLBox::paintGL()
 
 	qglColor( Qt::white );	
 
-	// First we start on sand
-	/*
-	glBindTexture(GL_TEXTURE_2D, textures["sand"].texture);
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0f, 0.0f); glVertex3f( -24.0f, 0.0f, 10.0f);
-		glTexCoord2f(0.0f, 3.0f); glVertex3f( -24.0f, 0.0f, -20.0f);
-		glTexCoord2f(3.0f, 3.0f); glVertex3f( 64.0f, 0.0f, -20.0f);
-		glTexCoord2f(3.0f, 0.0f); glVertex3f( 64.0f, 0.0f, 10.0f);
-
-		glTexCoord2f(0.0f, 0.0f); glVertex3f( -4.0f, 0.0f, -20.0f);
-		glTexCoord2f(0.0f, 3.0f); glVertex3f( -4.0f, 0.0f, -80.0f);
-		glTexCoord2f(2.0f, 3.0f); glVertex3f( 64.0f, 0.0f, -80.0f);
-		glTexCoord2f(2.0f, 0.0f); glVertex3f( 64.0f, 0.0f, -20.0f);
-	glEnd();
-	*/
-
 	// Draw all the objects
 	QList <Item *> list = model;
 	Item *item;
