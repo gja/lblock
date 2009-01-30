@@ -19,6 +19,7 @@ void GLBox::loadAllTextures()
 	textures["lightwood"] = Texture(0xAB8560, "data/lightwood.png");
 	textures["darkwood"] = Texture(0x653626, "data/darkwood.png");
 	textures["marblefloor"] = Texture(0x8B8C8D, "data/marblefloor.png");
+	textures["stairs"] = Texture(0x8B8C8D, "data/stairs.jpg", -12.0f, 10.0f);
 	textures["black"] = Texture(0x000000);
 }
 
@@ -107,10 +108,17 @@ void GLBox::drawObject()
 
 	for (int i = 0; i < 3; i++) {
 
+		// Start with those stairs
+		wall = new Wall(5.0f, i * 10.0f, 147.0f, 180.0f, 12.0f, textures["stairs"], textures["maroon"]);
+		addObject(wall);
+
 		wall = new Wall(-12.0f, i * 10.0f, 147.0f, 180.0f, 15.0f, textures["creamwall"], textures["maroon"]);
 		addObject(wall);
 
+		// Mini wall
 		wall = new Wall(-32.0f, i * 10.0f, 147.0f, 231.0f, 5.0f, textures["creamwall"], textures["maroon"], 4.0f);
+		addObject(wall);
+		wall = new Wall(-32.0f, i * 10.0f + 4.25, 147.0f, 231.0f, 5.0f, textures["black"], textures["black"], 0.25f);
 		addObject(wall);
 
 		wall = new Wall(-34.5f, i * 10.0f, 143.0f, 180.0f, 11.0f, textures["creamwall"], textures["maroon"]);
@@ -158,6 +166,14 @@ void GLBox::drawObject()
 		floor->addPoint(5.0f, 10.0f);
 		floor->addPoint(0.0f, 10.0f);
 		addObject(floor);
+
+		// railings
+		if (i != 0) {
+			wall = new Wall(-25.0f, i * 10.0f, 131.0f, 0.0f, 30.0f, textures["creamwall"], textures["brown"], 4.0f);
+			addObject(wall);
+			wall = new Wall(-25.0f, i * 10.0f + 4.25, 131.0f, 0.0f, 30.0f, textures["black"], textures["black"], 0.25f);
+			addObject(wall);
+		}
 	}
 
 	// Next, the right side
