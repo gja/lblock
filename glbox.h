@@ -14,8 +14,12 @@ class GLBox : public QGLWidget
 {
 	Q_OBJECT
 
-    private:	
-      inline void addObject(*item) { item->compile(); model<<item;  } 		
+    private:
+	inline void addObject(Item *item)
+	{
+		item->compile();
+		model<<item;
+	}
 
     public:
 	GLBox( QWidget* parent = NULL);
