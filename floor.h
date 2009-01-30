@@ -9,7 +9,9 @@
 
 class Floor : public Item {
 	QList <QPointF> points;
-	Texture texture;
+	Texture lowerTexture;
+	Texture upperTexture;
+	float thickness;
 
     public:
 	
@@ -25,10 +27,10 @@ class Floor : public Item {
 		points<<point;
 	}
 
-	Floor(float x, float y, float z, float r, const Texture &t = Texture(0xFFFFFF)) : Item(x, y, z, r)
+	Floor(float x, float y, float z, float r, const Texture &lt = Texture(0xFFFFFF), const Texture &ut = Texture(0xFFFFFF), float t = 0.1f) 
+		: Item(x, y, z, r), upperTexture(ut), lowerTexture(lt), thickness(t)
 	{
 		addPoint(0.0f, 0.0f);
-		texture = t;
 	}
 
 	virtual void generateList();
