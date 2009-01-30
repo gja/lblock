@@ -106,4 +106,15 @@ void GLBox::drawObject()
 	// Next, the right side
 
 	// Finally the sand
+	floor = new Floor(-50.0f, 0.0f, -0.0f, 0.0f, textures["sand"]);
+	floor->addPoint(25.0f, 0.0f);
+	floor->addPoint(25.0f, 50.0f);
+	floor->addPoint(0.0f, 50.0f);
+	addObject(floor);
+
+	floor = new Floor(-25.0f, 0.0f, -0.0f, 0.0f, textures["sand"]);
+	floor->addPoint(100.0f, 0.0f);
+	floor->addPoint(100.0f, 131.0f);
+	floor->addPoint(0.0f, 131.0f);
+	addObject(floor);
 }
