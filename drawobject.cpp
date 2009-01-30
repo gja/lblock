@@ -30,9 +30,19 @@ void GLBox::drawObject()
 	// First, the left side of the building
 	for (int i = 0; i < 3; i++) {
 		wall = new Wall(-50.0f, i * 10.0f, -50.0f, 0.0f, 25.0f, textures["creamwall"], textures["maroon"]);
+		wall->addWindow(1.0f, 4.0f, textures["window"], 4.0f, 7.0f);
+		wall->addWindow(7.0f, 4.0f, textures["window"], 4.0f, 7.0f);
+		wall->addWindow(13.0f, 4.0f, textures["window"], 4.0f, 7.0f);
+		wall->addWindow(19.0f, 4.0f, textures["window"], 4.0f, 7.0f);
 		addObject(wall);
 
 		wall = new Wall(-25.0f, i * 10.0f, -50.0f, 90.0f, 37.0f, textures["creamwall"], textures["maroon"]);
+		wall->addWindow(1.0f, 4.0f, textures["window"], 4.0f, 7.0f);
+		wall->addWindow(7.0f, 4.0f, textures["window"], 4.0f, 7.0f);
+		wall->addWindow(13.0f, 4.0f, textures["window"], 4.0f, 7.0f);
+		wall->addWindow(19.0f, 4.0f, textures["window"], 4.0f, 7.0f);
+		wall->addWindow(25.0f, 4.0f, textures["window"], 4.0f, 7.0f);
+		wall->addWindow(31.0f, 4.0f, textures["window"], 4.0f, 7.0f);
 		addObject(wall);
 
 		wall = new Wall(-31.0f, i * 10.0f, -87.0f, 180.0f, 19.0f, textures["creamwall"], textures["maroon"]);
