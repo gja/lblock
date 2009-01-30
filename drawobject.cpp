@@ -103,19 +103,19 @@ void GLBox::drawObject()
 		addObject(floor);
 	}
 
-	wall = new Wall(-13.0f, 0.0f, -142.0f, 180.0f, 15.0f, textures["creamwall"], textures["maroon"]);
+	wall = new Wall(-13.0f, 0.0f, 142.0f, 180.0f, 15.0f, textures["creamwall"], textures["maroon"]);
 	addObject(wall);
 
-	wall = new Wall(-32.0f, 0.0f, -142.0f, 231.0f, 5.0f, textures["creamwall"], textures["maroon"]);
+	wall = new Wall(-32.0f, 0.0f, 142.0f, 231.0f, 5.0f, textures["creamwall"], textures["maroon"]);
 	addObject(wall);
 
-	wall = new Wall(-34.5f, 0.0f, -138.0f, 180.0f, 11.0f, textures["creamwall"], textures["maroon"]);
+	wall = new Wall(-34.5f, 0.0f, 138.0f, 180.0f, 11.0f, textures["creamwall"], textures["maroon"]);
 	addObject(wall);
 
-	wall = new Wall(-45.5f, 0.0f, -138.0f, 270.0f, 7.0f, textures["creamwall"], textures["maroon"]);
+	wall = new Wall(-45.5f, 0.0f, 138.0f, 270.0f, 7.0f, textures["creamwall"], textures["maroon"]);
 	addObject(wall);
 
-	wall = new Wall(-45.5f, 0.0f, -131.0f, 0.0f, 15.0f, textures["creamwall"], textures["maroon"]);
+	wall = new Wall(-45.5f, 0.0f, 131.0f, 0.0f, 15.0f, textures["creamwall"], textures["maroon"]);
 	addObject(wall);
 
 	// Next, the right side
