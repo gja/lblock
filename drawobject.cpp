@@ -107,7 +107,7 @@ void GLBox::drawObject()
 
 	for (int i = 0; i < 3; i++) {
 
-		wall = new Wall(-13.0f, i * 10.0f, 147.0f, 180.0f, 15.0f, textures["creamwall"], textures["maroon"]);
+		wall = new Wall(-12.0f, i * 10.0f, 147.0f, 180.0f, 15.0f, textures["creamwall"], textures["maroon"]);
 		addObject(wall);
 
 		wall = new Wall(-32.0f, i * 10.0f, 147.0f, 231.0f, 5.0f, textures["creamwall"], textures["maroon"], 4.0f);
@@ -121,6 +121,43 @@ void GLBox::drawObject()
 
 		wall = new Wall(-45.5f, i * 10.0f, 131.0f, 0.0f, 15.0f, textures["creamwall"], textures["maroon"]);
 		addObject(wall);
+
+		floor = new Floor(-45.5f, i * 10.0f, 131.0f, 0.0f, textures["marblefloor"], textures["creamwall"]);
+		floor->addPoint(50.5f, 0.0f);
+		floor->addPoint(50.5f, 16.0f);
+		floor->addPoint(13.5f, 16.0f);
+		floor->addPoint(11.0f, 12.0f);
+		floor->addPoint(0.0f, 12.0f);
+		addObject(floor);
+
+		// The walls next to the toilet
+		wall = new Wall(-32.0f, i * 10.0f, 157.0f, -90.0f, 10.0f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
+		wall = new Wall(-27.0f, i * 10.0f, 147.0f, 90.0f, 10.0f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
+		wall = new Wall(-27.0f, i * 10.0f, 157.0f, 180.0f, 5.0f, textures["creamwall"], textures["maroon"]);
+		wall->addWindow(1.0f, 3.0f, textures["darkwood"], 0.0f);
+		addObject(wall);
+
+		floor = new Floor(-32.0f, i * 10.0f, 147.0f, 0.0f, textures["marblefloor"], textures["creamwall"]);
+		floor->addPoint(5.0f, 0.0f);
+		floor->addPoint(5.0f, 10.0f);
+		floor->addPoint(0.0f, 10.0f);
+		addObject(floor);
+
+		wall = new Wall(-12.0f, i * 10.0f, 157.0f, -90.0f, 10.0f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
+		wall = new Wall(-7.0f, i * 10.0f, 147.0f, 90.0f, 10.0f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
+		wall = new Wall(-7.0f, i * 10.0f, 157.0f, 180.0f, 5.0f, textures["creamwall"], textures["maroon"]);
+		wall->addWindow(1.0f, 3.0f, textures["darkwood"], 0.0f);
+		addObject(wall);
+
+		floor = new Floor(-12.0f, i * 10.0f, 147.0f, 0.0f, textures["marblefloor"], textures["creamwall"]);
+		floor->addPoint(5.0f, 0.0f);
+		floor->addPoint(5.0f, 10.0f);
+		floor->addPoint(0.0f, 10.0f);
+		addObject(floor);
 	}
 
 	// Next, the right side
