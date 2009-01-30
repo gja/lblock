@@ -58,12 +58,12 @@ void GLBox::drawObject()
 		wall = new Wall(-31.0f, i * 10.0f, -131.0f, 270.0f, 44.0f, textures["creamwall"], textures["maroon"]);
 		// First Class Room
 		wall->addWindow(6.0f, 5.0f, textures["darkwood"], 0.0f);
-		wall->addWindow(13.0f, 4.0f, textures["window"], 0.0f);
-		wall->addWindow(19.0f, 4.0f, textures["window"], 0.0f);
+		wall->addWindow(13.0f, 4.0f, textures["window"]);
+		wall->addWindow(19.0f, 4.0f, textures["window"]);
 		// Second Class Room
 		wall->addWindow(26.0f, 5.0f, textures["darkwood"], 0.0f);
-		wall->addWindow(33.0f, 4.0f, textures["window"], 0.0f);
-		wall->addWindow(39.0f, 4.0f, textures["window"], 0.0f);
+		wall->addWindow(33.0f, 4.0f, textures["window"]);
+		wall->addWindow(39.0f, 4.0f, textures["window"]);
 		addObject(wall);
 
 		// Railing Wall
