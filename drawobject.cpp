@@ -134,12 +134,32 @@ void GLBox::drawObject()
 		addObject(wall);
 
 		wall = new Wall(-34.5f, i * 10.0f, 143.0f, 180.0f, 11.0f, textures["creamwall"], textures["maroon"]);
+		wall->addWindow(3.5f, 4.5f, textures["darkwood"], 0.0f);
 		addObject(wall);
+		
+
+		//HOD's Room
+		wall = new Wall(-36.0f, i * 10.0f, 143.0f, 90.0f, 10.0f, textures["creamwall"], textures["creamwall"]);
+		addObject(wall);
+
+		wall = new Wall(-36.0f, i * 10.0f, 153.0f, 180.0f, 9.5f, textures["creamwall"], textures["creamwall"]);
+		addObject(wall);
+
+		wall = new Wall(-45.50f, i * 10.0f, 153.0f, 270.0f, 10.0f, textures["creamwall"], textures["creamwall"]);
+		addObject(wall);
+
+		floor = new Floor(-45.5f, i * 10.0f, 143.0f, 0.0f, textures["marblefloor"], textures["creamwall"]);
+		floor->addPoint(9.5f, 0.0f);
+		floor->addPoint(9.5f, 10.0f);
+		floor->addPoint(0.0f, 10.0f);
+		addObject(floor);
 
 		wall = new Wall(-45.5f, i * 10.0f, 143.0f, 270.0f, 12.0f, textures["creamwall"], textures["maroon"]);
 		addObject(wall);
 
 		wall = new Wall(-45.5f, i * 10.0f, 131.0f, 0.0f, 15.0f, textures["creamwall"], textures["maroon"]);
+		wall->addWindow(2.5f, 4.5f, textures["darkwood"], 0.0f);
+		wall->addWindow(8.5f, 4.5f, textures["darkwood"], 0.0f);
 		addObject(wall);
 
 		// The walls next to the toilet
