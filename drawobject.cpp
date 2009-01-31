@@ -133,25 +133,24 @@ void GLBox::drawObject()
 		wall = new Wall(-32.0f, i * 10.0f + 4.25, 147.0f, 231.0f, 5.0f, textures["black"], textures["black"], 0.25f);
 		addObject(wall);
 
-		wall = new Wall(-34.5f, i * 10.0f, 143.0f, 180.0f, 11.0f, textures["creamwall"], textures["maroon"]);
+		wall = new Wall(-34.5f, i * 10.0f, 143.0f, 180.0f, 10.5f, textures["creamwall"], textures["creamwall"]);
 		wall->addWindow(3.5f, 4.5f, textures["darkwood"], 0.0f);
-		addObject(wall);
-		
+		addObject(wall);		
 
 		//HOD's Room
-		wall = new Wall(-36.0f, i * 10.0f, 143.0f, 90.0f, 10.0f, textures["creamwall"], textures["creamwall"]);
+		wall = new Wall(-36.0f, i * 10.0f, 143.0f, 90.0f, 19.0f, textures["creamwall"], textures["maroon"]);
 		addObject(wall);
 
-		wall = new Wall(-36.0f, i * 10.0f, 153.0f, 180.0f, 9.5f, textures["creamwall"], textures["creamwall"]);
+		wall = new Wall(-36.0f, i * 10.0f, 162.0f, 180.0f, 9.5f, textures["creamwall"], textures["maroon"]);
 		addObject(wall);
 
-		wall = new Wall(-45.50f, i * 10.0f, 153.0f, 270.0f, 10.0f, textures["creamwall"], textures["creamwall"]);
+		wall = new Wall(-45.50f, i * 10.0f, 162.0f, 270.0f, 19.0f, textures["creamwall"], textures["maroon"]);
 		addObject(wall);
 
 		floor = new Floor(-45.5f, i * 10.0f, 143.0f, 0.0f, textures["marblefloor"], textures["creamwall"]);
 		floor->addPoint(9.5f, 0.0f);
-		floor->addPoint(9.5f, 10.0f);
-		floor->addPoint(0.0f, 10.0f);
+		floor->addPoint(9.5f, 19.0f);
+		floor->addPoint(0.0f, 19.0f);
 		addObject(floor);
 
 		wall = new Wall(-45.5f, i * 10.0f, 143.0f, 270.0f, 12.0f, textures["creamwall"], textures["maroon"]);
