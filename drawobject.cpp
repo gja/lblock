@@ -19,6 +19,7 @@ void GLBox::loadAllTextures()
 	textures["lightwood"] = Texture(0xAB8560, "data/lightwood.png");
 	textures["darkwood"] = Texture(0x653626, "data/darkwood.png");
 	textures["marblefloor"] = Texture(0x8B8C8D, "data/marblefloor.png");
+	textures["hod"] = Texture(0x8B8C8D, "data/hod.jpg", 4.0f, 6.0f);
 	textures["elevator"] = Texture(0x8B8C8D, "data/elevator.png");
 	textures["stairs"] = Texture(0x8B8C8D, "data/stairs.jpg", -12.0f, 10.0f);
 	textures["black"] = Texture(0x000000);
@@ -138,19 +139,23 @@ void GLBox::drawObject()
 		addObject(wall);
 
 		//HOD's Room
-		wall = new Wall(-36.0f, i * 10.0f, 143.0f, 90.0f, 19.0f, textures["creamwall"], textures["maroon"]);
+		wall = new Wall(-36.0f, i * 10.0f, 143.0f, 90.0f, 29.0f, textures["creamwall"], textures["maroon"]);
+		wall->addWindow(5.0f, 5.0f, textures["window"]);
 		addObject(wall);
 
-		wall = new Wall(-36.0f, i * 10.0f, 162.0f, 180.0f, 9.5f, textures["creamwall"], textures["maroon"]);
+		wall = new Wall(-43.0f, i * 10.0f + 1.0f, 170.0f, 0.0f, 4.0f, textures["hod"], textures["hod"], 6.0f);
 		addObject(wall);
 
-		wall = new Wall(-45.50f, i * 10.0f, 162.0f, 270.0f, 19.0f, textures["creamwall"], textures["maroon"]);
+		wall = new Wall(-36.0f, i * 10.0f, 172.0f, 180.0f, 9.5f, textures["creamwall"], textures["maroon"]);
+		addObject(wall);
+
+		wall = new Wall(-45.50f, i * 10.0f, 172.0f, 270.0f, 29.0f, textures["creamwall"], textures["maroon"]);
 		addObject(wall);
 
 		floor = new Floor(-45.5f, i * 10.0f, 143.0f, 0.0f, textures["marblefloor"], textures["creamwall"]);
 		floor->addPoint(9.5f, 0.0f);
-		floor->addPoint(9.5f, 19.0f);
-		floor->addPoint(0.0f, 19.0f);
+		floor->addPoint(9.5f, 29.0f);
+		floor->addPoint(0.0f, 29.0f);
 		addObject(floor);
 
 		wall = new Wall(-45.5f, i * 10.0f, 143.0f, 270.0f, 12.0f, textures["creamwall"], textures["maroon"]);
