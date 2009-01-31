@@ -19,6 +19,7 @@ void GLBox::loadAllTextures()
 	textures["lightwood"] = Texture(0xAB8560, "data/lightwood.png");
 	textures["darkwood"] = Texture(0x653626, "data/darkwood.png");
 	textures["marblefloor"] = Texture(0x8B8C8D, "data/marblefloor.png");
+	textures["elevator"] = Texture(0x8B8C8D, "data/elevator.png");
 	textures["stairs"] = Texture(0x8B8C8D, "data/stairs.jpg", -12.0f, 10.0f);
 	textures["black"] = Texture(0x000000);
 }
@@ -113,6 +114,8 @@ void GLBox::drawObject()
 		addObject(wall);
 
 		wall = new Wall(-12.0f, i * 10.0f, 147.0f, 180.0f, 15.0f, textures["creamwall"], textures["maroon"]);
+		wall->addWindow(2.5f, 4.5f, textures["elevator"], 0.0f);
+		wall->addWindow(8.5f, 4.5f, textures["elevator"], 0.0f);
 		addObject(wall);
 
 		// Mini wall
