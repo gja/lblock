@@ -8,10 +8,10 @@
 
 #define ESCAPE_KEY Qt::Key_Escape
 
-#define LOOK_LEFT_KEY Qt::Key_Left
-#define LOOK_RIGHT_KEY Qt::Key_Right
-#define LOOK_UP_KEY Qt::Key_Up
-#define LOOK_DOWN_KEY Qt::Key_Down
+#define LOOK_LEFT_KEY Qt::Key_J
+#define LOOK_RIGHT_KEY Qt::Key_L
+#define LOOK_UP_KEY Qt::Key_I
+#define LOOK_DOWN_KEY Qt::Key_K
 
 #define MOVE_FORWARD_KEY Qt::Key_W
 #define MOVE_BACKWARD_KEY Qt::Key_S

@@ -28,7 +28,7 @@ void GLBox::drawObject()
 {
 	Wall *wall;
 	Floor *floor;
-	
+
 	// First, the left side of the building
 	for (int i = 0; i < 4; i++) {
 
@@ -94,7 +94,7 @@ void GLBox::drawObject()
 		wall = new Wall(-31.0f, i * 10.0f, 87.0f, 0.0f, 5.5f, textures["creamwall"], textures["creamwall"]);
 		wall->addWindow(1.0f, 4.0f, textures["darkwood"], 0.0f);
 		addObject(wall);
-		
+
 	leftroof:
 		// Now the floors
 		floor = new Floor(-50.0f, i * 10.0f, 50.0f, 0.0f, textures["marblefloor"], textures["creamwall"]);
@@ -135,7 +135,7 @@ void GLBox::drawObject()
 
 		wall = new Wall(-34.5f, i * 10.0f, 143.0f, 180.0f, 10.5f, textures["creamwall"], textures["creamwall"]);
 		wall->addWindow(3.5f, 4.5f, textures["darkwood"], 0.0f);
-		addObject(wall);		
+		addObject(wall);
 
 		//HOD's Room
 		wall = new Wall(-36.0f, i * 10.0f, 143.0f, 90.0f, 19.0f, textures["creamwall"], textures["maroon"]);
