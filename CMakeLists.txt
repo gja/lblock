@@ -1,6 +1,7 @@
 # This is the 8th Sem Project of Sourav Sarkar, Tejas Dinkar and Thejaswi K
 # Currently This is just the Demo
 
+cmake_minimum_required(VERSION 2.6)
 project(lblock)
 
 find_package(Qt4 REQUIRED)
