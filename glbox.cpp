@@ -8,6 +8,10 @@
 #include <QApplication>
 #include <QDesktopWidget>
 
+#include <QDomDocument>
+#include <QFile>
+
+
 #include <math.h>
 
 // Create a GLBox widget
@@ -28,8 +32,8 @@ GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
 GLBox::~GLBox()
 {
 	makeCurrent();
-	while (! model.isEmpty() )
-		delete model.takeFirst();
+	qDeleteAll(model);
+	model.clear();
 }
 
 // Paint the box. The actual openGL commands for drawing the box are performed here.
@@ -72,9 +76,6 @@ void GLBox::initializeGL()
 	glDepthFunc(GL_LEQUAL);
 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
-	// Initialize all Objects
-	//drawObject();
 }
 
 // Set up the OpenGL view port, matrix mode, etc.

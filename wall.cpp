@@ -25,8 +25,8 @@ void Wall::addWindow(float p, float l, const Texture &t, float lh, float uh)
 
 Wall::~Wall()
 {
-	while (! windows.isEmpty())
-		delete windows.takeFirst();
+	qDeleteAll(windows);
+	windows.clear();
 }
 
 void Wall::drawSegment(float startx, float starty, float endx, float endy)
