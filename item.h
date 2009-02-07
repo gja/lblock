@@ -6,9 +6,15 @@
 class Item 
 {
     protected:
+	// This stores the OpenGL Display List
 	GLuint object;
+
+	// This is the positions and rotation of the object
 	GLfloat posx, posy, posz;
 	GLfloat rotation;
+
+	// Set this to 1 to force a recompile next time we draw
+	bool dirty;
 
     public:
 	// This is the constructor

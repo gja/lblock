@@ -17,7 +17,6 @@ class GLBox : public QGLWidget
     private:
 	inline void addObject(Item *item)
 	{
-		item->compile();
 		model<<item;
 	}
 
