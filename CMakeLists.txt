@@ -8,7 +8,8 @@ set(QT_USE_QTOPENGL true)
 set(QT_USE_QTXML true)
 include(${QT_USE_FILE})
 
-set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp wall.cpp floor.cpp)
+set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp wall.cpp
+	floor.cpp window.cpp)
 
 QT4_WRAP_CPP(SOURCES glbox.h)
 

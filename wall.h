@@ -46,8 +46,11 @@ class Wall : public Item
 
 	virtual void generateList();
 
+	// This draws the objects and the windows
+	virtual void drawObject();
+
     private:
-	struct Window;
+	class Window;
 	QList<Window *> windows;
 
 	// This draws an inner and outer segment. Not for public consumption

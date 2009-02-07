@@ -1,4 +1,5 @@
 #include "wall.h"
+#include "window.h"
 
 #include <qgl.h>
 
@@ -6,21 +7,10 @@ Wall::Wall(float x, float y, float z, float r, float l, const Texture &i, const 
 {
 }
 
-struct Wall::Window {
-	float position;
-	float length;
-	float upperHeight;
-	float lowerHeight;
-	Texture texture;
-
-	inline Window (float p, float l, const Texture &t, float lh, float uh)
-		: position(p), length(l), upperHeight(uh), lowerHeight(lh), texture(t)
-	{}
-};
-
 void Wall::addWindow(float p, float l, const Texture &t, float lh, float uh)
 {
-	windows << new Window(p, l, t, lh, uh);
+	Window *w = new Window(this, p, l, t, lh, uh);
+	windows<<w;
 }
 
 Wall::~Wall()
@@ -68,20 +58,6 @@ void Wall::generateList()
 		drawSegment(window->position, 0.0f, window->position + window->length, window->lowerHeight);
 		drawSegment(window->position, window->upperHeight, window->position + window->length, height);
 
-		// now that window itself not that in the innertexture side, the image is reversed
-		glBindTexture(GL_TEXTURE_2D, window->texture.texture);
-		glBegin(GL_QUADS);
-			glTexCoord2f(0.0, 0.0); glVertex3f(window->position, window->lowerHeight, 0.0f);
-			glTexCoord2f(0.0, 1.0); glVertex3f(window->position, window->upperHeight, 0.0f);
-			glTexCoord2f(1.0, 1.0); glVertex3f(window->position + window->length, window->upperHeight, 0.0f);
-			glTexCoord2f(1.0, 0.0); glVertex3f(window->position + window->length, window->lowerHeight, 0.0f);
-
-			glTexCoord2f(0.0, 0.0); glVertex3f(window->position, window->lowerHeight, -thickness);
-			glTexCoord2f(0.0, 1.0); glVertex3f(window->position, window->upperHeight, -thickness);
-			glTexCoord2f(1.0, 1.0); glVertex3f(window->position + window->length, window->upperHeight, -thickness);
-			glTexCoord2f(1.0, 0.0); glVertex3f(window->position + window->length, window->lowerHeight, -thickness);
-		glEnd();
-
 		startx = window->position + window->length;
 	}
 
@@ -101,4 +77,21 @@ void Wall::generateList()
 		glTexCoord2f(thickness / innerTexture.sizex, height / innerTexture.sizey); glVertex3f(length, height, 0.0f);
 		glTexCoord2f(thickness / innerTexture.sizex, 0.0f); glVertex3f(length, 0.0f, 0.0f);
 	glEnd();
+}
+
+void Wall::drawObject()
+{
+	if (dirty)
+		compile();
+
+	glPushMatrix();
+	glTranslatef(posx, posy, posz);
+	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
+	glCallList(object);
+
+	foreach(Window *w, windows) {
+		w->drawObject();
+	}
+
+	glPopMatrix();
 }
