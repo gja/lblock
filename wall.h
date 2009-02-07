@@ -40,9 +40,13 @@ class Wall : public Item
 	inline void setOuterTexture(const Texture &o) { outerTexture = o; };
 	inline const Texture &getOuterTexture() { return outerTexture; }
 
-	// This function is used to add a window
-	// Remember to add windows in order from left -> right along the wall
+	// This function is used to add a window/door
+	// Remember to add windows/doors in order from left -> right along the wall
 	void addWindow(float position, float length, const Texture &texture = Texture(0x7F00FFFF), float lowerHeight = 3.0, float upperHeight = 7.0);
+	inline void addDoor(float position, float length, const Texture &texture = Texture(0x7F00FFFF), float height = 7.0)
+	{
+		addWindow(position, length, texture, 0.0f, height);
+	}
 
 	virtual void generateList();
 
@@ -51,6 +55,7 @@ class Wall : public Item
 
     private:
 	class Window;
+	class Door;
 	QList<Window *> windows;
 
 	// This draws an inner and outer segment. Not for public consumption
