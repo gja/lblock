@@ -6,6 +6,7 @@ project(lblock)
 
 find_package(Qt4 REQUIRED)
 set(QT_USE_QTOPENGL true)
+set(QT_USE_QTXML true)
 include(${QT_USE_FILE})
 
 set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp wall.cpp floor.cpp)

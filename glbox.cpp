@@ -73,10 +73,8 @@ void GLBox::initializeGL()
 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-	loadAllTextures();
-
 	// Initialize all Objects
-	drawObject();
+	//drawObject();
 }
 
 // Set up the OpenGL view port, matrix mode, etc.

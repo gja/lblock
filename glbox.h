@@ -7,6 +7,7 @@
 #include <qgl.h>
 #include <QHash>
 #include <QString>
+#include <QDomDocument>
 
 class QKeyEvent;
 

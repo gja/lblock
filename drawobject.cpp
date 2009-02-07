@@ -5,6 +5,7 @@
 
 #include <qgl.h>
 #include <QImage>
+#include <QDomDocument>
 
 // for color specifications, see http://www.december.com/html/spec/color1.html
 
