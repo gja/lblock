@@ -63,7 +63,7 @@ void GLBox::drawObject(const QDomDocument &doc)
 					QString lowerHeight = tmp.attribute("lowerHeight", "3.0");
 					QString upperHeight = tmp.attribute("upperHeight", "7.0");
 					wall->addWindow(position.toFloat(), length.toFloat(), textures[texture], lowerHeight.toFloat(), upperHeight.toFloat());
-					qDebug()<<position<<length<<texture<<lowerHeight<<upperHeight;
+					qDebug()<<"Added Window:"<<position<<length<<texture<<lowerHeight<<upperHeight;
 				}
 				else if (tmp.tagName() == "door") {
 					QString position = tmp.attribute("position");
@@ -71,6 +71,7 @@ void GLBox::drawObject(const QDomDocument &doc)
 					QString texture = tmp.attribute("texture");
 					QString height = tmp.attribute("height", "7.0");
 					wall->addDoor(position.toFloat(), length.toFloat(), textures[texture], height.toFloat());
+					qDebug()<<"Added Door:"<<position<<length<<texture<<height;
 				}
 			}
 
