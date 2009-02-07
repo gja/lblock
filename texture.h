@@ -12,7 +12,7 @@ struct Texture {
 	Texture();
 
 	// The real constructor. At the Minimum, this needs a backup value as argb
-	Texture(const uint rgb, const char *path = NULL, float x = 1.0f, float y = 1.0f);
+	Texture(const uint rgb, const QString &path = QString(), float x = 1.0f, float y = 1.0f);
 
 	// This is called to free a texture. This is NOT a destructor, please call it manually
 	void destroy();

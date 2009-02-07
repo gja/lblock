@@ -7,11 +7,11 @@ Texture::Texture() : texture(0)
 {
 }
 
-Texture::Texture(const uint rgb, const char *path, float x, float y) : sizex(x), sizey(y)
+Texture::Texture(const uint rgb, const QString &path, float x, float y) : sizex(x), sizey(y)
 {
 	QImage v, t;
 
-	if (! path || !v.load(path) ) {
+	if (path.isEmpty() || !v.load(path) ) {
 		v = QImage(16, 16, QImage::Format_ARGB32);
 		v.fill( rgb );
 	}
