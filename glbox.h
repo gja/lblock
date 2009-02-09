@@ -38,7 +38,7 @@ class GLBox : public QGLWidget
 	 * \param parent The Widget's Parent \default NULL (for no parent)
 	 */
 	GLBox( QWidget* parent = NULL);
-	
+
 	/// The Destructor
 	~GLBox();
 
@@ -49,7 +49,7 @@ class GLBox : public QGLWidget
 	 * environment, such as blending, shading so on.
 	 */
 	void initializeGL();
-	
+
 	/** 
 	 * \brief This is called whenever the GLWidget is updated
 	 *
@@ -110,7 +110,7 @@ class GLBox : public QGLWidget
 
 	/// This stores the position of the center of the screen (x)
 	int centerx;
-	
+
 	/// This stores the position of the center of the screen (y)
 	int centery;
 
