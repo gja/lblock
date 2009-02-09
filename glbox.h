@@ -35,7 +35,7 @@ class GLBox : public QGLWidget
     public:
 	/**
 	 * This is the Constructor.
-	 * \param parent The Widget's Parent \default NULL (for no parent)
+	 * \param parent The Widget's Parent (NULL for no parent)
 	 */
 	GLBox( QWidget* parent = NULL);
 
@@ -51,8 +51,7 @@ class GLBox : public QGLWidget
 	void initializeGL();
 
 	/** 
-	 * \brief This is called whenever the GLWidget is updated
-	 *
+	 * This is called whenever the GLWidget is updated.
 	 * This basically sets the orientation of the viewer, and then
 	 * paints all the objects that are defined in the \ref model
 	 */
