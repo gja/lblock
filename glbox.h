@@ -11,45 +11,125 @@
 
 class QKeyEvent;
 
+/**
+ * This represents the OpenGL widget.
+ * An object of this widget can be used to generate the 3D model
+ * in which we can walk through. This widget is responsible for
+ * maintaining the current state (the x, y, z co-ordinates and
+ * orientation of the viewer) as well as the motion of the user.
+ */
 class GLBox : public QGLWidget
 {
 	Q_OBJECT
 
     private:
+	/**
+	 * Add an Object to the \ref model
+	 * \param item The item to be added
+	 */
 	inline void addObject(Item *item)
 	{
 		model<<item;
 	}
 
     public:
+	/**
+	 * This is the Constructor.
+	 * \param parent The Widget's Parent \default NULL (for no parent)
+	 */
 	GLBox( QWidget* parent = NULL);
+	
+	/// The Destructor
 	~GLBox();
 
     protected:
+	/**
+	 * This is called when the object is initialized. This function is simply 
+	 * responsible for setting up the global parameters of the OpenGL 
+	 * environment, such as blending, shading so on.
+	 */
 	void initializeGL();
+	
+	/** 
+	 * \brief This is called whenever the GLWidget is updated
+	 *
+	 * This basically sets the orientation of the viewer, and then
+	 * paints all the objects that are defined in the \ref model
+	 */
 	void paintGL();
+
+	/**
+	 * This is called whenever the widget is resized
+	 * \param x the new width of the widget
+	 * \param y the new height of the widget
+	 */
 	void resizeGL( int w, int h );
 
-	// This is used to draw the current object
-	virtual void drawObject(const QDomDocument &doc);
+	/**
+	 * This is called to generate the model from an XML document.
+	 * See the example code below for the usage
+	 * \code
+	 * QFile file("file.xml");
+	 * QDomDocument doc;
+	 * doc.setContents(file);
+	 * file.close();
+	 * drawObject(doc);
+	 * \endcode
+	 * \param doc A parsed XML DOM Document
+	 */
+	void drawObject(const QDomDocument &doc);
 
-	// Called Whenever a Key is Pressed
+	/**
+	 * This is called whenever a key is pressed.
+	 * \param event A keypress event representing the event
+	 */
 	virtual void keyPressEvent( QKeyEvent *event );
 
+	/**
+	 * This is called whenever the mouse is moved.
+	 * This is currently set to be called whenever the mouse moves,
+	 * even if there has not been any click (which was the default behavior)
+	 * \param event A mouse event representing the event
+	 */
 	virtual void mouseMoveEvent( QMouseEvent *event);
 
-	// These next Few Parameters set what we are looking at
-	// left_right and up_down are in degrees
-	GLdouble posx, posy, posz;
-	int left_right, up_down;
+	/// The x position of the observer
+	GLfloat posx;
 
-	// These next two variables are used to ensure that the mouse is in the center of the screen
-	int centerx, centery;
+	/// The y position of the observer
+	GLfloat posy;
 
-	// This is a List of all the textures
+	/// The z position of the observer
+	GLfloat posz;
+
+	/// This stores where the user is looking to y axis (left is +ve)
+	int left_right;
+
+	/// This stores where the user is looking to x axis (up is +ve)
+	int up_down;
+
+	/// This stores the position of the center of the screen (x)
+	int centerx;
+	
+	/// This stores the position of the center of the screen (y)
+	int centery;
+
+	/**
+	 * This is a List of all the textures. All textures that are open
+	 * should be stored in this list. This can be done as follows:
+	 * \code
+	 * textures["name"] = Texture(0xCOLOR, "/path/to/file", xscale, yscale);
+	 * use(textures["name"]);
+	 * \endcode
+	 */
 	QHash <QString, Texture> textures;
 
-	// List of all the items on screen
+	/**
+	 * This is a list of all the items on screen. This is arguably one of
+	 * the most important members of this class. To add an object to this
+	 * class, use the \ref addObject method.
+	 * \see addObject
+	 */
 	QList <Item *> model;
 
     public slots:
