@@ -3,46 +3,88 @@
 
 #include <qgl.h>
 
-class Item 
+/**
+ * This abstract class represents an Item. By itself, this class doesn't have much
+ * use, and must be inherited for use. This class provides some functions that all
+ * classes must implement, in particular \ref generateList.
+ */
+class Item
 {
     protected:
-	// This stores the OpenGL Display List
+	/// This stores the OpenGL Display List. This is created in \ref compile() by \ref generateList()
 	GLuint object;
 
-	// This is the positions and rotation of the object
-	GLfloat posx, posy, posz;
+	/// This is the x coordinate of the object. This can be any standard position of the object, but we choose left bottom corner
+	GLfloat posx;
+
+	/// This is the y coordinate of the object. This can be any standard position of the object, but we choose left bottom corner
+	GLfloat posy;
+
+	/// This is the z coordinate of the object. This can be any standard position of the object, but we choose left bottom corner
+	GLfloat posz;
+
+	/// This is the rotation of the object
 	GLfloat rotation;
 
-	// Set this to 1 to force a recompile next time we draw
+	/**
+	 * Forces a recompile of the object. This flag can be set to true if we wish to force
+	 * a recompile of the Call List. In this way, we can set up animations, by always
+	 * setting the dirty flag. If we reimplement \ref drawObject, however, we should
+	 * check to see that it starts with
+	 * \code
+	 * if (dirty)
+	 * 	compile();
+	 * \endcode
+	 */
 	bool dirty;
 
     public:
-	// This is the constructor
+	/**
+	 * This is the constructor
+	 * \param x The x Co-Ordinate of the Object
+	 * \param y The y Co-Ordinate of the Object
+	 * \param z The z Co-Ordinate of the Object
+	 */
 	Item(float x, float y, float z, float rotation = 0.0f);
 
-	// The Destructor
+	/// This is the Destructor
 	~Item();
 
-	// This function is used to set the position of the object
+	/**
+	 * This function is used to set the position of the object.
+	 * \param x The x Co-Ordinate of the Object
+	 * \param y The y Co-Ordinate of the Object
+	 * \param z The z Co-Ordinate of the Object
+	 */
 	inline void setPos(float x,float y,float z) { posx=x; posy=y; posz=z; }
 
-	// These next three functions return the position
+	/// Return the X coordinate of the object \return The X coordinate
 	inline float getPosX() { return posx; }
+
+	/// Return the Y coordinate of the object \return The Y coordinate
 	inline float getPosY() { return posy; }
+
+	/// Return the Z coordinate of the object \return The Z coordinate
 	inline float getPosZ() { return posz; }
 
-	// This is used to set and get the rotation
+	/// Get the rotation of the object \return The Rotation
 	inline float getRotation() { return rotation; }
+
+	/// Set the rotation of the object \param r The Rotation
 	inline void setRotation(float r) { rotation = r; }
 
-	// This function generates a callList
-	virtual void compile();
+	/// This function calls \ref generateList() to create the CallList \ref object
+	void compile();
 
-	// This is the public function to draw the object
+	/**
+	 * This is the public function to draw the object. Unless overridden, this simply
+	 * moves to the location specified by the given position, and then calls glCallList
+	 * to draw the object
+	 */
 	virtual void drawObject();
 
-	// This is the member which MUST be overridden, which generates the call list
+	/// This is the member which MUST be overridden, which generates the call list. \see object
 	virtual void generateList() = 0;
 };
 
-#endif 
+#endif

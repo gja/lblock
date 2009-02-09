@@ -14,7 +14,7 @@ void Item::drawObject()
 	glPopMatrix();
 }
 
-Item::Item(float x, float y, float z, float r) : posx(x) , posy(y), posz(-z), rotation(r), dirty(true)
+Item::Item(float x, float y, float z, float r) : posx(x) , posy(y), posz(-z), rotation(r), dirty(true), object(0)
 {
 }
 
@@ -25,6 +25,9 @@ Item::~Item()
 
 void Item::compile()
 {
+	if (glIsList(object))
+		glDeleteLists(object, 1);
+
 	object = glGenLists(1);
 	glNewList(object, GL_COMPILE);
 		generateList();
