@@ -25,7 +25,7 @@
  * \li OpenGL libraries (bundled with Qt)
  *
  * Further, if compiling LBlock, the following are needed
- * \li CMake build system (http://www.kitware.org)
+ * \li CMake build system (http://www.cmake.org)
  * \li Doxygen for generating documentation (http://www.doxygen.org/)
  * \li Git source configuration management for managing the code base (http://git.or.cz)
  */
