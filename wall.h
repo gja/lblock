@@ -9,7 +9,8 @@
  * This class contains all the functions that can be used to build a wall.
  * It contains all the attributes neccessary for building a wall. The objects of this class basically define
  * the parameters required for constructing a wall. In addition to the Wall constructor this class defines two other
- * functions addWindow (for adding a window on the wall) and addDoor (for adding a door on the wall).
+ * functions \ref addWindow (for adding a window on the wall) and \ref addDoor (for adding a door on the wall).
+ * The windows/doors should be added in ascending order by position.
  */
 
 class Wall : public Item
@@ -115,17 +116,32 @@ class Wall : public Item
 		addWindow(position, length, texture, 0.0f, height);
 	}
 
+	/// This function generates the CallList \ref object
 	virtual void generateList();
 
-	/// This function draws the objects and the windows
+	/**
+	 * This function draws the wall and the windows. Internally, this function delegates
+	 * the drawing of the windows to each individual \ref Window defined in the \ref windows
+	 * list.
+	 */
 	virtual void drawObject();
 
     private:
 	class Window;
 	class Door;
+
+	/// This contains a list of all the windows and doors. \see addWindow \see addDoor
 	QList<Window *> windows;
 
-	// This draws an inner and outer segment. Not for public consumption
+	/**
+	 * This draws an inner and outer segment of the wall. Not for public consumption,
+	 * this is called internally by \ref generateList. This essentially draws a rectangle
+	 * between (startx, starty) and (endx, endy). Ie, a small segment of the wall
+	 * \param startx The starting position of X
+	 * \param starty The starting position of Y
+	 * \param endx The ending position of X
+	 * \param endy The ending position of Y
+	 */
 	void drawSegment(float startx, float starty, float endx, float endy);
 };
 
