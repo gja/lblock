@@ -16,7 +16,7 @@ class Wall : public Item
 {
     protected:
 
-	/// This is the length of the wall.    
+	/// This is the length of the wall.
 	GLfloat length;
 
 	/// This is the height of the wall.
@@ -28,7 +28,7 @@ class Wall : public Item
 	/// This represents the inner texture of the wall.
 	Texture innerTexture;
 
-	/// This represents the outer texture of the wall. 
+	/// This represents the outer texture of the wall.
 	Texture outerTexture;
 
     public:
@@ -39,8 +39,8 @@ class Wall : public Item
 	 * \param z It contains the z coordinate of the wall
 	 * \param rotation It represents the angle of rotation for the wall
 	 * \param length It contains the length of the wall
-	 * \param innerTexture It represents the inner texture of the walls
-	 * \param outerTexture It represents the outer texture of the walls 
+	 * \param inner It represents the inner texture of the walls
+	 * \param outer It represents the outer texture of the walls
 	 * \param height It contains the height of the wall, default value is 10
 	 * \param thickness It contains the thickness of the wall, default value is 0.5
 	 */
@@ -87,8 +87,8 @@ class Wall : public Item
 
 	/**
 	 * This function is used to set the outer texture of the wall.
-	 * \param 0 represents the outer texture of the wall that is to be set
-	 */ 
+	 * \param o represents the outer texture of the wall that is to be set
+	 */
 	inline void setOuterTexture(const Texture &o) { outerTexture = o; };
 
 	/// This function returns the outer texture of the wall.
@@ -114,7 +114,7 @@ class Wall : public Item
 	{
 		addWindow(position, length, texture, 0.0f, height);
 	}
- 
+
 	virtual void generateList();
 
 	/// This function draws the objects and the windows
