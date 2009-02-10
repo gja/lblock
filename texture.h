@@ -8,8 +8,14 @@
  * An object of this model can be used to set the textures of a wall.
  */
 struct Texture {
+
+	/// This stores the texture in an OpenGL format after reading it to memory
 	GLuint texture;
+
+	/// This stores the width of the texture in feet.
 	float sizex;
+
+	/// This stores the height of the texture in feet.
 	float sizey;
 
 	/// Just a dummy constructor
