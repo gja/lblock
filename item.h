@@ -11,7 +11,7 @@
 class Item
 {
     protected:
-	/// This stores the OpenGL Display List. This is created in \ref compile() by \ref generateList()
+	/// This stores the OpenGL Display List. This is created in \ref compile by \ref generateList
 	GLuint object;
 
 	/// This is the x coordinate of the object. This can be any standard position of the object, but we choose left bottom corner
@@ -74,7 +74,7 @@ class Item
 	/// Set the rotation of the object \param r The Rotation
 	inline void setRotation(float r) { rotation = r; }
 
-	/// This function calls \ref generateList() to create the CallList \ref object
+	/// This function calls \ref generateList to create the CallList \ref object
 	void compile();
 
 	/**
