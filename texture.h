@@ -17,7 +17,7 @@ struct Texture {
 
 	/**
 	 *  This is the constructor.
-	 *  It is used to add texture to the \ref model
+	 *  This initializes the texture, for future use
 	 *  \param rgb a default colour that is to be loaded 
 	 *  \param path specifies where the texture file that is to be loaded is present
 	 *  \param x gives the x scale, default value is 1.0

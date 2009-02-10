@@ -24,7 +24,8 @@ class GLBox : public QGLWidget
 
     private:
 	/**
-	 * Add an Object to the \ref model
+	 * Add an Object to the model. This is the recommended
+	 * way to add an object to the \ref model
 	 * \param item The item to be added
 	 */
 	inline void addObject(Item *item)
