@@ -59,8 +59,8 @@ class GLBox : public QGLWidget
 
 	/**
 	 * This is called whenever the widget is resized
-	 * \param x the new width of the widget
-	 * \param y the new height of the widget
+	 * \param w the new width of the widget
+	 * \param h the new height of the widget
 	 */
 	void resizeGL( int w, int h );
 

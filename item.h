@@ -44,6 +44,7 @@ class Item
 	 * \param x The x Co-Ordinate of the Object
 	 * \param y The y Co-Ordinate of the Object
 	 * \param z The z Co-Ordinate of the Object
+	 * \param rotation the Rotation of the Object wrt the z axis
 	 */
 	Item(float x, float y, float z, float rotation = 0.0f);
 
