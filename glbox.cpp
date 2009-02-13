@@ -148,7 +148,7 @@ void GLBox::keyPressEvent( QKeyEvent *e)
 
 	// If we have a collision, then don't move
 	foreach(Item *item, model) {
-		if (item->isCollision(newposx, posy, newposz)) {
+		if (item->isCollision(newposx, posy, -newposz)) {
 			qDebug()<<"Collision, Can't Move";
 			return;
 		}
