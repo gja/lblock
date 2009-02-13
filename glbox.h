@@ -8,6 +8,7 @@
 #include <QHash>
 #include <QString>
 #include <QDomDocument>
+#include <QTimer>
 
 class QKeyEvent;
 
@@ -131,6 +132,9 @@ class GLBox : public QGLWidget
 	 * \see addObject
 	 */
 	QList <Item *> model;
+
+	/// This timer refreshes the OpenGL widget every 50ms
+	QTimer timer;
 
     public slots:
 };
