@@ -165,8 +165,8 @@ void GLBox::mouseMoveEvent (QMouseEvent *event)
 	if (event->pos() == QPoint( centerx, centery) )
 		return;
 
-	left_right += (event->x() - centerx) / 2;
-	up_down -= (event->y() - centery) / 2;
+	left_right += (event->x() - centerx) / 8;
+	up_down -= (event->y() - centery) / 8;
 
 	if (left_right >= 360)
 		left_right -= 360;
