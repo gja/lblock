@@ -1,0 +1,18 @@
+<!DOCTYPE LBlockML>
+<lblock>
+  <textures>
+    <texture color="0xFFFFFF" name="maroon" file="data/maroon.png" />
+    <texture name="brown" file="data/brown.png" />
+    <texture name="window" file="data/window.png" />
+  </textures>
+  <items>
+    <item type="wall" x="10.0" y="0.0" z="10.0" innerTexture="brown" outerTexture="maroon" length="10.0" rotation="30.0">
+      <window position="1.0" length="4.0" texture="window"/>
+      <window position="5.0" length="4.0" texture="window"/>
+    </item>
+    <item type="wall" x="0.0" y="0.0" z="20.0" innerTexture="brown" outerTexture="maroon" length="10.0" >
+      <window position="1.0" length="4.0" texture="window"/>
+      <window position="5.0" length="4.0" texture="window"/>
+    </item>
+  </items>
+</lblock>
