@@ -6,8 +6,8 @@
 
 Wall::Wall(float x, float y, float z, float r, float l, const Texture &i, const Texture &o, float h, float t) : Item (x, y, z, r) , length(l), innerTexture(i), outerTexture(o), height(h), thickness(t), collisionMatrix()
 {
-	collisionMatrix.translate(-x, -z);
 	collisionMatrix.rotate(-r);
+	collisionMatrix.translate(-x, -z);
 }
 
 void Wall::addWindow(float p, float l, const Texture &t, float lh, float uh)
@@ -104,9 +104,11 @@ bool Wall::isCollision(float x, float y, float z)
 	if (y < posy || y > posy + height)
 		return false;
 
-	QPointF point = collisionMatrix.map(QPoint(x, z));
+	qreal newx, newz;
 
-	if (point.rx() >= 0 && point.rx() <= length && point.ry() >= 0 && point.ry() <= thickness)
+	collisionMatrix.map(x, z, &newx, &newz);
+
+	if (newx >= -1.0 && newx <= length + 1.0 && newz >= -1.0 && newz <= thickness + 1.0)
 		return true;
 	return false;
 }
