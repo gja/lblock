@@ -5,6 +5,8 @@
 #include "texture.h"
 
 #include <QList>
+#include <QMatrix>
+
 /**
  * This class contains all the functions that can be used to build a wall.
  * It contains all the attributes neccessary for building a wall. The objects of this class basically define
@@ -31,6 +33,9 @@ class Wall : public Item
 
 	/// This represents the outer texture of the wall.
 	Texture outerTexture;
+
+	/// This stores the matrix for collision detection
+	QMatrix collisionMatrix;
 
     public:
 	/**
@@ -125,6 +130,14 @@ class Wall : public Item
 	 * list.
 	 */
 	virtual void drawObject();
+
+	/** This method checks if a point collides with this object
+	 * \param x The X position of the point
+	 * \param y The Y position of the point
+	 * \param z The Z position of the point
+	 * \return true if there is a collision, false otherwise
+	 */
+	virtual bool isCollision(float x, float y, float z);
 
     private:
 	class Window;

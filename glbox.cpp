@@ -92,6 +92,7 @@ void GLBox::resizeGL( int w, int h )
 void GLBox::keyPressEvent( QKeyEvent *e)
 {
 	double angle = left_right * M_PI / 180.;
+	float newposx = posx, newposz = posz;
 
 	switch( e->key() )
 	{
@@ -124,25 +125,35 @@ void GLBox::keyPressEvent( QKeyEvent *e)
 			break;
 
 		case MOVE_FORWARD_KEY:
-			posx += WALK_STEP * sin(angle);
-			posz -= WALK_STEP * cos(angle);
+			newposx += WALK_STEP * sin(angle);
+			newposz -= WALK_STEP * cos(angle);
 			break;
 
 		case MOVE_BACKWARD_KEY:
-			posx -= WALK_STEP * sin(angle);
-			posz += WALK_STEP * cos(angle);
+			newposx -= WALK_STEP * sin(angle);
+			newposz += WALK_STEP * cos(angle);
 			break;
 
 		case MOVE_LEFT_KEY:
-			posx -= WALK_STEP * cos(angle);
-			posz -= WALK_STEP * sin(angle);
+			newposx -= WALK_STEP * cos(angle);
+			newposz -= WALK_STEP * sin(angle);
 			break;
 
 		case MOVE_RIGHT_KEY:
-			posx += WALK_STEP * cos(angle);
-			posz += WALK_STEP * sin(angle);
+			newposx += WALK_STEP * cos(angle);
+			newposz += WALK_STEP * sin(angle);
 			break;
 	}
+
+	// If we have a collision, then don't move
+	foreach(Item *item, model) {
+		if (item->isCollision(newposx, posy, newposz)) {
+			qDebug()<<"Collision, Can't Move";
+			return;
+		}
+	}
+	posx = newposx;
+	posz = newposz;
 
 	updateGL();
 }
