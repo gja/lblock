@@ -11,7 +11,6 @@
 #include <QDomDocument>
 #include <QFile>
 
-
 #include <math.h>
 
 // Create a GLBox widget
@@ -76,6 +75,15 @@ void GLBox::initializeGL()
 	glDepthFunc(GL_LEQUAL);
 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
+	QFile file( "file.xml");
+
+	QDomDocument doc("LBlockML");
+	doc.setContent(&file);
+	
+	file.close();
+
+	drawObject(doc);
 }
 
 // Set up the OpenGL view port, matrix mode, etc.
