@@ -25,6 +25,9 @@ GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
 
 	centerx = QApplication::desktop()->width() / 2;
 	centery = QApplication::desktop()->height() / 2;
+
+	connect(&timer, SIGNAL(timeout()), this, SLOT(updateGL()));
+	timer.setInterval(50);
 }
 
 // Release allocated resources
@@ -84,6 +87,8 @@ void GLBox::initializeGL()
 	file.close();
 
 	drawObject(doc);
+
+	timer.start();
 }
 
 // Set up the OpenGL view port, matrix mode, etc.
@@ -160,8 +165,6 @@ void GLBox::keyPressEvent( QKeyEvent *e)
 	}
 	posx = newposx;
 	posz = newposz;
-
-	updateGL();
 }
 
 void GLBox::mouseMoveEvent (QMouseEvent *event)
@@ -182,6 +185,4 @@ void GLBox::mouseMoveEvent (QMouseEvent *event)
 		up_down = 60;
 	else if (up_down < -60)
 		up_down = -60;
-
-	updateGL();
 }
