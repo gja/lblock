@@ -1,9 +1,12 @@
 #include "wall.h"
 
 #include <qgl.h>
+#include <QPoint>
 
-Wall::Wall(float x, float y, float z, float r, float l, const Texture &i, const Texture &o, float h, float t) : Item (x, y, z, r) , length(l), innerTexture(i), outerTexture(o), height(h), thickness(t)
+Wall::Wall(float x, float y, float z, float r, float l, const Texture &i, const Texture &o, float h, float t) : Item (x, y, z, r) , length(l), innerTexture(i), outerTexture(o), height(h), thickness(t), collisionMatrix()
 {
+	collisionMatrix.translate(-x, -z);
+	collisionMatrix.rotate(-r);
 }
 
 struct Wall::Window {
@@ -101,4 +104,16 @@ void Wall::generateList()
 		glTexCoord2f(thickness / innerTexture.sizex, height / innerTexture.sizey); glVertex3f(length, height, 0.0f);
 		glTexCoord2f(thickness / innerTexture.sizex, 0.0f); glVertex3f(length, 0.0f, 0.0f);
 	glEnd();
+}
+
+bool Wall::isCollision(float x, float y, float z)
+{
+	if (y < posy || y > posy + height)
+		return false;
+
+	QPointF point = collisionMatrix.map(QPoint(x, z));
+
+	if (point.rx() >= 0 && point.rx() <= length && point.ry() >= 0 && point.ry() <= thickness)
+		return true;
+	return false;
 }

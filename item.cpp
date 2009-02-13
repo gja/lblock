@@ -31,3 +31,8 @@ void Item::compile()
 	glEndList();
 	dirty = false;
 }
+
+bool Item::isCollision(float x, float y, float z)
+{
+	return 0;
+}

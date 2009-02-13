@@ -43,6 +43,14 @@ class Item
 
 	// This is the member which MUST be overridden, which generates the call list
 	virtual void generateList() = 0;
+
+	/** This method checks if a point collides with this object
+	 * \param x The X position of the point
+	 * \param y The Y position of the point
+	 * \param z The Z position of the point
+	 * \return true if there is a collision, false otherwise
+	 */
+	virtual bool isCollision(float x, float y, float z);
 };
 
 #endif 

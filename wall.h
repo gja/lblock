@@ -5,6 +5,7 @@
 #include "texture.h"
 
 #include <QList>
+#include <QMatrix>
 
 class Wall : public Item
 {
@@ -15,6 +16,9 @@ class Wall : public Item
 
 	Texture innerTexture;
 	Texture outerTexture;
+
+	/// This stores the matrix for collision detection
+	QMatrix collisionMatrix;
 
     public:
 	// This is the Constructor
@@ -45,6 +49,14 @@ class Wall : public Item
 	void addWindow(float position, float length, const Texture &texture = Texture(0x7F00FFFF), float lowerHeight = 3.0, float upperHeight = 7.0);
 
 	virtual void generateList();
+
+	/** This method checks if a point collides with this object
+	 * \param x The X position of the point
+	 * \param y The Y position of the point
+	 * \param z The Z position of the point
+	 * \return true if there is a collision, false otherwise
+	 */
+	virtual bool isCollision(float x, float y, float z);
 
     private:
 	struct Window;
