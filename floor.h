@@ -29,7 +29,7 @@ class Floor : public Item {
     public:
 	
 	/**
-	 * This function is used to add points to the floor structure. 
+	 * This function is used to add points to the floor structure.
 	 * Add points in a clockwise fashion. (0,0) will be added for you.
 	 * \param x The x coordinate
 	 * \param z The z coordinate
@@ -56,9 +56,9 @@ class Floor : public Item {
 	 * \param r The rotation
 	 * \param ut It contains the upper texture
 	 * \param lt It contains the lower texture
-	 * \t The thickness, default value is 0.1
+	 * \param t The thickness of the floor, default value is 0.1
 	 */
-	Floor(float x, float y, float z, float r, const Texture &ut = Texture(0xFFFFFF), const Texture &lt = Texture(0xFFFFFF), float t = 0.1f) 
+	Floor(float x, float y, float z, float r, const Texture &ut = Texture(0xFFFFFF), const Texture &lt = Texture(0xFFFFFF), float t = 0.1f)
 		: Item(x, y, z, r), upperTexture(ut), lowerTexture(lt), thickness(t)
 	{
 		addPoint(0.0f, 0.0f);

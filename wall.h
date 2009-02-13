@@ -116,7 +116,7 @@ class Wall : public Item
 		addWindow(position, length, texture, 0.0f, height);
 	}
 
-	/// This function generates the CallList \ref object
+	/// This function generates the CallList. This CallList is stored in \ref Item::object
 	virtual void generateList();
 
 	/**
