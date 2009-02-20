@@ -6,6 +6,6 @@
     <texture name="window" file="data/window.png" />
   </textures>
   <items>
-    <item type="table" x="10.0" y="0.0" z="10.0" length="10.0" rotation="30.0" height="5.0" width="5.0" />
+    <item type="table" x="0.0" y="0.0" z="10.0" length="10.0" rotation="0.0" height="5.0" width="5.0" />
   </items>
 </lblock>
