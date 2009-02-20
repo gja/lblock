@@ -2,6 +2,7 @@
 #include "texture.h"
 #include "wall.h"
 #include "floor.h"
+#include "table.h"
 
 #include <qgl.h>
 #include <QImage>
@@ -95,6 +96,17 @@ void GLBox::drawObject(const QDomDocument &doc)
 			}
 
 			addObject(floor);
+		}
+
+		else if (type == "table") {
+			QString width = e.attribute("width");
+			QString length = e.attribute("length");
+			QString height = e.attribute("height");
+			QString texture = e.attribute("texture");
+
+			Table *table = new Table(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+
+			addObject(table);
 		}
 	}
 }
