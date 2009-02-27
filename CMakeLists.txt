@@ -29,6 +29,3 @@ if(DOXYGEN_FOUND)
 	add_custom_target(doc ${DOXYGEN_EXECUTABLE} ${DOXY_CONFIG})
 	add_dependencies(lblock doc)
 endif(DOXYGEN_FOUND)
-
-add_custom_target (data ALL ${CMAKE_COMMAND} -E copy_directory
-	${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_CURRENT_BINARY_DIR}/data )
