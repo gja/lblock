@@ -36,6 +36,10 @@ class MainWindow : public QMainWindow {
 	void slotSave();
 
 	void slotSaveAs();
+
+	void slotAbout();
+
+	void slotAboutQt();
 };
 
 #endif

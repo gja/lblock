@@ -3,6 +3,9 @@
 
 #include <QDebug>
 
+#include <QFileDialog>
+#include <QMessageBox>
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(this)
 {
 	ui = new Ui::MainWindow;
@@ -21,9 +24,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::clear()
 {
-	delete ui;
-
-	MainWindow(parent);
 }
 
 void MainWindow::slotNew()
@@ -34,15 +34,45 @@ void MainWindow::slotNew()
 
 void MainWindow::slotOpen()
 {
-	qDebug()<<"Hello";
+	QString name = QFileDialog::getOpenFileName(this, "Open File...", QString(), "LBlockML files (*.lml)");
+
+	if (name.isEmpty())
+		return;
+
+	filename = name;
 }
 
 void MainWindow::slotSave()
 {
-	qDebug()<<"Hello";
+	if (filename.isEmpty())
+		slotSaveAs();
 }
 
 void MainWindow::slotSaveAs()
 {
-	qDebug()<<"Hello";
+	QString name = QFileDialog::getSaveFileName(this, "Save File As...", QString(), "LBlockML files (*.lml)");
+
+	if (name.isEmpty())
+		return;
+
+	filename = name;
+
+	slotSave();
+}
+
+void MainWindow::slotAbout()
+{
+	QMessageBox::about(this, "About LBlock", 
+"LBlock is an 8th Semester Project by <br>"
+"<ul>"
+"<li>Tejas Dinkar</li>"
+"<li>Thejaswi K</li>"
+"<li>Sourav Sarkar</li>"
+"</ul>");
+
+}
+
+void MainWindow::slotAboutQt()
+{
+	QMessageBox::aboutQt(this, "About Qt");
 }

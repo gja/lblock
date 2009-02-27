@@ -110,6 +110,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout_LBlock" />
+    <addaction name="actionAbout_Qt" />
    </widget>
    <widget class="QMenu" name="menu_Tools" >
     <property name="title" >
@@ -168,7 +169,7 @@
   </widget>
   <action name="action_New" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >
+    <iconset resource="../icons.qrc" >
      <normaloff>:/icons/icons/document-new.png</normaloff>:/icons/icons/document-new.png</iconset>
    </property>
    <property name="text" >
@@ -180,7 +181,7 @@
   </action>
   <action name="action_Open" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >
+    <iconset resource="../icons.qrc" >
      <normaloff>:/icons/icons/document-open.png</normaloff>:/icons/icons/document-open.png</iconset>
    </property>
    <property name="text" >
@@ -192,7 +193,7 @@
   </action>
   <action name="action_Save" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >
+    <iconset resource="../icons.qrc" >
      <normaloff>:/icons/icons/document-save.png</normaloff>:/icons/icons/document-save.png</iconset>
    </property>
    <property name="text" >
@@ -204,7 +205,7 @@
   </action>
   <action name="actionSave_As" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >
+    <iconset resource="../icons.qrc" >
      <normaloff>:/icons/icons/document-save-as.png</normaloff>:/icons/icons/document-save-as.png</iconset>
    </property>
    <property name="text" >
@@ -213,7 +214,7 @@
   </action>
   <action name="actionQuit" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >
+    <iconset resource="../icons.qrc" >
      <normaloff>:/icons/icons/process-stop.png</normaloff>:/icons/icons/process-stop.png</iconset>
    </property>
    <property name="text" >
@@ -261,9 +262,14 @@
     <string>Textures</string>
    </property>
   </action>
+  <action name="actionAbout_Qt" >
+   <property name="text" >
+    <string>About Qt</string>
+   </property>
+  </action>
  </widget>
  <resources>
-  <include location="icons.qrc" />
+  <include location="../icons.qrc" />
  </resources>
  <connections>
   <connection>
@@ -369,8 +375,8 @@
    <slot>slotSave()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>399</x>
-     <y>299</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel" >
      <x>399</x>
@@ -394,11 +400,45 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAbout_LBlock</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotAbout()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout_Qt</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotAboutQt()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>slotNew()</slot>
   <slot>slotOpen()</slot>
   <slot>slotSave()</slot>
   <slot>slotSaveAs()</slot>
+  <slot>slotAbout()</slot>
+  <slot>slotAboutQt()</slot>
  </slots>
 </ui>
