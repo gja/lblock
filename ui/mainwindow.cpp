@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDebug>
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(this)
 {
 	ui = new Ui::MainWindow;
@@ -15,4 +17,32 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(th
 MainWindow::~MainWindow()
 {
 	delete ui;
+}
+
+void MainWindow::clear()
+{
+	delete ui;
+
+	MainWindow(parent);
+}
+
+void MainWindow::slotNew()
+{
+	filename.clear();
+	clear();
+}
+
+void MainWindow::slotOpen()
+{
+	qDebug()<<"Hello";
+}
+
+void MainWindow::slotSave()
+{
+	qDebug()<<"Hello";
+}
+
+void MainWindow::slotSaveAs()
+{
+	qDebug()<<"Hello";
 }

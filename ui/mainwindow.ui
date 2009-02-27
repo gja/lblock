@@ -277,8 +277,8 @@
      <y>171</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>768</x>
-     <y>62</y>
+     <x>794</x>
+     <y>130</y>
     </hint>
    </hints>
   </connection>
@@ -330,5 +330,75 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_New</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotNew()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Open</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotOpen()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Save</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotSave()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave_As</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotSaveAs()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>slotNew()</slot>
+  <slot>slotOpen()</slot>
+  <slot>slotSave()</slot>
+  <slot>slotSaveAs()</slot>
+ </slots>
 </ui>

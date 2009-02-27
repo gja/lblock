@@ -16,10 +16,26 @@ class MainWindow : public QMainWindow {
 
 	TexturesWindow texturesWindow;
 
+	/// This Stores the Current filename
+	QString filename;
+
+	/// This function clears everything (except filename)
+	void clear();
+
     public:
 	MainWindow (QWidget *parent = NULL);
 
 	~MainWindow();
+
+    public slots:
+
+	void slotNew();
+
+	void slotOpen();
+
+	void slotSave();
+
+	void slotSaveAs();
 };
 
 #endif
