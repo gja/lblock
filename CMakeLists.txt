@@ -3,7 +3,6 @@
 cmake_minimum_required(VERSION 2.6)
 project(lblock)
 
-
 find_package(Qt4 REQUIRED)
 find_package(Doxygen)
 
@@ -11,19 +10,17 @@ set(QT_USE_QTOPENGL true)
 set(QT_USE_QTXML true)
 include(${QT_USE_FILE})
 
-QT4_ADD_RESOURCES(RESOURCE_FILES icons.qrc)
-QT4_WRAP_UI(UI_FILES mainwindow.ui)
-QT4_WRAP_UI(UI_FILES textureswindow.ui)
+include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/ui ${CMAKE_SOURCE_DIR}/items)
 
-set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp wall.cpp
-	table.cpp mainwindow.cpp floor.cpp window.cpp textureswindow.cpp)
+add_subdirectory(ui)
+add_subdirectory(items)
 
-QT4_WRAP_CPP(SOURCES glbox.h mainwindow.h textureswindow.h)
+set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+QT4_WRAP_CPP(SOURCES glbox.h)
 
-add_executable(lblock ${SOURCES} ${UI_FILES} ${RESOURCE_FILES})
-target_link_libraries(lblock ${QT_LIBRARIES})
+add_executable(lblock ${SOURCES})
+target_link_libraries(lblock ${QT_LIBRARIES} uilibrary itemslibrary)
 
 if(DOXYGEN_FOUND)
 	set(DOXY_CONFIG ${CMAKE_BINARY_DIR}/doxy.conf)

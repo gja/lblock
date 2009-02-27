@@ -1,0 +1,12 @@
+# This is the 8th Sem Project of Sourav Sarkar, Tejas Dinkar and Thejaswi K
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+
+QT4_ADD_RESOURCES(RESOURCE_FILES icons.qrc)
+QT4_WRAP_UI(UI_FILES mainwindow.ui)
+QT4_WRAP_UI(UI_FILES textureswindow.ui)
+
+set (SOURCES mainwindow.cpp textureswindow.cpp)
+QT4_WRAP_CPP(SOURCES mainwindow.h textureswindow.h)
+
+add_library(uilibrary ${SOURCES} ${UI_FILES} ${RESOURCE_FILES})

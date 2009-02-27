@@ -1,5 +1,3 @@
-#include "mainwindow.h"
-
 /*! \mainpage The LBlock Building and Large Landscape Simulator
  *
  * \section intro_sec Introduction
@@ -27,6 +25,9 @@
  * \li Doxygen for generating documentation (http://www.doxygen.org/)
  * \li Git source configuration management for managing the code base (http://git.or.cz)
  */
+
+#include "mainwindow.h"
+#include <QApplication>
 
 int main( int argc, char **argv )
 {
