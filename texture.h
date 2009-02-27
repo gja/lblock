@@ -28,8 +28,9 @@ struct Texture {
 	 *  \param path specifies where the texture file that is to be loaded is present
 	 *  \param x gives the x scale, default value is 1.0
 	 *  \param y gives the y scale, default value is 1.0 
+	 *  \param readfile states whether to read the file, or we are passing the value as base64
 	 */ 
-	Texture(const uint rgb, const QString &path = QString(), float x = 1.0f, float y = 1.0f);
+	Texture(const uint rgb, const QString &path = QString(), float x = 1.0f, float y = 1.0f, bool readfile = false);
 
 	/// This is the destructor
 	void destroy();

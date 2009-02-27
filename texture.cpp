@@ -7,16 +7,28 @@ Texture::Texture() : texture(0)
 {
 }
 
-Texture::Texture(const uint rgb, const QString &path, float x, float y) : sizex(x), sizey(y)
+Texture::Texture(const uint rgb, const QString &path, float x, float y, bool readfile) : sizex(x), sizey(y)
 {
-	QImage v, t;
+	QImage t;
 
-	if (path.isEmpty() || !v.load(path) ) {
-		v = QImage(16, 16, QImage::Format_ARGB32);
-		v.fill( rgb );
+	if (! readfile) {
+		QImage v;
+
+		if (path.isEmpty() || !v.load(path) ) {
+			v = QImage(16, 16, QImage::Format_ARGB32);
+			v.fill( rgb );
+		}
+
+		t = QGLWidget::convertToGLFormat(v);
+	} else {
+
+		QByteArray array = QByteArray::fromBase64(path.toAscii());
+
+		QImage v;
+		v.loadFromData(array);
+
+		t = QGLWidget::convertToGLFormat(v);
 	}
-
-	t = QGLWidget::convertToGLFormat(v);
 
 	glGenTextures(1, &texture);
 	glBindTexture( GL_TEXTURE_2D, texture);
