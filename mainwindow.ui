@@ -122,6 +122,7 @@
      <addaction name="actionFile_Toolbar" />
      <addaction name="actionItems_Toolbar" />
     </widget>
+    <addaction name="actionTextures" />
     <addaction name="separator" />
     <addaction name="menuToolbars" />
    </widget>
@@ -235,7 +236,7 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>Items Toolbar</string>
+    <string>Items</string>
    </property>
   </action>
   <action name="actionFile_Toolbar" >
@@ -246,7 +247,18 @@
     <bool>true</bool>
    </property>
    <property name="text" >
-    <string>File Toolbar</string>
+    <string>File</string>
+   </property>
+  </action>
+  <action name="actionTextures" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Textures</string>
    </property>
   </action>
  </widget>
