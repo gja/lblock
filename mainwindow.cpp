@@ -6,4 +6,5 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(th
 	texturesWindow.show();
 
 	connect(ui.actionTextures, SIGNAL(toggled(bool)), &texturesWindow, SLOT(setVisible(bool)));
+	connect(&texturesWindow, SIGNAL(rejected()), ui.actionTextures, SLOT(toggle()));
 }
