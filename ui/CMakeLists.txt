@@ -9,4 +9,4 @@ QT4_WRAP_UI(UI_FILES textureswindow.ui)
 set (SOURCES mainwindow.cpp textureswindow.cpp)
 QT4_WRAP_CPP(SOURCES mainwindow.h textureswindow.h)
 
-add_library(uilibrary ${SOURCES} ${UI_FILES} ${RESOURCE_FILES})
+add_library(ui ${SOURCES} ${UI_FILES} ${RESOURCE_FILES})

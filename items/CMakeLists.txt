@@ -2,4 +2,4 @@
 
 set (SOURCES wall.cpp table.cpp floor.cpp window.cpp )
 
-add_library (itemslibrary ${SOURCES})
+add_library (items ${SOURCES})

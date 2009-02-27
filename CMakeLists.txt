@@ -16,11 +16,10 @@ add_subdirectory(ui)
 add_subdirectory(items)
 
 set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp)
-
 QT4_WRAP_CPP(SOURCES glbox.h)
 
 add_executable(lblock ${SOURCES})
-target_link_libraries(lblock ${QT_LIBRARIES} uilibrary itemslibrary)
+target_link_libraries(lblock ${QT_LIBRARIES} ui items)
 
 if(DOXYGEN_FOUND)
 	set(DOXY_CONFIG ${CMAKE_BINARY_DIR}/doxy.conf)
