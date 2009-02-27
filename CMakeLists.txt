@@ -15,10 +15,12 @@ include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/ui ${CMAKE_SOURCE_DI
 add_subdirectory(ui)
 add_subdirectory(items)
 
+QT4_ADD_RESOURCES(RESOURCE_FILES icons.qrc)
+
 set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp)
 QT4_WRAP_CPP(SOURCES glbox.h)
 
-add_executable(lblock ${SOURCES})
+add_executable(lblock ${SOURCES} ${RESOURCE_FILES})
 target_link_libraries(lblock ${QT_LIBRARIES} ui items)
 
 if(DOXYGEN_FOUND)
