@@ -12,6 +12,8 @@ class TexturesView : public QListView {
 
 	void mouseDoubleClickEvent(QMouseEvent *event);
 
+	void keyPressEvent(QKeyEvent *event);
+
     signals:
 	void editTexture(QString);
 };
