@@ -14,8 +14,22 @@ class TexturesView : public QListView {
 
 	void keyPressEvent(QKeyEvent *event);
 
+	void mouseReleaseEvent(QMouseEvent *event);
+
+    public slots:
+
+	void slotEditSelected();
+
+	void slotDeleteSelected();
+
+	void slotNewTexture();
+
     signals:
 	void editTexture(QString);
+
+	void deleteTexture(QString);
+
+	void newTexture();
 };
 
 #endif
