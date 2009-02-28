@@ -30,8 +30,8 @@
    </property>
    <property name="geometry" >
     <rect>
-     <x>120</x>
-     <y>250</y>
+     <x>110</x>
+     <y>240</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -60,25 +60,41 @@
    <property name="geometry" >
     <rect>
      <x>250</x>
-     <y>30</y>
-     <width>231</width>
-     <height>201</height>
+     <y>50</y>
+     <width>233</width>
+     <height>141</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout" >
+    <item row="0" column="0" >
+     <widget class="QLabel" name="label_2" >
+      <property name="text" >
+       <string>Name:</string>
+      </property>
+      <property name="buddy" >
+       <cstring>name</cstring>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" >
+     <widget class="QLineEdit" name="name" />
+    </item>
+    <item row="1" column="0" >
+     <widget class="QLabel" name="label" >
+      <property name="text" >
+       <string>Backup:</string>
+      </property>
+      <property name="buddy" >
+       <cstring>colorButton</cstring>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="1" >
-     <layout class="QVBoxLayout" name="verticalLayout" >
-      <item>
-       <widget class="QGraphicsView" name="graphicsView_2" />
-      </item>
-      <item>
-       <widget class="QPushButton" name="colorButton" >
-        <property name="text" >
-         <string>Change Color</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QPushButton" name="colorButton" >
+      <property name="text" >
+       <string>Change Color</string>
+      </property>
+     </widget>
     </item>
     <item row="3" column="0" >
      <widget class="QLabel" name="label_3" >
@@ -87,6 +103,16 @@
       </property>
       <property name="buddy" >
        <cstring>xscale</cstring>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" >
+     <widget class="QDoubleSpinBox" name="xscale" >
+      <property name="alignment" >
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="minimum" >
+       <double>1.000000000000000</double>
       </property>
      </widget>
     </item>
@@ -100,19 +126,6 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1" >
-     <widget class="QLineEdit" name="name" />
-    </item>
-    <item row="3" column="1" >
-     <widget class="QDoubleSpinBox" name="xscale" >
-      <property name="alignment" >
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-      <property name="minimum" >
-       <double>1.000000000000000</double>
-      </property>
-     </widget>
-    </item>
     <item row="4" column="1" >
      <widget class="QDoubleSpinBox" name="yscale" >
       <property name="alignment" >
@@ -120,26 +133,6 @@
       </property>
       <property name="minimum" >
        <double>1.000000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" >
-     <widget class="QLabel" name="label_2" >
-      <property name="text" >
-       <string>Name:</string>
-      </property>
-      <property name="buddy" >
-       <cstring>name</cstring>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" >
-     <widget class="QLabel" name="label" >
-      <property name="text" >
-       <string>Backup:</string>
-      </property>
-      <property name="buddy" >
-       <cstring>colorButton</cstring>
       </property>
      </widget>
     </item>
@@ -177,7 +170,6 @@
   <tabstop>colorButton</tabstop>
   <tabstop>xscale</tabstop>
   <tabstop>yscale</tabstop>
-  <tabstop>graphicsView_2</tabstop>
   <tabstop>imageButton</tabstop>
  </tabstops>
  <resources/>

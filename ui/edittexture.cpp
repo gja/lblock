@@ -2,6 +2,8 @@
 #include "edittexture.h"
 
 #include <QDomElement>
+#include <QColorDialog>
+#include <QPalette>
 
 ModifyTexture::ModifyTexture(QDomDocument *d, QWidget *parent) : QDialog(parent), doc(d)
 {
@@ -14,8 +16,23 @@ ModifyTexture::~ModifyTexture()
 	delete ui;
 }
 
+inline void SetButtonColor(QPushButton *button, QColor color)
+{
+	QPalette palette = button->palette();
+	palette.setColor(QPalette::Button, color);
+	button->setPalette(palette);
+}
+
 void ModifyTexture::slotChangeColor()
 {
+	QColor c(color.toUInt(0, 16));
+
+	QColor newcolor = QColorDialog::getColor(c, this);
+
+	if (newcolor.isValid())
+		color = QString("0x") + QString::number(newcolor.rgb(), 16).toUpper();
+
+	SetButtonColor(ui->colorButton, newcolor);
 }
 
 void ModifyTexture::slotChangeImage()
@@ -57,6 +74,8 @@ EditTexture::EditTexture(QString n, QDomDocument *doc, QWidget *parent) : Modify
 
 	ui->imageButton->setEnabled(false);
 	ui->name->setReadOnly(true);
+
+	SetButtonColor(ui->colorButton, color.toUInt(0, 16));
 }
 
 void EditTexture::slotVerifyAndAccept()
@@ -66,6 +85,7 @@ void EditTexture::slotVerifyAndAccept()
 
 	elem.setAttribute("xscale", xscale);
 	elem.setAttribute("yscale", yscale);
+	elem.setAttribute("color", color);
 
 	accept();
 }
