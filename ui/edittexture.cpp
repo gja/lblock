@@ -1,6 +1,10 @@
 #include "ui_edittexture.h"
 #include "edittexture.h"
 
+#include <qmath.h>
+
+#include <QFileDialog>
+#include <QBuffer>
 #include <QDomElement>
 #include <QColorDialog>
 #include <QPalette>
@@ -35,8 +39,36 @@ void ModifyTexture::slotChangeColor()
 	}
 }
 
+inline int power_of_two_floor(qreal value)
+{
+	return (unsigned) qPow( 2, qFloor( qLn( value ) / qLn( 2 ) ) );
+}
+
 void ModifyTexture::slotChangeImage()
 {
+	QString name = QFileDialog::getOpenFileName(this, "Open File...", QString(), "Image Files (*.png *.jpg *.bmp)");
+
+	if (name.isEmpty())
+		return;
+
+	QPixmap pixmap(name);
+
+	if (pixmap.isNull()) {
+		emit(error("Error, Unable to Read Image"));
+	}
+
+	int width = power_of_two_floor(pixmap.width());
+	int height = power_of_two_floor(pixmap.height());
+
+	QPixmap newPixmap = pixmap.scaled(width, height);
+	ui->preview->setPixmap(newPixmap);
+
+	QByteArray array;
+	QBuffer buffer(&array);
+	buffer.open(QIODevice::WriteOnly);
+	newPixmap.save(&buffer, "PNG");
+
+	value = array.toBase64();
 }
 
 EditTexture::EditTexture(QString n, QDomDocument *doc, QWidget *parent) : ModifyTexture(doc, parent)
@@ -83,6 +115,38 @@ void EditTexture::slotVerifyAndAccept()
 	xscale = QString::number(ui->xscale->value());
 	yscale = QString::number(ui->yscale->value());
 
+	elem.setAttribute("xscale", xscale);
+	elem.setAttribute("yscale", yscale);
+	elem.setAttribute("color", color);
+
+	accept();
+}
+
+NewTexture::NewTexture(QDomDocument *doc, QWidget *parent) : ModifyTexture(doc, parent)
+{
+}
+
+void NewTexture::slotVerifyAndAccept()
+{
+	name = ui->name->text();
+	xscale = QString::number(ui->xscale->value());
+	yscale = QString::number(ui->yscale->value());
+
+	if (name.isEmpty() || value.isEmpty()) {
+		// Error, not complete
+
+		return;
+	}
+
+
+	QDomElement root = doc->documentElement().toElement();
+	QDomElement textures = root.elementsByTagName("textures").item(0).toElement();
+
+	QDomElement elem = doc->createElement("texture");
+	textures.appendChild(elem);
+
+	elem.setAttribute("name", name);
+	elem.setAttribute("value", value);
 	elem.setAttribute("xscale", xscale);
 	elem.setAttribute("yscale", yscale);
 	elem.setAttribute("color", color);

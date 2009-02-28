@@ -49,6 +49,10 @@ class ModifyTexture : public QDialog
 	void slotChangeColor();
 
 	void slotChangeImage();
+
+    signals:
+
+	void error(QString);
 };
 
 class EditTexture : public ModifyTexture
@@ -59,6 +63,19 @@ class EditTexture : public ModifyTexture
 
     public:
 	EditTexture(QString name, QDomDocument *doc, QWidget *parent = NULL);
+
+    public slots:
+
+	void slotVerifyAndAccept();
+};
+
+class NewTexture : public ModifyTexture
+{
+	Q_OBJECT
+
+    public:
+
+	NewTexture(QDomDocument *doc, QWidget *parent = NULL);
 
     public slots:
 

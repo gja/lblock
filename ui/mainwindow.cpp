@@ -38,11 +38,8 @@ void MainWindow::slotNew()
 	doc.setContent(QString(
 "<!DOCTYPE LBlockML>\n"
 "<lblock>\n"
-" <textures>\n"
-" </textures>\n"
-" <floors>\n"
-"  <floor number=0 />\n"
-" </floors>\n"
+" <textures/>\n"
+" <floors/>\n"
 "</lblock>\n"));
 	clear();
 }

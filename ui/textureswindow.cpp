@@ -10,6 +10,7 @@ TexturesWindow::TexturesWindow(QDomDocument *d, QWidget *parent) : QDialog(paren
 	ui->setupUi(this);
 
 	connect(ui->listView, SIGNAL(editTexture(QString)), this, SLOT(slotEditTexture(QString)));
+	connect(ui->listView, SIGNAL(newTexture()), this, SLOT(slotNewTexture()));
 
 	ui->listView->setModel(&model);
 	ui->listView->setViewMode(QListView::IconMode);
@@ -31,5 +32,13 @@ void TexturesWindow::slotEditTexture(QString item)
 {
 	EditTexture *edit = new EditTexture(item, doc, this);
 	connect(edit, SIGNAL(accepted()), parent(), SLOT(slotMakeDirty()));
+	edit->show();
+}
+
+void TexturesWindow::slotNewTexture()
+{
+	NewTexture *edit = new NewTexture(doc, this);
+	connect(edit, SIGNAL(accepted()), parent(), SLOT(slotMakeDirty()));
+	connect(edit, SIGNAL(accepted()), this, SLOT(refresh()));
 	edit->show();
 }

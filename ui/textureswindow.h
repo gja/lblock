@@ -25,11 +25,13 @@ class TexturesWindow : public QDialog {
 
 	~TexturesWindow();
 
-	void refresh();
-
     public slots:
 	
 	void slotEditTexture(QString);
+
+	void slotNewTexture();
+
+	void refresh();
 };
 
 #endif
