@@ -9,17 +9,20 @@
 
 void TexturesList::clear()
 {
-	QStandardItemModel::clear();
 	qDeleteAll(items);
+	QStandardItemModel::clear();
 	items.clear();
 }
 
-TexturesList::TexturesList(QObject *parent) : QStandardItemModel(parent)
+TexturesList::TexturesList(QDomDocument *d, QObject *parent) : QStandardItemModel(parent)
 {
+	doc = d;
 }
 
 void TexturesList::parse()
 {
+	clear();
+
 	QDomElement root = doc->documentElement().toElement();
 
 	QDomElement textures = root.elementsByTagName("textures").item(0).toElement();

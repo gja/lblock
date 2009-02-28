@@ -3,6 +3,7 @@
 
 #include "textureswindow.h"
 
+#include <QDomDocument>
 #include <QMainWindow>
 
 namespace Ui {
@@ -21,6 +22,9 @@ class MainWindow : public QMainWindow {
 
 	/// This function clears everything (except filename)
 	void clear();
+
+	/// This stores the document currently being read
+	QDomDocument doc;
 
     public:
 	MainWindow (QWidget *parent = NULL);

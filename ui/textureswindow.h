@@ -18,9 +18,11 @@ class TexturesWindow : public QDialog {
 	TexturesList model;
 
     public:
-	TexturesWindow(QWidget *parent = NULL);
+	TexturesWindow(QDomDocument *doc, QWidget *parent = NULL);
 
 	~TexturesWindow();
+
+	void refresh();
 };
 
 #endif

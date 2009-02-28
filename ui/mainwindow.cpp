@@ -6,7 +6,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(this)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML")
 {
 	ui = new Ui::MainWindow;
 
@@ -24,11 +24,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::clear()
 {
+	texturesWindow.refresh();
 }
 
 void MainWindow::slotNew()
 {
 	filename.clear();
+	doc.setContent(QString());
 	clear();
 }
 
@@ -40,6 +42,12 @@ void MainWindow::slotOpen()
 		return;
 
 	filename = name;
+
+	QFile file(name);
+	doc.setContent(&file);
+	file.close();
+
+	clear();
 }
 
 void MainWindow::slotSave()

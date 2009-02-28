@@ -19,16 +19,7 @@ class TexturesList : public QStandardItemModel
 	void clear();
 
     public:
-	TexturesList(QObject *parent = NULL);
-
-	/**
-	 * This set the document.
-	 * \param d The Document
-	 */
-	inline void setDocument(QDomDocument *d)
-	{
-		doc = d;
-	}
+	TexturesList(QDomDocument *doc, QObject *parent = NULL);
 
 	/**
 	 * This clears the list, parses the document
