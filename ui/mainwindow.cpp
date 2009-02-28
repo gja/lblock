@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	connect(&texturesWindow, SIGNAL(rejected()), ui->actionTextures, SLOT(toggle()));
 	
 	connect(this, SIGNAL(error(QString)), this, SLOT(slotErrorHandler(QString)));
+
+	slotNew();
 }
 
 MainWindow::~MainWindow()
@@ -33,7 +35,15 @@ void MainWindow::clear()
 void MainWindow::slotNew()
 {
 	filename.clear();
-	doc.setContent(QString());
+	doc.setContent(QString(
+"<!DOCTYPE LBlockML>\n"
+"<lblock>\n"
+" <textures>\n"
+" </textures>\n"
+" <floors>\n"
+"  <floor number=0 />\n"
+" </floors>\n"
+"</lblock>\n"));
 	clear();
 }
 
@@ -71,6 +81,7 @@ void MainWindow::slotSave()
 
 	file.close();
 
+	dirty = 1;
 	slotMakeClean();
 }
 
@@ -82,6 +93,9 @@ void MainWindow::slotSaveAs()
 		return;
 
 	filename = name;
+
+	if (! filename.endsWith(".lml"))
+		filename = filename + ".lml";
 
 	slotSave();
 }
