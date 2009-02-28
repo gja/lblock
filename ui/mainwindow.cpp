@@ -29,6 +29,7 @@ MainWindow::~MainWindow()
 void MainWindow::clear()
 {
 	texturesWindow.refresh();
+	dirty = true;
 	slotMakeClean();
 }
 
@@ -52,16 +53,12 @@ void MainWindow::slotOpen()
 		return;
 
 	filename = name;
-	slotMakeClean();
 
 	QFile file(name);
 	doc.setContent(&file);
 	file.close();
 
 	clear();
-
-	dirty = 1;
-	slotMakeClean();
 }
 
 void MainWindow::slotSave()
