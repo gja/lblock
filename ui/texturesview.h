@@ -4,8 +4,11 @@
 #include <QListView>
 
 class TexturesView : public QListView {
+
     public:
 	TexturesView(QWidget *parent = NULL);
+
+	void mouseDoubleClickEvent(QMouseEvent *event);
 };
 
 #endif
