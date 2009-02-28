@@ -1,11 +1,15 @@
 #include "textureswindow.h"
-
 #include "ui_textureswindow.h"
+#include "edittexture.h"
 
-TexturesWindow::TexturesWindow(QDomDocument *doc, QWidget *parent) : QDialog(parent), model(doc, this)
+#include <QDebug>
+
+TexturesWindow::TexturesWindow(QDomDocument *d, QWidget *parent) : QDialog(parent), model(d, this), doc(d)
 {
 	ui = new Ui::TexturesWindow;
 	ui->setupUi(this);
+
+	connect(ui->listView, SIGNAL(editTexture(QString)), this, SLOT(slotEditTexture(QString)));
 
 	ui->listView->setModel(&model);
 	ui->listView->setViewMode(QListView::IconMode);
@@ -21,4 +25,10 @@ TexturesWindow::~TexturesWindow()
 void TexturesWindow::refresh()
 {
 	model.parse();
+}
+
+void TexturesWindow::slotEditTexture(QString item)
+{
+	EditTexture *edit = new EditTexture(item, doc, this);
+	edit->show();
 }

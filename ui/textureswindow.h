@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QStandardItemModel>
+#include <QString>
 
 #include "textureslist.h"
 
@@ -17,12 +18,18 @@ class TexturesWindow : public QDialog {
 
 	TexturesList model;
 
+	QDomDocument *doc;
+
     public:
 	TexturesWindow(QDomDocument *doc, QWidget *parent = NULL);
 
 	~TexturesWindow();
 
 	void refresh();
+
+    public slots:
+	
+	void slotEditTexture(QString);
 };
 
 #endif

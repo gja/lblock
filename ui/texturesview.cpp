@@ -10,5 +10,8 @@ TexturesView::TexturesView(QWidget *parent) : QListView(parent)
 
 void TexturesView::mouseDoubleClickEvent(QMouseEvent *event)
 {
-	qDebug()<<indexAt(event->pos()).data().toString();
+	QString item = indexAt(event->pos()).data().toString();
+
+	if (! item.isEmpty())
+		emit(editTexture(item));
 }
