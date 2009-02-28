@@ -29,10 +29,10 @@ void ModifyTexture::slotChangeColor()
 
 	QColor newcolor = QColorDialog::getColor(c, this);
 
-	if (newcolor.isValid())
+	if (newcolor.isValid()) {
 		color = QString("0x") + QString::number(newcolor.rgb(), 16).toUpper();
-
-	SetButtonColor(ui->colorButton, newcolor);
+		SetButtonColor(ui->colorButton, newcolor);
+	}
 }
 
 void ModifyTexture::slotChangeImage()
