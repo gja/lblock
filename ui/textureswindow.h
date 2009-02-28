@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QStandardItemModel>
 
+#include "textureslist.h"
+
 namespace Ui {
 	class TexturesWindow;
 }
@@ -13,7 +15,7 @@ class TexturesWindow : public QDialog {
 
 	Ui::TexturesWindow *ui;
 
-	QStandardItemModel model;
+	TexturesList model;
 
     public:
 	TexturesWindow(QWidget *parent = NULL);
