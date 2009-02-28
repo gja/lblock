@@ -17,6 +17,9 @@ class MainWindow : public QMainWindow {
 
 	TexturesWindow texturesWindow;
 
+	/// This is true if the file has been modified
+	bool dirty;
+
 	/// This Stores the Current filename
 	QString filename;
 
@@ -31,6 +34,9 @@ class MainWindow : public QMainWindow {
 
 	~MainWindow();
 
+    signals:
+	void error(QString);
+
     public slots:
 
 	void slotNew();
@@ -44,6 +50,12 @@ class MainWindow : public QMainWindow {
 	void slotAbout();
 
 	void slotAboutQt();
+
+	void slotMakeDirty();
+
+	void slotMakeClean();
+
+	void slotErrorHandler(QString);
 };
 
 #endif

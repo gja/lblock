@@ -35,6 +35,7 @@ EditTexture::EditTexture(QString n, QDomDocument *doc, QWidget *parent) : Modify
 
 		if (xmlname == n) {
 			name = xmlname;
+			elem = e;
 			value = e.attribute("value");
 			color = e.attribute("color", "0xFFFFFF");
 			xscale = e.attribute("xscale", "1.0");
@@ -60,4 +61,11 @@ EditTexture::EditTexture(QString n, QDomDocument *doc, QWidget *parent) : Modify
 
 void EditTexture::slotVerifyAndAccept()
 {
+	xscale = QString::number(ui->xscale->value());
+	yscale = QString::number(ui->yscale->value());
+
+	elem.setAttribute("xscale", xscale);
+	elem.setAttribute("yscale", yscale);
+
+	accept();
 }

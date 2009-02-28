@@ -6,7 +6,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML")
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML"), dirty(false)
 {
 	ui = new Ui::MainWindow;
 
@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 
 	connect(ui->actionTextures, SIGNAL(toggled(bool)), &texturesWindow, SLOT(setVisible(bool)));
 	connect(&texturesWindow, SIGNAL(rejected()), ui->actionTextures, SLOT(toggle()));
+	
+	connect(this, SIGNAL(error(QString)), this, SLOT(slotErrorHandler(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -25,6 +27,7 @@ MainWindow::~MainWindow()
 void MainWindow::clear()
 {
 	texturesWindow.refresh();
+	slotMakeClean();
 }
 
 void MainWindow::slotNew()
@@ -42,6 +45,7 @@ void MainWindow::slotOpen()
 		return;
 
 	filename = name;
+	slotMakeClean();
 
 	QFile file(name);
 	doc.setContent(&file);
@@ -54,6 +58,20 @@ void MainWindow::slotSave()
 {
 	if (filename.isEmpty())
 		slotSaveAs();
+
+	QByteArray array = doc.toByteArray();
+
+	QFile file(filename);
+
+	if (! file.open(QIODevice::WriteOnly) || file.write(array) == -1) {
+		file.close();
+		emit(error("Unable to Write to File: " + filename));
+		return;
+	}
+
+	file.close();
+
+	slotMakeClean();
 }
 
 void MainWindow::slotSaveAs()
@@ -83,4 +101,29 @@ void MainWindow::slotAbout()
 void MainWindow::slotAboutQt()
 {
 	QMessageBox::aboutQt(this, "About Qt");
+}
+
+void MainWindow::slotMakeDirty()
+{
+	if (! dirty)
+		setWindowTitle(QString("LBlock Building Designer - ") + filename + "*");
+
+	dirty = true;
+}
+
+void MainWindow::slotMakeClean()
+{
+	if (dirty) {
+		if (! filename.isEmpty())
+			setWindowTitle(QString("LBlock Building Designer - ") + filename);
+		else
+			setWindowTitle("LBlock Building Designer");
+	}
+
+	dirty = false;
+}
+
+void MainWindow::slotErrorHandler(QString message)
+{
+	qDebug()<<message;
 }

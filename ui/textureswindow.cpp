@@ -30,5 +30,6 @@ void TexturesWindow::refresh()
 void TexturesWindow::slotEditTexture(QString item)
 {
 	EditTexture *edit = new EditTexture(item, doc, this);
+	connect(edit, SIGNAL(accepted()), parent(), SLOT(slotMakeDirty()));
 	edit->show();
 }

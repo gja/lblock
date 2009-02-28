@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <QString>
+#include <QDomElement>
 
-class QDomElement;
 class QDomDocument;
 namespace Ui {
 	class EditTexture;
@@ -54,6 +54,8 @@ class ModifyTexture : public QDialog
 class EditTexture : public ModifyTexture
 {
 	Q_OBJECT
+
+	QDomElement elem;
 
     public:
 	EditTexture(QString name, QDomDocument *doc, QWidget *parent = NULL);
