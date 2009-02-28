@@ -62,6 +62,9 @@ void MainWindow::slotOpen()
 	file.close();
 
 	clear();
+
+	dirty = 1;
+	slotMakeClean();
 }
 
 void MainWindow::slotSave()
