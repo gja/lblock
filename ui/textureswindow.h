@@ -29,9 +29,15 @@ class TexturesWindow : public QDialog {
 	
 	void slotEditTexture(QString);
 
+	void slotRemoveTexture(QString);
+
 	void slotNewTexture();
 
 	void refresh();
+
+    signals:
+
+	void dirty();
 };
 
 #endif

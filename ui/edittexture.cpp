@@ -138,7 +138,6 @@ void NewTexture::slotVerifyAndAccept()
 		return;
 	}
 
-
 	QDomElement root = doc->documentElement().toElement();
 	QDomElement textures = root.elementsByTagName("textures").item(0).toElement();
 
