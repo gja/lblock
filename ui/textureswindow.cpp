@@ -48,7 +48,7 @@ void TexturesWindow::slotNewTexture()
 
 void TexturesWindow::slotRemoveTexture(QString item)
 {
-	QMessageBox::StandardButton response = QMessageBox::warning(this, "Delete Texture", QString("You are About to Permanently Delete Texture ") + item + "\nAre you sure that you want to Continue?", QMessageBox::Ok | QMessageBox::Cancel);
+	QMessageBox::StandardButton response = QMessageBox::question(this, "Delete Texture", QString("You are About to Permanently Delete Texture ") + item + "\nAre you sure that you want to Continue?", QMessageBox::Ok | QMessageBox::Cancel);
 
 	if (response != QMessageBox::Ok)
 		return;
