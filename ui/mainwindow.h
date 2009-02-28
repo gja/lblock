@@ -34,6 +34,15 @@ class MainWindow : public QMainWindow {
 
 	~MainWindow();
 
+	/**
+	 * This checks if there is unsaved changes in the file.
+	 * This asks the user to save, and returns afterwards
+	 * \return true if it is safe to close
+	 */
+	bool okToClose();
+
+	void closeEvent(QCloseEvent *event);
+
     signals:
 	void error(QString);
 

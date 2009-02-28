@@ -1,8 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QDebug>
-
+#include <QCloseEvent>
 #include <QFileDialog>
 #include <QMessageBox>
 
@@ -35,6 +34,9 @@ void MainWindow::clear()
 
 void MainWindow::slotNew()
 {
+	if (! okToClose())
+		return;
+
 	filename.clear();
 	doc.setContent(QString(
 "<!DOCTYPE LBlockML>\n"
@@ -47,6 +49,9 @@ void MainWindow::slotNew()
 
 void MainWindow::slotOpen()
 {
+	if (! okToClose())
+		return;
+
 	QString name = QFileDialog::getOpenFileName(this, "Open File...", QString(), "LBlockML files (*.lml)");
 
 	if (name.isEmpty())
@@ -134,7 +139,39 @@ void MainWindow::slotMakeClean()
 	dirty = false;
 }
 
+#include <QDebug>
 void MainWindow::slotErrorHandler(QString message)
 {
 	qDebug()<<message;
+}
+
+bool MainWindow::okToClose()
+{
+	if (! dirty)
+		return true;
+
+	QMessageBox msgBox;
+	msgBox.setIcon(QMessageBox::Warning);
+	msgBox.setText("The document has been modified.");
+	msgBox.setInformativeText("Do you want to save your changes?");
+	msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+	msgBox.setDefaultButton(QMessageBox::Save);
+	int ret = msgBox.exec();
+
+	// Don't Close if Cancel
+	if (ret == QMessageBox::Cancel)
+		return false;
+
+	if (ret == QMessageBox::Save)
+		slotSave();
+
+	return true;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+	if (okToClose())
+		event->accept();
+	else
+		event->ignore();
 }
