@@ -179,7 +179,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::slotExecute()
 {
-	GLBox *widget = new GLBox;
+	GLBox *widget = new GLBox(&doc);
 	widget->setWindowState(Qt::WindowFullScreen);
 	widget->show();
 }

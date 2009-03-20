@@ -7,10 +7,9 @@
 #include <qgl.h>
 #include <QHash>
 #include <QString>
-#include <QDomDocument>
 #include <QTimer>
 
-class QKeyEvent;
+class QDomDocument;
 
 /**
  * This represents the OpenGL widget.
@@ -34,12 +33,16 @@ class GLBox : public QGLWidget
 		model<<item;
 	}
 
+	/// This stores the Document shown
+	QDomDocument *doc;
+
     public:
 	/**
 	 * This is the Constructor.
+	 * \param doc An XML Document that we parse to see objects
 	 * \param parent The Widget's Parent (NULL for no parent)
 	 */
-	GLBox( QWidget* parent = NULL);
+	GLBox(QDomDocument *doc, QWidget* parent = NULL);
 
 	/// The Destructor
 	~GLBox();
@@ -74,11 +77,11 @@ class GLBox : public QGLWidget
 	 * QDomDocument doc;
 	 * doc.setContents(file);
 	 * file.close();
-	 * drawObject(doc);
+	 * drawObject(&doc);
 	 * \endcode
 	 * \param doc A parsed XML DOM Document
 	 */
-	void drawObject(const QDomDocument &doc);
+	void drawObject(const QDomDocument *doc);
 
 	/**
 	 * This is called whenever a key is pressed.

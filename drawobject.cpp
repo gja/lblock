@@ -9,9 +9,9 @@
 #include <QDomDocument>
 #include <QDebug>
 
-void GLBox::drawObject(const QDomDocument &doc)
+void GLBox::drawObject(const QDomDocument *doc)
 {
-	QDomElement root = doc.documentElement().toElement();
+	QDomElement root = doc->documentElement().toElement();
 
 	QDomElement texture1 = root.elementsByTagName("textures").item(0).toElement();
 

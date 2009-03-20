@@ -14,7 +14,7 @@
 #include <math.h>
 
 // Create a GLBox widget
-GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
+GLBox::GLBox(QDomDocument *d, QWidget *parent) : QGLWidget(parent), doc(d)
 {
 	posx = posz = 0.0;
 	posy = 6.0;		// 6 foot tall, caught you red handed!
@@ -78,13 +78,6 @@ void GLBox::initializeGL()
 	glDepthFunc(GL_LEQUAL);
 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
-	QFile file( "file.xml");
-
-	QDomDocument doc("LBlockML");
-	doc.setContent(&file);
-	
-	file.close();
 
 	drawObject(doc);
 
