@@ -84,7 +84,7 @@ class GLBox : public QGLWidget
 	 * This is called whenever a key is pressed.
 	 * \param event A keypress event representing the event
 	 */
-	virtual void keyPressEvent( QKeyEvent *event );
+	virtual void keyPressEvent(QKeyEvent *event);
 
 	/**
 	 * This is called whenever the mouse is moved.
@@ -92,7 +92,13 @@ class GLBox : public QGLWidget
 	 * even if there has not been any click (which was the default behavior)
 	 * \param event A mouse event representing the event
 	 */
-	virtual void mouseMoveEvent( QMouseEvent *event);
+	virtual void mouseMoveEvent(QMouseEvent *event);
+
+	/**
+	 * This is called when the GLBox is closed
+	 * \param event A close event representing the close
+	 */
+	virtual void closeEvent(QCloseEvent *event);
 
 	/// The x position of the observer
 	GLfloat posx;

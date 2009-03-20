@@ -21,7 +21,7 @@ GLBox::GLBox( QWidget *parent) : QGLWidget(parent)
 	left_right = up_down = 0;
 
 	setCursor( Qt::CrossCursor);
-	setMouseTracking (true);
+	setMouseTracking(true);
 
 	centerx = QApplication::desktop()->width() / 2;
 	centery = QApplication::desktop()->height() / 2;
@@ -185,4 +185,10 @@ void GLBox::mouseMoveEvent (QMouseEvent *event)
 		up_down = 60;
 	else if (up_down < -60)
 		up_down = -60;
+}
+
+void GLBox::closeEvent(QCloseEvent *event)
+{
+	setMouseTracking(false);
+	deleteLater();
 }
