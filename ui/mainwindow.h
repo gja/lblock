@@ -5,6 +5,7 @@
 
 #include <QDomDocument>
 #include <QMainWindow>
+#include <QActionGroup>
 
 namespace Ui {
 	class MainWindow;
@@ -16,6 +17,8 @@ class MainWindow : public QMainWindow {
 	Ui::MainWindow *ui;
 
 	TexturesWindow texturesWindow;
+
+	QActionGroup group;
 
 	/// This is true if the file has been modified
 	bool dirty;

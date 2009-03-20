@@ -6,12 +6,16 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML"), dirty(false)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML"), dirty(false), group(NULL)
 {
 	ui = new Ui::MainWindow;
 
 	ui->setupUi(this);
 	texturesWindow.show();
+
+	group.addAction(ui->actionWall);
+	group.addAction(ui->actionFloor);
+	group.addAction(ui->actionTable);
 
 	connect(ui->actionTextures, SIGNAL(toggled(bool)), &texturesWindow, SLOT(setVisible(bool)));
 	connect(&texturesWindow, SIGNAL(rejected()), ui->actionTextures, SLOT(toggle()));
@@ -46,6 +50,8 @@ void MainWindow::slotNew()
 " <floors/>\n"
 "</lblock>\n"));
 	clear();
+
+	emit(enableButtons(false));
 }
 
 void MainWindow::slotOpen()
