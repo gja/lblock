@@ -35,7 +35,7 @@
          <set>Qt::AlignCenter</set>
         </property>
         <property name="buddy" >
-         <cstring>verticalSlider</cstring>
+         <cstring>floorNumber</cstring>
         </property>
        </widget>
       </item>
@@ -56,7 +56,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QSlider" name="verticalSlider" >
+       <widget class="QSlider" name="floorNumber" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Expanding" hsizetype="Minimum" >
           <horstretch>0</horstretch>
@@ -131,6 +131,8 @@
     <property name="title" >
      <string>&amp;Design</string>
     </property>
+    <addaction name="actionProperties" />
+    <addaction name="separator" />
     <addaction name="actionExecute" />
    </widget>
    <addaction name="menu_File" />
@@ -339,13 +341,18 @@
     <string>Remove Item</string>
    </property>
   </action>
+  <action name="actionProperties" >
+   <property name="text" >
+    <string>Properties</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../icons.qrc" />
  </resources>
  <connections>
   <connection>
-   <sender>verticalSlider</sender>
+   <sender>floorNumber</sender>
    <signal>valueChanged(int)</signal>
    <receiver>lcdNumber</receiver>
    <slot>display(int)</slot>
@@ -403,8 +410,8 @@
      <y>-1</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>518</x>
-     <y>44</y>
+     <x>799</x>
+     <y>72</y>
     </hint>
    </hints>
   </connection>
@@ -555,7 +562,7 @@
   <connection>
    <sender>MainWindow</sender>
    <signal>enableButtons(bool)</signal>
-   <receiver>verticalSlider</receiver>
+   <receiver>floorNumber</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
@@ -584,6 +591,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionProperties</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotProperties()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>slotNew()</slot>
@@ -593,6 +616,7 @@
   <slot>slotAbout()</slot>
   <slot>slotAboutQt()</slot>
   <slot>slotExecute()</slot>
+  <slot>slotProperties()</slot>
   <signal>enableButtons(bool)</signal>
  </slots>
 </ui>

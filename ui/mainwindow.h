@@ -26,9 +26,6 @@ class MainWindow : public QMainWindow {
 	/// This Stores the Current filename
 	QString filename;
 
-	/// This function clears everything (except filename)
-	void clear();
-
 	/// This stores the document currently being read
 	QDomDocument doc;
 
@@ -53,6 +50,9 @@ class MainWindow : public QMainWindow {
 
     public slots:
 
+	/// This function clears everything (except filename)
+	void clear();
+
 	void slotNew();
 
 	void slotOpen();
@@ -72,6 +72,8 @@ class MainWindow : public QMainWindow {
 	void slotErrorHandler(QString);
 
 	void slotExecute();
+
+	void slotProperties();
 };
 
 #endif

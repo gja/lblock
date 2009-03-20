@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "glbox.h"
+#include "properties.h"
 
 #include <QCloseEvent>
 #include <QFileDialog>
@@ -33,6 +34,12 @@ MainWindow::~MainWindow()
 void MainWindow::clear()
 {
 	texturesWindow.refresh();
+
+	QDomElement elem = doc.documentElement().toElement().elementsByTagName("properties").item(0).toElement();
+	ui->floorNumber->setMinimum(elem.attribute("lowest", "0").toInt());
+	ui->floorNumber->setMaximum(elem.attribute("highest", "0").toInt());
+	ui->floorNumber->update();
+
 	dirty = true;
 	slotMakeClean();
 }
@@ -46,12 +53,11 @@ void MainWindow::slotNew()
 	doc.setContent(QString(
 "<!DOCTYPE LBlockML>\n"
 "<lblock>\n"
+" <properties/>\n"
 " <textures/>\n"
 " <floors/>\n"
 "</lblock>\n"));
 	clear();
-
-	emit(enableButtons(false));
 }
 
 void MainWindow::slotOpen()
@@ -90,8 +96,7 @@ void MainWindow::slotSave()
 
 	file.close();
 
-	dirty = 1;
-	slotMakeClean();
+	clear();
 }
 
 void MainWindow::slotSaveAs()
@@ -181,6 +186,14 @@ void MainWindow::closeEvent(QCloseEvent *event)
 		event->accept();
 	else
 		event->ignore();
+}
+
+void MainWindow::slotProperties()
+{
+	PropertiesDialog *dialog = new PropertiesDialog(&doc);
+	connect(dialog, SIGNAL(accepted()), this, SLOT(clear()));
+	connect(dialog, SIGNAL(finished(int)), dialog, SLOT(deleteLater()));
+	dialog->show();
 }
 
 void MainWindow::slotExecute()

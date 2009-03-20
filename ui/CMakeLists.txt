@@ -5,10 +5,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 QT4_WRAP_UI(UI_FILES mainwindow.ui)
 QT4_WRAP_UI(UI_FILES textureswindow.ui)
 QT4_WRAP_UI(UI_FILES edittexture.ui)
+QT4_WRAP_UI(UI_FILES properties.ui)
 
 set (SOURCES mainwindow.cpp textureswindow.cpp textureslist.cpp
-	texturesview.cpp edittexture.cpp)
+	texturesview.cpp edittexture.cpp properties.cpp)
 QT4_WRAP_CPP(SOURCES mainwindow.h textureswindow.h edittexture.h
-	texturesview.h)
+	texturesview.h properties.h)
 
 add_library(ui ${SOURCES} ${UI_FILES})
