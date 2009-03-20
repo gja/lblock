@@ -200,5 +200,6 @@ void MainWindow::slotExecute()
 {
 	GLBox *widget = new GLBox(&doc);
 	widget->setWindowState(Qt::WindowFullScreen);
+	connect(widget, SIGNAL(terminated()), widget, SLOT(deleteLater()));
 	widget->show();
 }

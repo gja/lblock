@@ -183,5 +183,5 @@ void GLBox::mouseMoveEvent (QMouseEvent *event)
 void GLBox::closeEvent(QCloseEvent *event)
 {
 	setMouseTracking(false);
-	deleteLater();
+	emit(terminated());
 }

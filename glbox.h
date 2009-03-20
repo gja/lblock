@@ -146,6 +146,9 @@ class GLBox : public QGLWidget
 	QTimer timer;
 
     public slots:
+
+    signals:
+	void terminated();
 };
 
 #endif // GLBOX_H
