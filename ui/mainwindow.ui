@@ -1,0 +1,496 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>LBlock Building Designer</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" name="horizontalLayout" >
+    <item>
+     <widget class="QGraphicsView" name="graphicsView" />
+    </item>
+    <item>
+     <widget class="Line" name="line" >
+      <property name="orientation" >
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout" >
+      <item>
+       <widget class="QLabel" name="label" >
+        <property name="text" >
+         <string>Floor</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="buddy" >
+         <cstring>verticalSlider</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLCDNumber" name="lcdNumber" >
+        <property name="frameShape" >
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="numDigits" >
+         <number>2</number>
+        </property>
+        <property name="segmentStyle" >
+         <enum>QLCDNumber::Filled</enum>
+        </property>
+        <property name="intValue" stdset="0" >
+         <number>0</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSlider" name="verticalSlider" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Expanding" hsizetype="Minimum" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimum" >
+         <number>0</number>
+        </property>
+        <property name="maximum" >
+         <number>0</number>
+        </property>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="tickPosition" >
+         <enum>QSlider::TicksBothSides</enum>
+        </property>
+        <property name="tickInterval" >
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="action_New" />
+    <addaction name="action_Open" />
+    <addaction name="separator" />
+    <addaction name="action_Save" />
+    <addaction name="actionSave_As" />
+    <addaction name="separator" />
+    <addaction name="actionQuit" />
+   </widget>
+   <widget class="QMenu" name="menu_Help" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout_LBlock" />
+    <addaction name="actionAbout_Qt" />
+   </widget>
+   <widget class="QMenu" name="menu_Tools" >
+    <property name="title" >
+     <string>&amp;Tools</string>
+    </property>
+    <widget class="QMenu" name="menuToolbars" >
+     <property name="title" >
+      <string>Toolbars</string>
+     </property>
+     <addaction name="actionFile_Toolbar" />
+     <addaction name="actionItems_Toolbar" />
+    </widget>
+    <addaction name="actionTextures" />
+    <addaction name="separator" />
+    <addaction name="menuToolbars" />
+   </widget>
+   <widget class="QMenu" name="menu_Design" >
+    <property name="title" >
+     <string>&amp;Design</string>
+    </property>
+    <addaction name="actionExecute" />
+   </widget>
+   <addaction name="menu_File" />
+   <addaction name="menu_Tools" />
+   <addaction name="menu_Design" />
+   <addaction name="menu_Help" />
+  </widget>
+  <widget class="QToolBar" name="fileToolbar" >
+   <property name="windowTitle" >
+    <string>File</string>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>22</width>
+     <height>22</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle" >
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_New" />
+   <addaction name="action_Open" />
+   <addaction name="action_Save" />
+   <addaction name="separator" />
+   <addaction name="actionExecute" />
+   <addaction name="separator" />
+   <addaction name="actionQuit" />
+  </widget>
+  <widget class="QToolBar" name="itemsToolBar" >
+   <property name="windowTitle" >
+    <string>Items</string>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="action_New" >
+   <property name="icon" >
+    <iconset resource="../icons.qrc" >
+     <normaloff>:/icons/icons/document-new.png</normaloff>:/icons/icons/document-new.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;New...</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_Open" >
+   <property name="icon" >
+    <iconset resource="../icons.qrc" >
+     <normaloff>:/icons/icons/document-open.png</normaloff>:/icons/icons/document-open.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Open...</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_Save" >
+   <property name="icon" >
+    <iconset resource="../icons.qrc" >
+     <normaloff>:/icons/icons/document-save.png</normaloff>:/icons/icons/document-save.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSave_As" >
+   <property name="icon" >
+    <iconset resource="../icons.qrc" >
+     <normaloff>:/icons/icons/document-save-as.png</normaloff>:/icons/icons/document-save-as.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Save &amp;As...</string>
+   </property>
+  </action>
+  <action name="actionQuit" >
+   <property name="icon" >
+    <iconset resource="../icons.qrc" >
+     <normaloff>:/icons/icons/process-stop.png</normaloff>:/icons/icons/process-stop.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Quit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionAbout_LBlock" >
+   <property name="text" >
+    <string>&amp;About LBlock</string>
+   </property>
+  </action>
+  <action name="actionItems_Toolbar" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Items</string>
+   </property>
+  </action>
+  <action name="actionFile_Toolbar" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>File</string>
+   </property>
+  </action>
+  <action name="actionTextures" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Textures</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt" >
+   <property name="text" >
+    <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionExecute" >
+   <property name="icon" >
+    <iconset resource="../icons.qrc" >
+     <normaloff>:/icons/icons/media-playback-start.png</normaloff>:/icons/icons/media-playback-start.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Execute</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../icons.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>verticalSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>lcdNumber</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>784</x>
+     <y>171</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>794</x>
+     <y>130</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFile_Toolbar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>fileToolbar</receiver>
+   <slot>setShown(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>118</x>
+     <y>44</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionItems_Toolbar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>itemsToolBar</receiver>
+   <slot>setShown(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>518</x>
+     <y>44</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_New</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotNew()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Open</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotOpen()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Save</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotSave()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave_As</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotSaveAs()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout_LBlock</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotAbout()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout_Qt</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotAboutQt()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>enableButtons(bool)</signal>
+   <receiver>verticalSlider</receiver>
+   <slot>setShown(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>705</x>
+     <y>596</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>771</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExecute</sender>
+   <signal>activated(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotExecute()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slotNew()</slot>
+  <slot>slotOpen()</slot>
+  <slot>slotSave()</slot>
+  <slot>slotSaveAs()</slot>
+  <slot>slotAbout()</slot>
+  <slot>slotAboutQt()</slot>
+  <slot>slotExecute()</slot>
+  <signal>enableButtons(bool)</signal>
+ </slots>
+</ui>

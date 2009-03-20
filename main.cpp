@@ -1,7 +1,3 @@
-#include "glbox.h"
-#include <qapplication.h>
-#include <qgl.h>
-
 /*! \mainpage The LBlock Building and Large Landscape Simulator
  *
  * \section intro_sec Introduction
@@ -30,18 +26,15 @@
  * \li Git source configuration management for managing the code base (http://git.or.cz)
  */
 
+#include "mainwindow.h"
+#include <QApplication>
+
 int main( int argc, char **argv )
 {
-    QApplication::setColorSpec( QApplication::CustomColor );
-    QApplication a(argc,argv);
+	QApplication a(argc,argv);
 
-    if ( !QGLFormat::hasOpenGL() ) {
-	qWarning( "This system has no OpenGL support. Exiting." );
-	return -1;
-    }
+	MainWindow window;
+	window.show();
 
-    GLBox w;
-    w.setWindowState(Qt::WindowFullScreen);
-    w.show();
-    return a.exec();
+	return a.exec();
 }

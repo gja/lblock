@@ -10,15 +10,18 @@ set(QT_USE_QTOPENGL true)
 set(QT_USE_QTXML true)
 include(${QT_USE_FILE})
 
-set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp wall.cpp
-	table.cpp
-	floor.cpp window.cpp)
+include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/ui ${CMAKE_SOURCE_DIR}/items)
 
+add_subdirectory(ui)
+add_subdirectory(items)
+
+QT4_ADD_RESOURCES(RESOURCE_FILES icons.qrc)
+
+set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp)
 QT4_WRAP_CPP(SOURCES glbox.h)
 
-
-add_executable(lblock ${SOURCES})
-target_link_libraries(lblock ${QT_LIBRARIES})
+add_executable(lblock ${SOURCES} ${RESOURCE_FILES})
+target_link_libraries(lblock ${QT_LIBRARIES} ui items)
 
 if(DOXYGEN_FOUND)
 	set(DOXY_CONFIG ${CMAKE_BINARY_DIR}/doxy.conf)
@@ -27,6 +30,3 @@ if(DOXYGEN_FOUND)
 	add_custom_target(doc ${DOXYGEN_EXECUTABLE} ${DOXY_CONFIG})
 	add_dependencies(lblock doc)
 endif(DOXYGEN_FOUND)
-
-add_custom_target (data ALL ${CMAKE_COMMAND} -E copy_directory
-	${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_CURRENT_BINARY_DIR}/data )

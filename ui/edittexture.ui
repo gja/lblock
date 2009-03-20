@@ -1,0 +1,247 @@
+<ui version="4.0" >
+ <class>EditTexture</class>
+ <widget class="QDialog" name="EditTexture" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>500</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize" >
+   <size>
+    <width>500</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>Edit Texture</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="geometry" >
+    <rect>
+     <x>110</x>
+     <y>240</y>
+     <width>341</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons" >
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="imageButton" >
+   <property name="geometry" >
+    <rect>
+     <x>60</x>
+     <y>230</y>
+     <width>123</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Change Image</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget" >
+   <property name="geometry" >
+    <rect>
+     <x>250</x>
+     <y>50</y>
+     <width>233</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" >
+    <item row="0" column="0" >
+     <widget class="QLabel" name="label_2" >
+      <property name="text" >
+       <string>Name:</string>
+      </property>
+      <property name="buddy" >
+       <cstring>name</cstring>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" >
+     <widget class="QLineEdit" name="name" />
+    </item>
+    <item row="1" column="0" >
+     <widget class="QLabel" name="label" >
+      <property name="text" >
+       <string>Backup:</string>
+      </property>
+      <property name="buddy" >
+       <cstring>colorButton</cstring>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" >
+     <widget class="QPushButton" name="colorButton" >
+      <property name="text" >
+       <string>Change Color</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" >
+     <widget class="QLabel" name="label_3" >
+      <property name="text" >
+       <string>x-Scale:</string>
+      </property>
+      <property name="buddy" >
+       <cstring>xscale</cstring>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" >
+     <widget class="QDoubleSpinBox" name="xscale" >
+      <property name="alignment" >
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="minimum" >
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" >
+     <widget class="QLabel" name="label_4" >
+      <property name="text" >
+       <string>y-Scale:</string>
+      </property>
+      <property name="buddy" >
+       <cstring>yscale</cstring>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1" >
+     <widget class="QDoubleSpinBox" name="yscale" >
+      <property name="alignment" >
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="minimum" >
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="preview" >
+   <property name="geometry" >
+    <rect>
+     <x>30</x>
+     <y>40</y>
+     <width>191</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="frameShape" >
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow" >
+    <enum>QFrame::Raised</enum>
+   </property>
+   <property name="text" >
+    <string/>
+   </property>
+   <property name="scaledContents" >
+    <bool>true</bool>
+   </property>
+   <property name="buddy" >
+    <cstring>imageButton</cstring>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>name</tabstop>
+  <tabstop>colorButton</tabstop>
+  <tabstop>xscale</tabstop>
+  <tabstop>yscale</tabstop>
+  <tabstop>imageButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>EditTexture</receiver>
+   <slot>slotVerifyAndAccept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>226</x>
+     <y>281</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>EditTexture</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>imageButton</sender>
+   <signal>clicked()</signal>
+   <receiver>EditTexture</receiver>
+   <slot>slotChangeImage()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>102</x>
+     <y>240</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>86</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>colorButton</sender>
+   <signal>clicked()</signal>
+   <receiver>EditTexture</receiver>
+   <slot>slotChangeColor()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>321</x>
+     <y>165</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>248</x>
+     <y>12</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slotChangeColor()</slot>
+  <slot>slotChangeImage()</slot>
+  <slot>slotVerifyAndAccept()</slot>
+ </slots>
+</ui>
