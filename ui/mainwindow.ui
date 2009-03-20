@@ -127,8 +127,15 @@
     <addaction name="separator" />
     <addaction name="menuToolbars" />
    </widget>
+   <widget class="QMenu" name="menu_Design" >
+    <property name="title" >
+     <string>&amp;Design</string>
+    </property>
+    <addaction name="actionExecute" />
+   </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Tools" />
+   <addaction name="menu_Design" />
    <addaction name="menu_Help" />
   </widget>
   <widget class="QToolBar" name="fileToolbar" >
@@ -153,6 +160,8 @@
    <addaction name="action_New" />
    <addaction name="action_Open" />
    <addaction name="action_Save" />
+   <addaction name="separator" />
+   <addaction name="actionExecute" />
    <addaction name="separator" />
    <addaction name="actionQuit" />
   </widget>
@@ -265,6 +274,15 @@
   <action name="actionAbout_Qt" >
    <property name="text" >
     <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionExecute" >
+   <property name="icon" >
+    <iconset resource="../icons.qrc" >
+     <normaloff>:/icons/icons/media-playback-start.png</normaloff>:/icons/icons/media-playback-start.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Execute</string>
    </property>
   </action>
  </widget>
@@ -432,6 +450,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>enableButtons(bool)</signal>
+   <receiver>verticalSlider</receiver>
+   <slot>setShown(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>705</x>
+     <y>596</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>771</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExecute</sender>
+   <signal>activated(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slotExecute()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>slotNew()</slot>
@@ -440,5 +490,7 @@
   <slot>slotSaveAs()</slot>
   <slot>slotAbout()</slot>
   <slot>slotAboutQt()</slot>
+  <slot>slotExecute()</slot>
+  <signal>enableButtons(bool)</signal>
  </slots>
 </ui>

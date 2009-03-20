@@ -46,6 +46,8 @@ class MainWindow : public QMainWindow {
     signals:
 	void error(QString);
 
+	void enableButtons(bool);
+
     public slots:
 
 	void slotNew();
@@ -65,6 +67,8 @@ class MainWindow : public QMainWindow {
 	void slotMakeClean();
 
 	void slotErrorHandler(QString);
+
+	void slotExecute();
 };
 
 #endif

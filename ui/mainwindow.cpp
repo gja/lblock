@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "glbox.h"
 
 #include <QCloseEvent>
 #include <QFileDialog>
@@ -174,4 +175,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
 		event->accept();
 	else
 		event->ignore();
+}
+
+void MainWindow::slotExecute()
+{
+	GLBox *widget = new GLBox;
+	widget->setWindowState(Qt::WindowFullScreen);
+	widget->show();
 }
