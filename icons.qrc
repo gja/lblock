@@ -8,5 +8,6 @@
     <file>icons/list-remove.png</file>
     <file>icons/process-stop.png</file>
     <file>icons/view-refresh.png</file>
+    <file>icons/media-playback-start.png</file>
   </qresource>
 </RCC>
