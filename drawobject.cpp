@@ -20,13 +20,13 @@ void GLBox::drawObject(const QDomDocument &doc)
 		QDomElement e = i.toElement();
 
 		QString name = e.attribute("name");
-		QString file = e.attribute("file");
+		QString value = e.attribute("value");
 		QString color = e.attribute("color", "0xFFFFFF");
 		QString xscale = e.attribute("xscale", "1.0");
 		QString yscale = e.attribute("yscale", "1.0");
 
-		qDebug()<<"Adding Texture:"<<name<<color<<file<<xscale<<yscale;
-		textures[name] = Texture(color.toUInt(0, 16), file, xscale.toFloat(), yscale.toFloat());
+		qDebug()<<"Adding Texture:"<<name<<color<<xscale<<yscale;
+		textures[name] = Texture(color.toUInt(0, 16), QByteArray::fromBase64(value.toAscii()), xscale.toFloat(), yscale.toFloat());
 	}
 
 	QDomElement item = root.elementsByTagName("items").item(0).toElement();

@@ -24,12 +24,22 @@ struct Texture {
 	/**
 	 *  This is the constructor.
 	 *  This initializes the texture, for future use
-	 *  \param rgb a default colour that is to be loaded 
+	 *  \param rgb a default colour that is to be loaded
 	 *  \param path specifies where the texture file that is to be loaded is present
 	 *  \param x gives the x scale, default value is 1.0
-	 *  \param y gives the y scale, default value is 1.0 
-	 */ 
+	 *  \param y gives the y scale, default value is 1.0
+	 */
 	Texture(const uint rgb, const QString &path = QString(), float x = 1.0f, float y = 1.0f);
+
+	/**
+	 *  This is the constructor.
+	 *  This initializes the texture, for future use
+	 *  \param rgb a default colour that is to be loaded
+	 *  \param value An array that stores the bits for the texture
+	 *  \param x gives the x scale, default value is 1.0
+	 *  \param y gives the y scale, default value is 1.0
+	 */
+	Texture(const uint rgb, const QByteArray &value, float x = 1.0f, float y = 1.0f);
 
 	/// This is the destructor
 	void destroy();
