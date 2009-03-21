@@ -37,7 +37,6 @@ MainWindow::~MainWindow()
 	delete scene;
 }
 
-#include <QDebug>
 void MainWindow::clear()
 {
 	texturesWindow.refresh();
@@ -184,10 +183,9 @@ void MainWindow::slotMakeClean()
 	dirty = false;
 }
 
-#include <QDebug>
 void MainWindow::slotErrorHandler(QString message)
 {
-	qDebug()<<message;
+	QMessageBox::critical(this, "Error", message);
 }
 
 bool MainWindow::okToClose()

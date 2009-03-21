@@ -2,7 +2,6 @@
 #include "constants.h"
 #include "wall.h"
 
-#include <QDebug>
 #include <QTimer>
 #include <QKeyEvent>
 #include <QApplication>
