@@ -2,10 +2,12 @@
 #include "ui_mainwindow.h"
 #include "glbox.h"
 #include "properties.h"
+#include "constants.h"
 
 #include <QCloseEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QGraphicsScene>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML"), dirty(false), group(NULL)
 {
@@ -13,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 
 	ui->setupUi(this);
 	texturesWindow.show();
+
+	scene = new QGraphicsScene;
+	ui->graphicsView->setScene(scene);
 
 	group.addAction(ui->actionWall);
 	group.addAction(ui->actionFloor);
@@ -29,8 +34,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 MainWindow::~MainWindow()
 {
 	delete ui;
+	delete scene;
 }
 
+#include <QDebug>
 void MainWindow::clear()
 {
 	texturesWindow.refresh();
@@ -39,6 +46,32 @@ void MainWindow::clear()
 	ui->floorNumber->setMinimum(elem.attribute("lowest", "0").toInt());
 	ui->floorNumber->setMaximum(elem.attribute("highest", "0").toInt());
 	ui->floorNumber->update();
+
+	int grid = elem.attribute("grid", "10").toInt();
+	int length = elem.attribute("length", "60").toInt();
+	int width = elem.attribute("width", "40").toInt();
+
+	scene->clear();
+	scene->setSceneRect(0, 0, length * PIXELS_PER_FOOT, width * PIXELS_PER_FOOT);
+
+	QPen pen = QPen(Qt::lightGray);
+	pen.setStyle(Qt::DashLine);
+
+	{
+		int tmp = width * PIXELS_PER_FOOT;
+		for (int i = grid; i < length; i+= grid) {
+			int tmp2 = i * PIXELS_PER_FOOT;
+			scene->addLine(tmp2, 0, tmp2, tmp, pen);
+		}
+	}
+
+	{
+		int tmp = length * PIXELS_PER_FOOT;
+		for (int i = grid; i < width; i+= grid) {
+			int tmp2 = i * PIXELS_PER_FOOT;
+			scene->addLine(0, tmp2, tmp, tmp2, pen);
+		}
+	}
 
 	dirty = true;
 	slotMakeClean();

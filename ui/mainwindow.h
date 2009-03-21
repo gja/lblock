@@ -11,6 +11,8 @@ namespace Ui {
 	class MainWindow;
 }
 
+class QGraphicsScene;
+
 class MainWindow : public QMainWindow {
 	Q_OBJECT
 
@@ -28,6 +30,9 @@ class MainWindow : public QMainWindow {
 
 	/// This stores the document currently being read
 	QDomDocument doc;
+
+	/// This stores the scene to draw everything
+	QGraphicsScene *scene;
 
     public:
 	MainWindow (QWidget *parent = NULL);

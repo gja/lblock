@@ -18,4 +18,6 @@
 #define MOVE_LEFT_KEY Qt::Key_A
 #define MOVE_RIGHT_KEY Qt::Key_D
 
+#define PIXELS_PER_FOOT 12
+
 #endif // CONSTANTS_H
