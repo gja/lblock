@@ -13,3 +13,4 @@ QT4_WRAP_CPP(SOURCES mainwindow.h textureswindow.h edittexture.h
 	texturesview.h properties.h)
 
 add_library(ui ${SOURCES} ${UI_FILES})
+target_link_libraries(ui ${QT_LIBRARIES})
