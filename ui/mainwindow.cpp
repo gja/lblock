@@ -87,7 +87,9 @@ void MainWindow::slotNew()
 "<lblock>\n"
 " <properties/>\n"
 " <textures/>\n"
-" <floors/>\n"
+" <floors>\n"
+"  <floor id=0>\n"
+" </floors>\n"
 "</lblock>\n"));
 	clear();
 }

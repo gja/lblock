@@ -3,6 +3,7 @@
 
 #include <QDomElement>
 #include <QDomDocument>
+#include <QHash>
 
 PropertiesDialog::PropertiesDialog(QDomDocument *d, QWidget *parent) : QDialog(parent), doc(d)
 {
@@ -30,6 +31,27 @@ void PropertiesDialog::slotVerifyAndAccept()
 	elem.setAttribute("grid", ui->grid->value());
 	elem.setAttribute("lowest", ui->lowest->value());
 	elem.setAttribute("highest", ui->highest->value());
+
+	QDomElement floors = doc->documentElement().toElement().elementsByTagName("floors").item(0).toElement();
+	QDomNodeList floorList = floors.elementsByTagName("floor");
+
+	QHash <int, bool> createdFloors;
+
+	for (int i = 0; i < floorList.count(); i++) {
+		QDomNode floor = floorList.item(i);
+		int floor_number = floor.toElement().attribute("id", "0").toInt();
+		if (floor_number < ui->lowest->value() || floor_number > ui->highest->value())
+			floors.removeChild(floor);
+		else
+			createdFloors[floor_number] = true;
+	}
+
+	for (int i = ui->lowest->value(); i <= ui->highest->value(); i++)
+		if (! createdFloors[i]) {
+			QDomElement elem = doc->createElement("floor");
+			floors.appendChild(elem);
+			elem.setAttribute("id", QString::number(i));
+		}
 
 	accept();
 }
