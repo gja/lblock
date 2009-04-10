@@ -111,6 +111,9 @@ void MainWindow::slotOpen()
 	file.close();
 
 	clear();
+
+	int floor = doc.documentElement().elementsByTagName("properties").item(0).toElement().attribute("id").toInt();
+	slotShowFloor(floor);
 }
 
 void MainWindow::slotSave()
@@ -235,4 +238,18 @@ void MainWindow::slotExecute()
 	widget->setWindowState(Qt::WindowFullScreen);
 	connect(widget, SIGNAL(terminated()), widget, SLOT(deleteLater()));
 	widget->show();
+}
+
+void MainWindow::slotShowFloor(int n)
+{
+	clear();
+	current_floor = n;
+
+	QDomNode floor;
+
+	for (floor = doc.elementsByTagName("floors").item(0).toElement().firstChild(); !floor.isNull(); floor = floor.nextSibling())
+		if (floor.toElement().attribute("id") == QString::number(n))
+			break;
+
+	// from now on, floor is the element we want
 }

@@ -34,6 +34,9 @@ class MainWindow : public QMainWindow {
 	/// This stores the scene to draw everything
 	QGraphicsScene *scene;
 
+	/// This stores the current floor
+	int current_floor;
+
     public:
 	MainWindow (QWidget *parent = NULL);
 
@@ -79,6 +82,8 @@ class MainWindow : public QMainWindow {
 	void slotExecute();
 
 	void slotProperties();
+
+	void slotShowFloor(int);
 };
 
 #endif
