@@ -89,7 +89,7 @@ void MainWindow::slotNew()
 " <textures/>\n"
 " <floors/>\n"
 "</lblock>\n"));
-	clear();
+ 	clear();
 }
 
 void MainWindow::slotOpen()
