@@ -29,84 +29,85 @@ void GLBox::drawObject(const QDomDocument *doc)
 		textures[name] = Texture(color.toUInt(0, 16), QByteArray::fromBase64(value.toAscii()), xscale.toFloat(), yscale.toFloat());
 	}
 
-	QDomElement item = root.elementsByTagName("items").item(0).toElement();
+	for(QDomNode item = root.elementsByTagName("floor").item(0).toElement(); !item.isNull(); item = item.nextSibling()) {
 
-	for (QDomNode i = item.firstChild(); !i.isNull(); i = i.nextSibling())
-	{
-		QDomElement e = i.toElement();
-
-		QString x = e.attribute("x");
-		QString y = e.attribute("y");
-		QString z = e.attribute("z");
-		QString rotation = e.attribute("rotation", "0.0");
-		QString type = e.attribute("type");
-
-		if (type == "wall")
+		for (QDomNode i = item.firstChild(); !i.isNull(); i = i.nextSibling())
 		{
-			QString length = e.attribute("length");
-			QString innerTexture = e.attribute("innerTexture");
-			QString outerTexture = e.attribute("outerTexture");
-			QString height = e.attribute("height", "10.0");
-			QString thickness = e.attribute("thickness", "0.5");
+			QDomElement e = i.toElement();
 
-			qDebug()<<"Adding Wall:"<<x<<y<<z<<rotation<<length<<innerTexture<<outerTexture<<height<<thickness;
+			QString x = e.attribute("x");
+			QString y = e.attribute("y");
+			QString z = e.attribute("z");
+			QString rotation = e.attribute("rotation", "0.0");
+			QString type = e.attribute("type");
 
-			Wall *wall = new Wall(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), textures[innerTexture], textures[outerTexture], height.toFloat(), thickness.toFloat());
+			if (type == "wall")
+			{
+				QString length = e.attribute("length");
+				QString innerTexture = e.attribute("innerTexture");
+				QString outerTexture = e.attribute("outerTexture");
+				QString height = e.attribute("height", "10.0");
+				QString thickness = e.attribute("thickness", "0.5");
 
-			// now we start parsing the windows
-			for (QDomNode w = e.firstChild(); !w.isNull(); w = w.nextSibling()) {
-				QDomElement tmp = w.toElement();
+				qDebug()<<"Adding Wall:"<<x<<y<<z<<rotation<<length<<innerTexture<<outerTexture<<height<<thickness;
 
-				if (tmp.tagName() == "window") {
-					QString position = tmp.attribute("position");
-					QString length = tmp.attribute("length");
-					QString texture = tmp.attribute("texture");
-					QString lowerHeight = tmp.attribute("lowerHeight", "3.0");
-					QString upperHeight = tmp.attribute("upperHeight", "7.0");
-					wall->addWindow(position.toFloat(), length.toFloat(), textures[texture], lowerHeight.toFloat(), upperHeight.toFloat());
-					qDebug()<<"Added Window:"<<position<<length<<texture<<lowerHeight<<upperHeight;
+				Wall *wall = new Wall(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), textures[innerTexture], textures[outerTexture], height.toFloat(), thickness.toFloat());
+
+				// now we start parsing the windows
+				for (QDomNode w = e.firstChild(); !w.isNull(); w = w.nextSibling()) {
+					QDomElement tmp = w.toElement();
+
+					if (tmp.tagName() == "window") {
+						QString position = tmp.attribute("position");
+						QString length = tmp.attribute("length");
+						QString texture = tmp.attribute("texture");
+						QString lowerHeight = tmp.attribute("lowerHeight", "3.0");
+						QString upperHeight = tmp.attribute("upperHeight", "7.0");
+						wall->addWindow(position.toFloat(), length.toFloat(), textures[texture], lowerHeight.toFloat(), upperHeight.toFloat());
+						qDebug()<<"Added Window:"<<position<<length<<texture<<lowerHeight<<upperHeight;
+					}
+					else if (tmp.tagName() == "door") {
+						QString position = tmp.attribute("position");
+						QString length = tmp.attribute("length");
+						QString texture = tmp.attribute("texture");
+						QString height = tmp.attribute("height", "7.0");
+						wall->addDoor(position.toFloat(), length.toFloat(), textures[texture], height.toFloat());
+						qDebug()<<"Added Door:"<<position<<length<<texture<<height;
+					}
 				}
-				else if (tmp.tagName() == "door") {
-					QString position = tmp.attribute("position");
-					QString length = tmp.attribute("length");
-					QString texture = tmp.attribute("texture");
-					QString height = tmp.attribute("height", "7.0");
-					wall->addDoor(position.toFloat(), length.toFloat(), textures[texture], height.toFloat());
-					qDebug()<<"Added Door:"<<position<<length<<texture<<height;
+
+				addObject(wall);
+			} else if (type == "floor") {
+				QString texture = e.attribute("texture");
+				qDebug()<<"Adding Floor:"<<x<<y<<z<<rotation;
+				Floor *floor = new Floor(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), textures[texture]);
+
+				// now we start parsing the windows
+				for (QDomNode w = e.firstChild(); !w.isNull(); w = w.nextSibling()) {
+					QDomElement tmp = w.toElement();
+
+					if (tmp.tagName() == "point") {
+						QString x = tmp.attribute("x");
+						QString y = tmp.attribute("y");
+						floor->addPoint(x.toFloat(), y.toFloat());
+
+						qDebug()<<"Added Point:"<<x<<y;
+					}
 				}
+
+				addObject(floor);
 			}
 
-			addObject(wall);
-		} else if (type == "floor") {
-			QString texture = e.attribute("texture");
-			qDebug()<<"Adding Floor:"<<x<<y<<z<<rotation;
-			Floor *floor = new Floor(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), textures[texture]);
+			else if (type == "table") {
+				QString width = e.attribute("width");
+				QString length = e.attribute("length");
+				QString height = e.attribute("height");
+				QString texture = e.attribute("texture");
 
-			// now we start parsing the windows
-			for (QDomNode w = e.firstChild(); !w.isNull(); w = w.nextSibling()) {
-				QDomElement tmp = w.toElement();
+				Table *table = new Table(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
 
-				if (tmp.tagName() == "point") {
-					QString x = tmp.attribute("x");
-					QString y = tmp.attribute("y");
-					floor->addPoint(x.toFloat(), y.toFloat());
-
-					qDebug()<<"Added Point:"<<x<<y;
-				}
+				addObject(table);
 			}
-
-			addObject(floor);
-		}
-
-		else if (type == "table") {
-			QString width = e.attribute("width");
-			QString length = e.attribute("length");
-			QString height = e.attribute("height");
-			QString texture = e.attribute("texture");
-
-			Table *table = new Table(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
-
-			addObject(table);
 		}
 	}
 }
