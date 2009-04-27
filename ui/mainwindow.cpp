@@ -43,8 +43,8 @@ void MainWindow::clear()
 	texturesWindow.refresh();
 
 	QDomElement elem = doc.documentElement().toElement().elementsByTagName("properties").item(0).toElement();
-	ui->floorNumber->setMinimum(elem.attribute("lowest", "0").toInt());
-	ui->floorNumber->setMaximum(elem.attribute("highest", "0").toInt());
+	ui->floorNumber->setRange(elem.attribute("lowest", "0").toInt(), elem.attribute("highest", "0").toInt());
+	ui->floorNumber->setValue(current_floor);
 	ui->floorNumber->update();
 
 	int grid = elem.attribute("grid", "10").toInt();
@@ -255,11 +255,13 @@ inline QGraphicsRectItem *createWall(const QDomElement &wall)
 	return item;
 }
 
-#include <QDebug>
 void MainWindow::slotShowFloor(int n)
 {
-	clear();
+	if (current_floor == n)
+		return;
+
 	current_floor = n;
+	clear();
 
 	QDomNode floor;
 
