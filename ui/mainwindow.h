@@ -87,7 +87,7 @@ class MainWindow : public QMainWindow {
 
 	void slotProperties();
 
-	void slotShowFloor(int);
+	void slotShowFloor(int floor, bool force = false);
 };
 
 #endif

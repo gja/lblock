@@ -43,9 +43,6 @@ void MainWindow::clear()
 	texturesWindow.refresh();
 
 	QDomElement elem = doc.documentElement().toElement().elementsByTagName("properties").item(0).toElement();
-	ui->floorNumber->setRange(elem.attribute("lowest", "0").toInt(), elem.attribute("highest", "0").toInt());
-	ui->floorNumber->setValue(current_floor);
-	ui->floorNumber->update();
 
 	int grid = elem.attribute("grid", "10").toInt();
 	int length = elem.attribute("length", "60").toInt();
@@ -118,8 +115,14 @@ void MainWindow::slotOpen()
 
 	clear();
 
-	int floor = doc.documentElement().elementsByTagName("properties").item(0).toElement().attribute("id").toInt();
-	slotShowFloor(floor);
+	QDomElement elem = doc.documentElement().elementsByTagName("properties").item(0).toElement();
+
+	current_floor = elem.attribute("lowest").toInt();
+	slotShowFloor(current_floor, true);
+
+	ui->floorNumber->setRange(elem.attribute("lowest", "0").toInt(), elem.attribute("highest", "0").toInt());
+	ui->floorNumber->setValue(current_floor);
+	ui->floorNumber->update();
 }
 
 void MainWindow::slotSave()
@@ -255,9 +258,9 @@ inline QGraphicsRectItem *createWall(const QDomElement &wall)
 	return item;
 }
 
-void MainWindow::slotShowFloor(int n)
+void MainWindow::slotShowFloor(int n, bool force)
 {
-	if (current_floor == n)
+	if (current_floor == n && !force)
 		return;
 
 	current_floor = n;
