@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QGraphicsScene>
+#include <QGraphicsItem>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML"), dirty(false), group(NULL)
 {
@@ -50,6 +51,11 @@ void MainWindow::clear()
 	int length = elem.attribute("length", "60").toInt();
 	int width = elem.attribute("width", "40").toInt();
 
+	if (! itemsList.isEmpty()) {
+		qDeleteAll(itemsList);
+		itemsList.clear();
+	}
+
 	scene->clear();
 	scene->setSceneRect(0, 0, length * PIXELS_PER_FOOT, width * PIXELS_PER_FOOT);
 
@@ -91,7 +97,7 @@ void MainWindow::slotNew()
 "  <floor id=0>\n"
 " </floors>\n"
 "</lblock>\n"));
-	clear();
+	slotShowFloor(0);
 }
 
 void MainWindow::slotOpen()
@@ -240,6 +246,16 @@ void MainWindow::slotExecute()
 	widget->show();
 }
 
+inline QGraphicsRectItem *createWall(const QDomElement &wall)
+{
+	QGraphicsRectItem *item = new QGraphicsRectItem(0, 0, wall.attribute("length").toFloat() * PIXELS_PER_FOOT, wall.attribute("thickness", "0.5").toFloat() * PIXELS_PER_FOOT);
+	item->setBrush(QBrush(Qt::black, Qt::SolidPattern));
+	item->setPos(wall.attribute("x").toFloat() * PIXELS_PER_FOOT, wall.attribute("z").toFloat() * PIXELS_PER_FOOT);
+	item->rotate(wall.attribute("rotation").toFloat());
+	return item;
+}
+
+#include <QDebug>
 void MainWindow::slotShowFloor(int n)
 {
 	clear();
@@ -248,8 +264,12 @@ void MainWindow::slotShowFloor(int n)
 	QDomNode floor;
 
 	for (floor = doc.elementsByTagName("floors").item(0).toElement().firstChild(); !floor.isNull(); floor = floor.nextSibling())
-		if (floor.toElement().attribute("id") == QString::number(n))
-			break;
+		if (floor.toElement().attribute("id") == QString::number(n)) 
+			for (QDomNode item = floor.toElement().elementsByTagName("item").item(0); !item.isNull(); item = item.nextSibling())
 
-	// from now on, floor is the element we want
+				if (item.toElement().attribute("type") == "wall") {
+					QGraphicsItem *gitem = createWall(item.toElement());
+					itemsList<<gitem;
+					scene->addItem(gitem);
+				}
 }

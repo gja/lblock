@@ -12,6 +12,7 @@ namespace Ui {
 }
 
 class QGraphicsScene;
+class QGraphicsItem;
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
@@ -33,6 +34,9 @@ class MainWindow : public QMainWindow {
 
 	/// This stores the scene to draw everything
 	QGraphicsScene *scene;
+
+	/// This stores all the QGraphicsItems that we draw
+	QList <QGraphicsItem *> itemsList;
 
 	/// This stores the current floor
 	int current_floor;
