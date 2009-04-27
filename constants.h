@@ -20,4 +20,6 @@
 
 #define PIXELS_PER_FOOT 12
 
+#define FLOOR_HEIGHT 10.0
+
 #endif // CONSTANTS_H

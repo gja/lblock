@@ -3,6 +3,7 @@
 #include "wall.h"
 #include "floor.h"
 #include "table.h"
+#include "constants.h"
 
 #include <qgl.h>
 #include <QImage>
@@ -29,16 +30,18 @@ void GLBox::drawObject(const QDomDocument *doc)
 		textures[name] = Texture(color.toUInt(0, 16), QByteArray::fromBase64(value.toAscii()), xscale.toFloat(), yscale.toFloat());
 	}
 
-	for(QDomNode item = root.elementsByTagName("floor").item(0).toElement(); !item.isNull(); item = item.nextSibling()) {
+	for(QDomNode floor = root.elementsByTagName("floor").item(0).toElement(); !floor.isNull(); floor = floor.nextSibling()) {
 
-		for (QDomNode i = item.firstChild(); !i.isNull(); i = i.nextSibling())
+		float offGround = floor.toElement().attribute("id").toInt() * FLOOR_HEIGHT;
+
+		for (QDomNode i = floor.firstChild(); !i.isNull(); i = i.nextSibling())
 		{
 			QDomElement e = i.toElement();
 
-			QString x = e.attribute("x");
-			QString y = e.attribute("y");
-			QString z = e.attribute("z");
-			QString rotation = e.attribute("rotation", "0.0");
+			float x = e.attribute("x").toFloat();
+			float y = offGround + e.attribute("y").toFloat();
+			float z = e.attribute("z").toFloat();
+			float rotation = e.attribute("rotation", "0.0").toFloat();
 			QString type = e.attribute("type");
 
 			if (type == "wall")
@@ -51,7 +54,7 @@ void GLBox::drawObject(const QDomDocument *doc)
 
 				qDebug()<<"Adding Wall:"<<x<<y<<z<<rotation<<length<<innerTexture<<outerTexture<<height<<thickness;
 
-				Wall *wall = new Wall(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), textures[innerTexture], textures[outerTexture], height.toFloat(), thickness.toFloat());
+				Wall *wall = new Wall(x, y, z, rotation, length.toFloat(), textures[innerTexture], textures[outerTexture], height.toFloat(), thickness.toFloat());
 
 				// now we start parsing the windows
 				for (QDomNode w = e.firstChild(); !w.isNull(); w = w.nextSibling()) {
@@ -80,7 +83,7 @@ void GLBox::drawObject(const QDomDocument *doc)
 			} else if (type == "floor") {
 				QString texture = e.attribute("texture");
 				qDebug()<<"Adding Floor:"<<x<<y<<z<<rotation;
-				Floor *floor = new Floor(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), textures[texture]);
+				Floor *floor = new Floor(x, y, z, rotation, textures[texture]);
 
 				// now we start parsing the windows
 				for (QDomNode w = e.firstChild(); !w.isNull(); w = w.nextSibling()) {
@@ -104,7 +107,7 @@ void GLBox::drawObject(const QDomDocument *doc)
 				QString height = e.attribute("height");
 				QString texture = e.attribute("texture");
 
-				Table *table = new Table(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+				Table *table = new Table(x, y, z, rotation, length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
 
 				addObject(table);
 			}
