@@ -56,6 +56,10 @@ void MainWindow::clear()
 	scene->clear();
 	scene->setSceneRect(0, 0, length * PIXELS_PER_FOOT, width * PIXELS_PER_FOOT);
 
+	ui->floorNumber->setRange(elem.attribute("lowest", "0").toInt(), elem.attribute("highest", "0").toInt());
+	ui->floorNumber->setValue(current_floor);
+	ui->floorNumber->update();
+
 	QPen pen = QPen(Qt::lightGray);
 	pen.setStyle(Qt::DashLine);
 
@@ -119,10 +123,6 @@ void MainWindow::slotOpen()
 
 	current_floor = elem.attribute("lowest").toInt();
 	slotShowFloor(current_floor, true);
-
-	ui->floorNumber->setRange(elem.attribute("lowest", "0").toInt(), elem.attribute("highest", "0").toInt());
-	ui->floorNumber->setValue(current_floor);
-	ui->floorNumber->update();
 }
 
 void MainWindow::slotSave()
