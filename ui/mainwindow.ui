@@ -15,7 +15,7 @@
   <widget class="QWidget" name="centralwidget" >
    <layout class="QHBoxLayout" name="horizontalLayout" >
     <item>
-     <widget class="QGraphicsView" name="graphicsView" />
+     <widget class="FloorTopView" name="graphicsView" />
     </item>
     <item>
      <widget class="Line" name="line" >
@@ -347,6 +347,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FloorTopView</class>
+   <extends>QGraphicsView</extends>
+   <header>floortopview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../icons.qrc" />
  </resources>
