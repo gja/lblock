@@ -5,14 +5,13 @@
 #include <QPoint>
 
 class QMouseEvent;
-class QGraphicsItem;
 class QEvent;
 
 class FloorTopView : public QGraphicsView {
 	Q_OBJECT
 
 	bool creatingItem;
-	QGraphicsLineItem *currentItem;
+	QGraphicsRectItem *currentItem;
 	QPoint startingPos;
 
 	void createItem(const QPoint &pos);

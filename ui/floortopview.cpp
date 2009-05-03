@@ -3,6 +3,7 @@
 
 #include <QMouseEvent>
 #include <QGraphicsLineItem>
+#include <math.h>
 
 FloorTopView::FloorTopView(QWidget *parent) : QGraphicsView(parent), creatingItem(false), currentItem(NULL)
 {
@@ -14,11 +15,8 @@ void FloorTopView::createItem(const QPoint &pos)
 	startingPos = pos;
 
 	if (! currentItem) {
-		currentItem = new QGraphicsLineItem;
-		QPen pen = currentItem->pen();
-		pen.setWidth(0.5 * PIXELS_PER_FOOT);
-		currentItem->setPen(pen);
-
+		currentItem = new QGraphicsRectItem;
+		currentItem->setBrush(Qt::SolidPattern);
 		scene()->addItem(currentItem);
 	}
 }
@@ -54,5 +52,15 @@ void FloorTopView::mouseMoveEvent(QMouseEvent *event)
 	if (! creatingItem)
 		return;
 
-	currentItem->setLine(QLine(startingPos, event->pos()));
+	QPoint rel = event->pos() - startingPos;
+	qreal length = sqrt(pow(rel.x(), 2) + pow(rel.y(), 2));
+
+	float rot = atan((float) rel.y() / float(rel.x())) * 180. / M_PI;
+	if (rel.x() < 0)
+		rot += 180.;
+	if (rot < 0)
+		rot += 360;
+
+	currentItem->setRect(startingPos.x(), startingPos.y(), length, 5);
+	currentItem->setTransform(QTransform().translate(startingPos.x(), startingPos.y()).rotate(rot).translate(-startingPos.x(), -startingPos.y()));
 }
