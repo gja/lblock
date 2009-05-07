@@ -3,6 +3,7 @@
 #include "glbox.h"
 #include "properties.h"
 #include "constants.h"
+#include "lblockgraphicsitem.h"
 
 #include <QCloseEvent>
 #include <QFileDialog>
@@ -249,9 +250,9 @@ void MainWindow::slotExecute()
 	widget->show();
 }
 
-inline QGraphicsRectItem *createWall(const QDomElement &wall)
+inline LBlockGraphicsItem *createWall(const QDomElement &wall)
 {
-	QGraphicsRectItem *item = new QGraphicsRectItem(0, 0, wall.attribute("length").toFloat() * PIXELS_PER_FOOT, wall.attribute("thickness", "0.5").toFloat() * PIXELS_PER_FOOT);
+	LBlockGraphicsItem *item = new LBlockGraphicsItem(0, 0, wall.attribute("length").toFloat() * PIXELS_PER_FOOT, wall.attribute("thickness", "0.5").toFloat() * PIXELS_PER_FOOT, wall.attribute("name"));
 	item->setBrush(QBrush(Qt::black, Qt::SolidPattern));
 	item->setPos(wall.attribute("x").toFloat() * PIXELS_PER_FOOT, wall.attribute("z").toFloat() * PIXELS_PER_FOOT);
 	item->rotate(wall.attribute("rotation").toFloat());

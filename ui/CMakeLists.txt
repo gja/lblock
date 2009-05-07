@@ -8,7 +8,8 @@ QT4_WRAP_UI(UI_FILES edittexture.ui)
 QT4_WRAP_UI(UI_FILES properties.ui)
 
 set (SOURCES mainwindow.cpp textureswindow.cpp textureslist.cpp
-	texturesview.cpp edittexture.cpp properties.cpp floortopview.cpp)
+	texturesview.cpp edittexture.cpp properties.cpp floortopview.cpp
+	lblockgraphicsitem.cpp)
 QT4_WRAP_CPP(SOURCES mainwindow.h textureswindow.h edittexture.h
 	texturesview.h properties.h floortopview.h)
 
