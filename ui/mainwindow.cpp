@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	
 	connect(this, SIGNAL(error(QString)), this, SLOT(slotErrorHandler(QString)));
 
+	connect(ui->graphicsView, SIGNAL(newItem(QHash<QString, QString>)), this, SLOT(slotNewItem(QHash<QString, QString>)));
+
 	slotNew();
 }
 
@@ -278,4 +280,9 @@ void MainWindow::slotShowFloor(int n, bool force)
 					itemsList<<gitem;
 					scene->addItem(gitem);
 				}
+}
+
+void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
+{
+	QString tmp = QString("Adding Item") + hash["name"] + "of type" + hash["type"];
 }

@@ -39,12 +39,19 @@ void FloorTopView::mousePressEvent(QMouseEvent *event)
 
 void FloorTopView::leaveEvent(QEvent *event)
 {
-	deleteItem();
+	if (creatingItem)
+		deleteItem();
 }
 
 void FloorTopView::mouseReleaseEvent(QMouseEvent *event)
 {
-	deleteItem();
+	if (creatingItem) {
+		QHash <QString, QString> properties;
+		properties["type"] = getCurrentItemType();
+		properties["name"] = getCurrentItemType() + QString::number(qrand());
+		emit newItem(properties);
+		deleteItem();
+	}
 }
 
 void FloorTopView::mouseMoveEvent(QMouseEvent *event)
@@ -63,4 +70,9 @@ void FloorTopView::mouseMoveEvent(QMouseEvent *event)
 
 	currentItem->setRect(startingPos.x(), startingPos.y(), length, 5);
 	currentItem->setTransform(QTransform().translate(startingPos.x(), startingPos.y()).rotate(rot).translate(-startingPos.x(), -startingPos.y()));
+}
+
+QString FloorTopView::getCurrentItemType()
+{
+	return "wall";
 }

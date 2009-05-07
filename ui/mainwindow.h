@@ -6,6 +6,8 @@
 #include <QDomDocument>
 #include <QMainWindow>
 #include <QActionGroup>
+#include <QHash>
+#include <QString>
 
 namespace Ui {
 	class MainWindow;
@@ -88,6 +90,8 @@ class MainWindow : public QMainWindow {
 	void slotProperties();
 
 	void slotShowFloor(int floor, bool force = false);
+
+	void slotNewItem(const QHash<QString, QString> &hash);
 };
 
 #endif

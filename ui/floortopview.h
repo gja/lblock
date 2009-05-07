@@ -3,6 +3,7 @@
 
 #include <QGraphicsView>
 #include <QPoint>
+#include <QHash>
 
 class QMouseEvent;
 class QEvent;
@@ -24,6 +25,13 @@ class FloorTopView : public QGraphicsView {
 	virtual void mouseMoveEvent(QMouseEvent *event);
 	virtual void mouseReleaseEvent(QMouseEvent *event);
 	virtual void leaveEvent(QEvent *event);
+
+	QString getCurrentItemType();
+
+    signals:
+
+	// This signal is emitted when a new item should be created
+	void newItem(QHash<QString, QString>);
 };
 
 #endif
