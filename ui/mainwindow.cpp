@@ -90,9 +90,7 @@ void MainWindow::clear()
 		}
 	}
 
-	scene->update();
 	dirty = true;
-	slotMakeClean();
 }
 
 void MainWindow::slotNew()
@@ -111,7 +109,9 @@ void MainWindow::slotNew()
 " </floors>\n"
 "</lblock>\n"
 ));
+	clear();
 	slotShowFloor(0);
+	slotMakeClean();
 }
 
 void MainWindow::slotOpen()
@@ -131,6 +131,7 @@ void MainWindow::slotOpen()
 	file.close();
 
 	clear();
+	slotMakeClean();
 
 	QDomElement elem = doc.documentElement().elementsByTagName("properties").item(0).toElement();
 
@@ -156,6 +157,7 @@ void MainWindow::slotSave()
 	file.close();
 
 	clear();
+	slotMakeClean();
 }
 
 void MainWindow::slotSaveAs()
@@ -306,5 +308,7 @@ void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
 
 	floor.appendChild(elem);
 
-	clear();
+	slotShowFloor(current_floor, true);
+
+	slotMakeDirty();
 }
