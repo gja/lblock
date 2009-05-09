@@ -90,6 +90,7 @@ void MainWindow::clear()
 		}
 	}
 
+	scene->update();
 	dirty = true;
 	slotMakeClean();
 }
@@ -103,12 +104,13 @@ void MainWindow::slotNew()
 	doc.setContent(QString(
 "<!DOCTYPE LBlockML>\n"
 "<lblock>\n"
-" <properties/>\n"
-" <textures/>\n"
+" <properties width=\"40\" lowest=\"0\" grid=\"10\" length=\"60\" highest=\"0\" />"
+" <textures />\n"
 " <floors>\n"
-"  <floor id=\"0\"/>\n"
+"  <floor id=\"0\" />\n"
 " </floors>\n"
-"</lblock>\n"));
+"</lblock>\n"
+));
 	slotShowFloor(0);
 }
 
@@ -290,7 +292,6 @@ void MainWindow::slotShowFloor(int n, bool force)
 				}
 }
 
-#include <QDebug>
 void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
 {
 	QDomElement floor = getCurrentFloor(doc, current_floor).toElement();
@@ -304,4 +305,6 @@ void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
 	}
 
 	floor.appendChild(elem);
+
+	clear();
 }
