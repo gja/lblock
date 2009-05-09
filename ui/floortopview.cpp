@@ -49,6 +49,27 @@ void FloorTopView::mouseReleaseEvent(QMouseEvent *event)
 		QHash <QString, QString> properties;
 		properties["type"] = getCurrentItemType();
 		properties["name"] = getCurrentItemType() + QString::number(qrand());
+		properties["x"] = QString::number((float) startingPos.x() / PIXELS_PER_FOOT);
+		properties["y"] = "0";
+		properties["z"] = QString::number((float) startingPos.y() / PIXELS_PER_FOOT);
+
+		QPoint rel = event->pos() - startingPos;
+		float rot = atan((float) rel.y() / float(rel.x())) * 180. / M_PI;
+		if (rel.x() < 0)
+			rot += 180.;
+		if (rot < 0)
+			rot += 360;
+		properties["rotation"] = QString::number(rot);
+
+		if (getCurrentItemType() == "wall") {
+			qreal length = sqrt(pow(rel.x(), 2) + pow(rel.y(), 2));
+			properties["length"] = QString::number(length / PIXELS_PER_FOOT);
+			properties["height"] = "10";
+			properties["thickness"] = "0.5";
+			properties["innerTexture"] = "white";
+			properties["outerTexture"] = "white";
+		}
+
 		emit newItem(properties);
 		deleteItem();
 	}

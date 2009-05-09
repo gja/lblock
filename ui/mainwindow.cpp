@@ -41,6 +41,14 @@ MainWindow::~MainWindow()
 	delete scene;
 }
 
+inline QDomNode getCurrentFloor(const QDomDocument &doc, int n)
+{
+	QDomNode floor;
+	for (floor = doc.elementsByTagName("floors").item(0).toElement().firstChild(); !floor.isNull(); floor = floor.nextSibling())
+		if (floor.toElement().attribute("id") == QString::number(n))
+			return floor;
+}
+
 void MainWindow::clear()
 {
 	texturesWindow.refresh();
@@ -98,7 +106,7 @@ void MainWindow::slotNew()
 " <properties/>\n"
 " <textures/>\n"
 " <floors>\n"
-"  <floor id=0>\n"
+"  <floor id=\"0\"/>\n"
 " </floors>\n"
 "</lblock>\n"));
 	slotShowFloor(0);
@@ -282,7 +290,18 @@ void MainWindow::slotShowFloor(int n, bool force)
 				}
 }
 
+#include <QDebug>
 void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
 {
-	QString tmp = QString("Adding Item") + hash["name"] + "of type" + hash["type"];
+	QDomElement floor = getCurrentFloor(doc, current_floor).toElement();
+
+	QDomElement elem = doc.createElement("item");
+	QHashIterator<QString, QString> i(hash);
+
+	while (i.hasNext()) {
+		i.next();
+		elem.setAttribute(i.key(), i.value());
+	}
+
+	floor.appendChild(elem);
 }
