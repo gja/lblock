@@ -17,18 +17,24 @@ void Stairs::generateList()
 {
 	glBindTexture(GL_TEXTURE_2D, texture.texture);
 	glBegin(GL_QUADS);
+	float i = height/9;
+	float j = width/9;
 
-		// Top Edge
-		glVertex3f(0.0f, height, 0.0f);
-		glVertex3f(0.0f, height, length);
-		glVertex3f(width, height, length);
-		glVertex3f(width, height, 0.0f);
+	while(i<height)
+	{
+		glVertex3f(0.0f + j, 0.0f + i, 0.0f);
+		glVertex3f(0.0f + j, 0.0f + i, length - 5.0f);
+		glVertex3f((width - 4.4f) + j, 0.0f + i, length - 5.0f);
+		glVertex3f((width - 4.4f) + j, 0.0f + i, 0.0f);
 
-		glVertex3f(0.0f, height - 0.2f, 0.0f);
-		glVertex3f(0.0f, height - 0.2f, length);
-		glVertex3f(width, height - 0.2f, length);
-		glVertex3f(width, height - 0.2f, 0.0f);
+		glVertex3f((width - 4.4f) + j, 0.0f + i, 0.0f);
+		glVertex3f((width - 4.4f) + j, 0.0f + i, length - 5.0f);
+		glVertex3f((width - 4.4f) + j, (height/9) + i, length - 5.0f);
+		glVertex3f((width - 4.4f) + j, (height/9) + i, 0.0f);
 		
+		i = i+height/9;
+		j = j+width/9;
+	}
 	
 
 	glEnd();
