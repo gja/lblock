@@ -156,7 +156,6 @@ void MainWindow::slotSave()
 
 	file.close();
 
-	clear();
 	slotMakeClean();
 }
 
