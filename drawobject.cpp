@@ -116,61 +116,60 @@ void GLBox::drawObject(const QDomDocument *doc)
 
 				addObject(table);
 			}
-		}
+			else if (type == "bed") {
+				QString width = e.attribute("width");
+				QString length = e.attribute("length");
+				QString height = e.attribute("height");
+				QString texture = e.attribute("texture");
 
-		else if (type == "bed") {
-			QString width = e.attribute("width");
-			QString length = e.attribute("length");
-			QString height = e.attribute("height");
-			QString texture = e.attribute("texture");
+				Bed *bed = new Bed(x, y, z, rotation, length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
 
-			Bed *bed = new Bed(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+				addObject(bed);
+			}
 
-			addObject(bed);
-		}
+			else if (type == "sofa") {
+				QString width = e.attribute("width");
+				QString length = e.attribute("length");
+				QString height = e.attribute("height");
+				QString texture = e.attribute("texture");
 
-		else if (type == "sofa") {
-			QString width = e.attribute("width");
-			QString length = e.attribute("length");
-			QString height = e.attribute("height");
-			QString texture = e.attribute("texture");
+				Sofa *sofa = new Sofa(x, y, z, rotation, length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
 
-			Sofa *sofa = new Sofa(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+				addObject(sofa);
+			}
 
-			addObject(sofa);
-		}
+			else if (type == "stairs") {
+				QString width = e.attribute("width");
+				QString length = e.attribute("length");
+				QString height = e.attribute("height");
+				QString texture = e.attribute("texture");
 
-		else if (type == "stairs") {
-			QString width = e.attribute("width");
-			QString length = e.attribute("length");
-			QString height = e.attribute("height");
-			QString texture = e.attribute("texture");
+				Stairs *stairs = new Stairs(x, y, z, rotation, length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
 
-			Stairs *stairs = new Stairs(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+				addObject(stairs);
+			}
 
-			addObject(stairs);
-		}
+			else if (type == "tv") {
+				QString width = e.attribute("width");
+				QString length = e.attribute("length");
+				QString height = e.attribute("height");
+				QString texture = e.attribute("texture");
 
-		else if (type == "tv") {
-			QString width = e.attribute("width");
-			QString length = e.attribute("length");
-			QString height = e.attribute("height");
-			QString texture = e.attribute("texture");
+				Tv *tv = new Tv(x, y, z, rotation, length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
 
-			Tv *tv = new Tv(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+				addObject(tv);
+			}
 
-			addObject(tv);
-		}
+			else if (type == "chair") {
+				QString width = e.attribute("width");
+				QString length = e.attribute("length");
+				QString height = e.attribute("height");
+				QString texture = e.attribute("texture");
 
-		else if (type == "chair") {
-			QString width = e.attribute("width");
-			QString length = e.attribute("length");
-			QString height = e.attribute("height");
-			QString texture = e.attribute("texture");
+				Chair *chair = new Chair(x, y, z, rotation, length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
 
-			Chair *chair = new Chair(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
-
-			addObject(chair);
+				addObject(chair);
+			}
 		}
 	}
 }
