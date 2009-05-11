@@ -89,8 +89,8 @@ void FloorTopView::mouseMoveEvent(QMouseEvent *event)
 	if (rot < 0)
 		rot += 360;
 
-	currentItem->setRect(startingPos.x(), startingPos.y(), length, 5);
-	currentItem->setTransform(QTransform().translate(startingPos.x(), startingPos.y()).rotate(rot).translate(-startingPos.x(), -startingPos.y()));
+	currentItem->setRect(0, 0, length, PIXELS_PER_FOOT / 2);
+	currentItem->setTransform(QTransform().translate(startingPos.x(), startingPos.y()).rotate(rot));
 }
 
 QString FloorTopView::getCurrentItemType()
