@@ -21,6 +21,7 @@ PropertiesDialog::PropertiesDialog(QDomDocument *d, QWidget *parent) : QDialog(p
 
 void PropertiesDialog::slotVerifyAndAccept()
 {
+
 	if (ui->lowest->value() > ui->highest->value())
 		return;
 

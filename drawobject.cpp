@@ -4,6 +4,11 @@
 #include "floor.h"
 #include "table.h"
 #include "constants.h"
+#include "stairs.h"
+#include "chair.h"
+#include "bed.h"
+#include "sofa.h"
+#include "tv.h"
 
 #include <qgl.h>
 #include <QImage>
@@ -111,6 +116,61 @@ void GLBox::drawObject(const QDomDocument *doc)
 
 				addObject(table);
 			}
+		}
+
+		else if (type == "bed") {
+			QString width = e.attribute("width");
+			QString length = e.attribute("length");
+			QString height = e.attribute("height");
+			QString texture = e.attribute("texture");
+
+			Bed *bed = new Bed(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+
+			addObject(bed);
+		}
+
+		else if (type == "sofa") {
+			QString width = e.attribute("width");
+			QString length = e.attribute("length");
+			QString height = e.attribute("height");
+			QString texture = e.attribute("texture");
+
+			Sofa *sofa = new Sofa(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+
+			addObject(sofa);
+		}
+
+		else if (type == "stairs") {
+			QString width = e.attribute("width");
+			QString length = e.attribute("length");
+			QString height = e.attribute("height");
+			QString texture = e.attribute("texture");
+
+			Stairs *stairs = new Stairs(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+
+			addObject(stairs);
+		}
+
+		else if (type == "tv") {
+			QString width = e.attribute("width");
+			QString length = e.attribute("length");
+			QString height = e.attribute("height");
+			QString texture = e.attribute("texture");
+
+			Tv *tv = new Tv(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+
+			addObject(tv);
+		}
+
+		else if (type == "chair") {
+			QString width = e.attribute("width");
+			QString length = e.attribute("length");
+			QString height = e.attribute("height");
+			QString texture = e.attribute("texture");
+
+			Chair *chair = new Chair(x.toFloat(), y.toFloat(), z.toFloat(), rotation.toFloat(), length.toFloat(), width.toFloat(), height.toFloat(), textures[texture]);
+
+			addObject(chair);
 		}
 	}
 }

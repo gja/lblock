@@ -3,6 +3,7 @@
 
 #include <QDialog>
 
+
 namespace Ui {
 	class PropertiesDialog;
 }
@@ -19,6 +20,7 @@ class PropertiesDialog : public QDialog {
 	PropertiesDialog(QDomDocument *doc, QWidget *parent = NULL);
 
 	~PropertiesDialog();
+	
 
     public slots:
 	void slotVerifyAndAccept();
