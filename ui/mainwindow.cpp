@@ -11,12 +11,14 @@
 #include <QGraphicsScene>
 #include <QGraphicsItem>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML"), dirty(false), group(NULL)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&doc, this), doc("LBlockML"), dirty(false), group(NULL), itemProperties(this)
 {
 	ui = new Ui::MainWindow;
 
 	ui->setupUi(this);
 	texturesWindow.show();
+
+	itemProperties.show();
 
 	scene = new QGraphicsScene;
 	ui->graphicsView->setScene(scene);

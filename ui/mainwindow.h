@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "textureswindow.h"
+#include "itemproperties.h"
 
 #include <QDomDocument>
 #include <QMainWindow>
@@ -22,6 +23,8 @@ class MainWindow : public QMainWindow {
 	Ui::MainWindow *ui;
 
 	TexturesWindow texturesWindow;
+
+	ItemPropertiesDialog itemProperties;
 
 	QActionGroup group;
 
