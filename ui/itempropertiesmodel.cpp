@@ -23,6 +23,7 @@ ItemPropertiesModel::ItemPropertiesModel(const QDomElement &e) : QStandardItemMo
 	for (int i = 0; i < attributes.length(); i++) {
 		QDomAttr item = attributes.item(i).toAttr();
 		QStandardItem *row = new QStandardItem(item.name());
+		row->setEditable(false);
 		items<<row;
 		appendRow(row);
 	}
