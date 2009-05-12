@@ -15,6 +15,8 @@ class ItemPropertiesDialog : public QDialog {
 
 	ItemPropertiesModel *model;
 
+	QDomElement elem;
+
     public:
 	ItemPropertiesDialog(QWidget *parent = NULL);
 
@@ -23,8 +25,11 @@ class ItemPropertiesDialog : public QDialog {
 
     public slots:
 	void setItem(const QDomElement &elem);
+
+	void slotModifyAttribute(const QString &);
 	
     signals:
+	void dirty();
 };
 
 #endif

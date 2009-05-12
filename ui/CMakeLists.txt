@@ -10,10 +10,11 @@ QT4_WRAP_UI(UI_FILES itemproperties.ui)
 
 set (SOURCES mainwindow.cpp textureswindow.cpp textureslist.cpp
 	texturesview.cpp edittexture.cpp properties.cpp floortopview.cpp
-	lblockgraphicsitem.cpp itemproperties.cpp itempropertiesmodel.cpp)
+	lblockgraphicsitem.cpp itemproperties.cpp itempropertiesmodel.cpp
+	itempropertiesview.cpp)
 QT4_WRAP_CPP(SOURCES mainwindow.h textureswindow.h edittexture.h
 	texturesview.h properties.h floortopview.h itemproperties.h
-	itempropertiesmodel.h)
+	itempropertiesmodel.h itempropertiesview.h)
 
 add_library(ui ${SOURCES} ${UI_FILES})
 target_link_libraries(ui ${QT_LIBRARIES})

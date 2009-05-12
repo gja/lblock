@@ -38,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 
 	connect(this, SIGNAL(itemSelected(QDomElement)), &itemProperties, SLOT(setItem(QDomElement)));
 
+	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotMakeDirty()));
+
 	slotNew();
 }
 
