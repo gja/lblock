@@ -3,20 +3,21 @@
 #include <QStandardItemModel>
 #include <QDomElement>
 
-ItemPropertiesModel::ItemPropertiesModel(const QDomElement &e) : QStandardItemModel(), elem(e)
+inline void initializeModel(ItemPropertiesModel *t)
 {
-	setColumnCount(2);
+	t->setColumnCount(2);
 	QStringList list;
 	list<<"Property";
 	list<<"Value";
-	setHorizontalHeaderLabels(list);
+	t->setHorizontalHeaderLabels(list);
+}
+
+ItemPropertiesModel::ItemPropertiesModel(const QDomElement &e) : QStandardItemModel(), elem(e)
+{
+	initializeModel(this);
 }
 
 ItemPropertiesModel::ItemPropertiesModel() : QStandardItemModel()
 {
-	setColumnCount(2);
-	QStringList list;
-	list<<"Property";
-	list<<"Value";
-	setHorizontalHeaderLabels(list);
+	initializeModel(this);
 }
