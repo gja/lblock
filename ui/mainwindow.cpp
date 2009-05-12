@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	connect(this, SIGNAL(itemSelected(QDomElement)), &itemProperties, SLOT(setItem(QDomElement)));
 
 	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotMakeDirty()));
+	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotRefresh()));
 
 	slotNew();
 }
@@ -117,8 +118,8 @@ void MainWindow::slotNew()
 " </floors>\n"
 "</lblock>\n"
 ));
-	clear();
-	slotShowFloor(0);
+	current_floor = 0;
+	slotRefresh();
 	slotMakeClean();
 }
 
@@ -332,4 +333,9 @@ void MainWindow::slotItemSelected(const QString &name)
 			emit itemSelected(item.toElement());
 			break;
 		}
+}
+
+void MainWindow::slotRefresh()
+{
+	slotShowFloor(current_floor, true);
 }

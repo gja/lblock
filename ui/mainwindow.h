@@ -100,6 +100,8 @@ class MainWindow : public QMainWindow {
 	void slotNewItem(const QHash<QString, QString> &hash);
 
 	void slotItemSelected(const QString &hash);
+
+	void slotRefresh();
 };
 
 #endif
