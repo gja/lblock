@@ -1,6 +1,7 @@
 #include "itempropertiesmodel.h"
 
 #include <QStandardItemModel>
+#include <QStandardItem>
 #include <QDomElement>
 #include <QDomNode>
 #include <QDomNamedNodeMap>
@@ -14,7 +15,6 @@ inline void initializeModel(ItemPropertiesModel *t)
 	t->setHorizontalHeaderLabels(list);
 }
 
-#include <QDebug>
 ItemPropertiesModel::ItemPropertiesModel(const QDomElement &e) : QStandardItemModel(), elem(e)
 {
 	initializeModel(this);
@@ -22,11 +22,19 @@ ItemPropertiesModel::ItemPropertiesModel(const QDomElement &e) : QStandardItemMo
 	QDomNamedNodeMap attributes = elem.attributes();
 	for (int i = 0; i < attributes.length(); i++) {
 		QDomAttr item = attributes.item(i).toAttr();
-		qDebug()<<item.name()<<item.value();
+		QStandardItem *row = new QStandardItem(item.name());
+		items<<row;
+		appendRow(row);
 	}
 }
 
 ItemPropertiesModel::ItemPropertiesModel() : QStandardItemModel()
 {
 	initializeModel(this);
+}
+
+ItemPropertiesModel::~ItemPropertiesModel()
+{
+	qDeleteAll(items);
+	items.clear();
 }

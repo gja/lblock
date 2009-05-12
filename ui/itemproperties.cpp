@@ -11,7 +11,7 @@ ItemPropertiesDialog::ItemPropertiesDialog(QWidget *parent) : QDialog(parent)
 	ui->setupUi(this);
 
 	model = new ItemPropertiesModel;
-	ui->tableView->setModel(model);
+	ui->view->setModel(model);
 }
 
 ItemPropertiesDialog::~ItemPropertiesDialog()
@@ -26,5 +26,5 @@ void ItemPropertiesDialog::setItem(const QDomElement &elem)
 		delete model;
 
 	model = new ItemPropertiesModel(elem);
-	ui->tableView->setModel(model);
+	ui->view->setModel(model);
 }
