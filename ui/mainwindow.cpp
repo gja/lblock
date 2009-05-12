@@ -34,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	connect(this, SIGNAL(error(QString)), this, SLOT(slotErrorHandler(QString)));
 
 	connect(ui->graphicsView, SIGNAL(newItem(QHash<QString, QString>)), this, SLOT(slotNewItem(QHash<QString, QString>)));
+	connect(ui->graphicsView, SIGNAL(itemSelected(QString)), this, SLOT(slotItemSelected(QString)));
+
+	connect(this, SIGNAL(itemSelected(QDomElement)), &itemProperties, SLOT(setItem(QDomElement)));
 
 	slotNew();
 }
@@ -313,4 +316,18 @@ void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
 	slotShowFloor(current_floor, true);
 
 	slotMakeDirty();
+
+	slotItemSelected(elem.attribute("name"));
+}
+
+void MainWindow::slotItemSelected(const QString &name)
+{
+	QDomElement floor = getCurrentFloor(doc, current_floor).toElement();
+
+	QDomNode item;
+	for (item = floor.elementsByTagName("item").item(0); !item.isNull(); item = floor.nextSibling())
+		if (item.toElement().attribute("name") == name) {
+			emit itemSelected(item.toElement());
+			break;
+		}
 }

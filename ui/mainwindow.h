@@ -5,6 +5,7 @@
 #include "itemproperties.h"
 
 #include <QDomDocument>
+#include <QDomElement>
 #include <QMainWindow>
 #include <QActionGroup>
 #include <QHash>
@@ -65,6 +66,8 @@ class MainWindow : public QMainWindow {
 
 	void enableButtons(bool);
 
+	void itemSelected(QDomElement);
+
     public slots:
 
 	/// This function clears everything (except filename)
@@ -95,6 +98,8 @@ class MainWindow : public QMainWindow {
 	void slotShowFloor(int floor, bool force = false);
 
 	void slotNewItem(const QHash<QString, QString> &hash);
+
+	void slotItemSelected(const QString &hash);
 };
 
 #endif

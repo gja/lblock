@@ -32,6 +32,8 @@ class FloorTopView : public QGraphicsView {
 
 	// This signal is emitted when a new item should be created
 	void newItem(QHash<QString, QString>);
+
+	void itemSelected(QString);
 };
 
 #endif
