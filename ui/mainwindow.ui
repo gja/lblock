@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,73 +10,73 @@
     <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>LBlock Building Designer</string>
   </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QHBoxLayout" name="horizontalLayout" >
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="FloorTopView" name="graphicsView" />
+     <widget class="FloorTopView" name="graphicsView"/>
     </item>
     <item>
-     <widget class="Line" name="line" >
-      <property name="orientation" >
+     <widget class="Line" name="line">
+      <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
      </widget>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout" >
+     <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QLabel" name="label" >
-        <property name="text" >
+       <widget class="QLabel" name="label">
+        <property name="text">
          <string>Floor</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>floorNumber</cstring>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLCDNumber" name="lcdNumber" >
-        <property name="frameShape" >
+       <widget class="QLCDNumber" name="lcdNumber">
+        <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
-        <property name="numDigits" >
+        <property name="numDigits">
          <number>2</number>
         </property>
-        <property name="segmentStyle" >
+        <property name="segmentStyle">
          <enum>QLCDNumber::Filled</enum>
         </property>
-        <property name="intValue" stdset="0" >
+        <property name="intValue" stdset="0">
          <number>0</number>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSlider" name="floorNumber" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Expanding" hsizetype="Minimum" >
+       <widget class="QSlider" name="floorNumber">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="minimum" >
+        <property name="minimum">
          <number>0</number>
         </property>
-        <property name="maximum" >
+        <property name="maximum">
          <number>0</number>
         </property>
-        <property name="orientation" >
+        <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
-        <property name="tickPosition" >
+        <property name="tickPosition">
          <enum>QSlider::TicksBothSides</enum>
         </property>
-        <property name="tickInterval" >
+        <property name="tickInterval">
          <number>2</number>
         </property>
        </widget>
@@ -84,266 +85,278 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar" >
-   <property name="geometry" >
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>28</height>
+     <height>27</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_File" >
-    <property name="title" >
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="action_New" />
-    <addaction name="action_Open" />
-    <addaction name="separator" />
-    <addaction name="action_Save" />
-    <addaction name="actionSave_As" />
-    <addaction name="separator" />
-    <addaction name="actionQuit" />
+    <addaction name="action_New"/>
+    <addaction name="action_Open"/>
+    <addaction name="separator"/>
+    <addaction name="action_Save"/>
+    <addaction name="actionSave_As"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menu_Help" >
-    <property name="title" >
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionAbout_LBlock" />
-    <addaction name="actionAbout_Qt" />
+    <addaction name="actionAbout_LBlock"/>
+    <addaction name="actionAbout_Qt"/>
    </widget>
-   <widget class="QMenu" name="menu_Tools" >
-    <property name="title" >
+   <widget class="QMenu" name="menu_Tools">
+    <property name="title">
      <string>&amp;Tools</string>
     </property>
-    <widget class="QMenu" name="menuToolbars" >
-     <property name="title" >
+    <widget class="QMenu" name="menuToolbars">
+     <property name="title">
       <string>Toolbars</string>
      </property>
-     <addaction name="actionFile_Toolbar" />
-     <addaction name="actionItems_Toolbar" />
+     <addaction name="actionFile_Toolbar"/>
+     <addaction name="actionItems_Toolbar"/>
     </widget>
-    <addaction name="actionTextures" />
-    <addaction name="separator" />
-    <addaction name="menuToolbars" />
+    <addaction name="actionTextures"/>
+    <addaction name="actionItemProperties"/>
+    <addaction name="separator"/>
+    <addaction name="menuToolbars"/>
    </widget>
-   <widget class="QMenu" name="menu_Design" >
-    <property name="title" >
+   <widget class="QMenu" name="menu_Design">
+    <property name="title">
      <string>&amp;Design</string>
     </property>
-    <addaction name="actionProperties" />
-    <addaction name="separator" />
-    <addaction name="actionExecute" />
+    <addaction name="actionProperties"/>
+    <addaction name="separator"/>
+    <addaction name="actionExecute"/>
    </widget>
-   <addaction name="menu_File" />
-   <addaction name="menu_Tools" />
-   <addaction name="menu_Design" />
-   <addaction name="menu_Help" />
+   <addaction name="menu_File"/>
+   <addaction name="menu_Tools"/>
+   <addaction name="menu_Design"/>
+   <addaction name="menu_Help"/>
   </widget>
-  <widget class="QToolBar" name="fileToolbar" >
-   <property name="windowTitle" >
+  <widget class="QToolBar" name="fileToolbar">
+   <property name="windowTitle">
     <string>File</string>
    </property>
-   <property name="iconSize" >
+   <property name="iconSize">
     <size>
      <width>22</width>
      <height>22</height>
     </size>
    </property>
-   <property name="toolButtonStyle" >
+   <property name="toolButtonStyle">
     <enum>Qt::ToolButtonTextUnderIcon</enum>
    </property>
-   <attribute name="toolBarArea" >
+   <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
-   <attribute name="toolBarBreak" >
+   <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_New" />
-   <addaction name="action_Open" />
-   <addaction name="action_Save" />
-   <addaction name="separator" />
-   <addaction name="actionAdd_Item" />
-   <addaction name="actionRemove_Item" />
-   <addaction name="separator" />
-   <addaction name="actionExecute" />
-   <addaction name="separator" />
-   <addaction name="actionQuit" />
+   <addaction name="action_New"/>
+   <addaction name="action_Open"/>
+   <addaction name="action_Save"/>
+   <addaction name="separator"/>
+   <addaction name="actionAdd_Item"/>
+   <addaction name="actionRemove_Item"/>
+   <addaction name="separator"/>
+   <addaction name="actionExecute"/>
+   <addaction name="separator"/>
+   <addaction name="actionQuit"/>
   </widget>
-  <widget class="QToolBar" name="itemsToolBar" >
-   <property name="windowTitle" >
+  <widget class="QToolBar" name="itemsToolBar">
+   <property name="windowTitle">
     <string>Items</string>
    </property>
-   <attribute name="toolBarArea" >
+   <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
-   <attribute name="toolBarBreak" >
+   <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionWall" />
-   <addaction name="actionFloor" />
-   <addaction name="actionTable" />
+   <addaction name="actionWall"/>
+   <addaction name="actionFloor"/>
+   <addaction name="actionTable"/>
   </widget>
-  <action name="action_New" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="action_New">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/icons/document-new.png</normaloff>:/icons/icons/document-new.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;New...</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="action_Open" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="action_Open">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/icons/document-open.png</normaloff>:/icons/icons/document-open.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Open...</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="action_Save" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="action_Save">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/icons/document-save.png</normaloff>:/icons/icons/document-save.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Save</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionSave_As" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="actionSave_As">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/icons/document-save-as.png</normaloff>:/icons/icons/document-save-as.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Save &amp;As...</string>
    </property>
   </action>
-  <action name="actionQuit" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/icons/process-stop.png</normaloff>:/icons/icons/process-stop.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Quit</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionAbout_LBlock" >
-   <property name="text" >
+  <action name="actionAbout_LBlock">
+   <property name="text">
     <string>&amp;About LBlock</string>
    </property>
   </action>
-  <action name="actionItems_Toolbar" >
-   <property name="checkable" >
+  <action name="actionItems_Toolbar">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="checked" >
+   <property name="checked">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Items</string>
    </property>
   </action>
-  <action name="actionFile_Toolbar" >
-   <property name="checkable" >
+  <action name="actionFile_Toolbar">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="checked" >
+   <property name="checked">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>File</string>
    </property>
   </action>
-  <action name="actionTextures" >
-   <property name="checkable" >
+  <action name="actionTextures">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="checked" >
+   <property name="checked">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Textures</string>
    </property>
   </action>
-  <action name="actionAbout_Qt" >
-   <property name="text" >
+  <action name="actionAbout_Qt">
+   <property name="text">
     <string>About Qt</string>
    </property>
   </action>
-  <action name="actionExecute" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="actionExecute">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/icons/media-playback-start.png</normaloff>:/icons/icons/media-playback-start.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Execute</string>
    </property>
   </action>
-  <action name="actionWall" >
-   <property name="checkable" >
+  <action name="actionWall">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="checked" >
+   <property name="checked">
     <bool>false</bool>
    </property>
-   <property name="enabled" >
+   <property name="enabled">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Wall</string>
    </property>
   </action>
-  <action name="actionFloor" >
-   <property name="checkable" >
+  <action name="actionFloor">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Floor</string>
    </property>
   </action>
-  <action name="actionTable" >
-   <property name="checkable" >
+  <action name="actionTable">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Table</string>
    </property>
   </action>
-  <action name="actionAdd_Item" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="actionAdd_Item">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/icons/list-add.png</normaloff>:/icons/icons/list-add.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Add Item</string>
    </property>
   </action>
-  <action name="actionRemove_Item" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="actionRemove_Item">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/icons/list-remove.png</normaloff>:/icons/icons/list-remove.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Remove Item</string>
    </property>
   </action>
-  <action name="actionProperties" >
-   <property name="text" >
+  <action name="actionProperties">
+   <property name="text">
     <string>Properties</string>
+   </property>
+  </action>
+  <action name="actionItemProperties">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>ItemProperties</string>
    </property>
   </action>
  </widget>
@@ -355,7 +368,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../icons.qrc" />
+  <include location="../icons.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -364,11 +377,11 @@
    <receiver>lcdNumber</receiver>
    <slot>display(int)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>784</x>
      <y>171</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>794</x>
      <y>130</y>
     </hint>
@@ -380,11 +393,11 @@
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -396,11 +409,11 @@
    <receiver>fileToolbar</receiver>
    <slot>setShown(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>118</x>
      <y>44</y>
     </hint>
@@ -412,11 +425,11 @@
    <receiver>itemsToolBar</receiver>
    <slot>setShown(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>799</x>
      <y>72</y>
     </hint>
@@ -428,11 +441,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotNew()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -444,11 +457,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotOpen()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -460,11 +473,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotSave()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -476,11 +489,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotSaveAs()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -492,11 +505,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotAbout()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -508,11 +521,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotAboutQt()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -524,11 +537,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotExecute()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -540,11 +553,11 @@
    <receiver>label</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>677</x>
      <y>596</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>774</x>
      <y>90</y>
     </hint>
@@ -556,11 +569,11 @@
    <receiver>lcdNumber</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>446</x>
      <y>596</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>761</x>
      <y>116</y>
     </hint>
@@ -572,11 +585,11 @@
    <receiver>floorNumber</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>461</x>
      <y>596</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>762</x>
      <y>351</y>
     </hint>
@@ -588,11 +601,11 @@
    <receiver>line</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>593</x>
      <y>599</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>748</x>
      <y>364</y>
     </hint>
@@ -604,11 +617,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotProperties()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
     </hint>
@@ -620,11 +633,11 @@
    <receiver>MainWindow</receiver>
    <slot>slotShowFloor(int)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>778</x>
      <y>450</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>680</x>
      <y>599</y>
     </hint>
@@ -632,6 +645,7 @@
   </connection>
  </connections>
  <slots>
+  <signal>enableButtons(bool)</signal>
   <slot>slotNew()</slot>
   <slot>slotOpen()</slot>
   <slot>slotSave()</slot>
@@ -641,6 +655,5 @@
   <slot>slotExecute()</slot>
   <slot>slotProperties()</slot>
   <slot>slotShowFloor(int)</slot>
-  <signal>enableButtons(bool)</signal>
  </slots>
 </ui>

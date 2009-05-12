@@ -2,7 +2,7 @@
 #define ITEMPROPERTIES_H
 
 #include <QDialog>
-
+#include "itempropertiesmodel.h"
 
 namespace Ui {
 	class ItemPropertiesDialog;
@@ -13,6 +13,8 @@ class ItemPropertiesDialog : public QDialog {
 
 	Ui::ItemPropertiesDialog *ui;
 
+	ItemPropertiesModel *model;
+
     public:
 	ItemPropertiesDialog(QWidget *parent = NULL);
 
@@ -20,6 +22,7 @@ class ItemPropertiesDialog : public QDialog {
 	
 
     public slots:
+	void setItem(const QDomElement &elem);
 	
     signals:
 };

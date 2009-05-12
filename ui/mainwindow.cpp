@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	group.addAction(ui->actionTable);
 
 	connect(ui->actionTextures, SIGNAL(toggled(bool)), &texturesWindow, SLOT(setVisible(bool)));
+	connect(ui->actionItemProperties, SIGNAL(toggled(bool)), &itemProperties, SLOT(setVisible(bool)));
 	connect(&texturesWindow, SIGNAL(rejected()), ui->actionTextures, SLOT(toggle()));
 	
 	connect(this, SIGNAL(error(QString)), this, SLOT(slotErrorHandler(QString)));

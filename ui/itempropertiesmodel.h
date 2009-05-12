@@ -9,6 +9,8 @@ class ItemPropertiesModel : public QStandardItemModel {
 
     public:
 	ItemPropertiesModel(const QDomElement &e);
+
+	ItemPropertiesModel();
 };
 
 #endif
