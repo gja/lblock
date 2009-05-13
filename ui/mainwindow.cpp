@@ -344,7 +344,7 @@ void MainWindow::slotItemSelected(const QString &name)
 	QDomElement floor = getCurrentFloor(doc, current_floor).toElement();
 
 	QDomNode item;
-	for (item = floor.elementsByTagName("item").item(0); !item.isNull(); item = floor.nextSibling())
+	for (item = floor.elementsByTagName("item").item(0); !item.isNull(); item = item.nextSibling())
 		if (item.toElement().attribute("name") == name) {
 			emit itemSelected(item.toElement());
 			break;
