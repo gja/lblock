@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QPoint>
 #include <QHash>
+#include <QString>
 
 class QMouseEvent;
 class QEvent;
@@ -17,6 +18,8 @@ class FloorTopView : public QGraphicsView {
 
 	void createItem(const QPoint &pos);
 	void deleteItem();
+
+	QString currentItemType;
 
     public:
 	FloorTopView(QWidget *parent = NULL);
@@ -34,6 +37,9 @@ class FloorTopView : public QGraphicsView {
 	void newItem(QHash<QString, QString>);
 
 	void itemSelected(QString);
+
+    public slots:
+	void setCurrentItemType(const QString &string);
 };
 
 #endif

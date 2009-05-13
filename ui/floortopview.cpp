@@ -97,3 +97,8 @@ QString FloorTopView::getCurrentItemType()
 {
 	return "wall";
 }
+
+void FloorTopView::setCurrentItemType(const QString &string)
+{
+	currentItemType = string;
+}

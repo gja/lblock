@@ -55,6 +55,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	connect(ui->actionTV, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
 	connect(ui->actionWall, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
 
+	connect(this, SIGNAL(currentItemChanged(QString)), ui->graphicsView, SLOT(setCurrentItemType(QString)));
+
 	slotNew();
 }
 
