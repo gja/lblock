@@ -68,6 +68,8 @@ class MainWindow : public QMainWindow {
 
 	void itemSelected(QDomElement);
 
+	void currentItemChanged(QString);
+
     public slots:
 
 	/// This function clears everything (except filename)
@@ -102,6 +104,8 @@ class MainWindow : public QMainWindow {
 	void slotItemSelected(const QString &hash);
 
 	void slotRefresh();
+
+	void currentChanged(bool toggled);
 };
 
 #endif

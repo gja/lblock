@@ -23,9 +23,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	scene = new QGraphicsScene;
 	ui->graphicsView->setScene(scene);
 
-	group.addAction(ui->actionWall);
+	group.addAction(ui->actionBed);
+	group.addAction(ui->actionChair);
 	group.addAction(ui->actionFloor);
+	group.addAction(ui->actionSofa);
+	group.addAction(ui->actionStairs);
 	group.addAction(ui->actionTable);
+	group.addAction(ui->actionTV);
+	group.addAction(ui->actionWall);
 
 	connect(ui->actionTextures, SIGNAL(toggled(bool)), &texturesWindow, SLOT(setVisible(bool)));
 	connect(ui->actionItemProperties, SIGNAL(toggled(bool)), &itemProperties, SLOT(setVisible(bool)));
@@ -40,6 +45,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 
 	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotMakeDirty()));
 	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotRefresh()));
+
+	connect(ui->actionBed, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
+	connect(ui->actionChair, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
+	connect(ui->actionFloor, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
+	connect(ui->actionSofa, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
+	connect(ui->actionStairs, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
+	connect(ui->actionTable, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
+	connect(ui->actionTV, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
+	connect(ui->actionWall, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
 
 	slotNew();
 }
@@ -338,4 +352,13 @@ void MainWindow::slotItemSelected(const QString &name)
 void MainWindow::slotRefresh()
 {
 	slotShowFloor(current_floor, true);
+}
+
+void MainWindow::currentChanged(bool toggled)
+{
+	if (!toggled && ! group.checkedAction()) {
+		emit currentItemChanged("none");
+	} else if (toggled) {
+		emit currentItemChanged(group.checkedAction()->objectName().remove(0,6).toLower());
+	}
 }

@@ -180,11 +180,16 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <addaction name="actionWall"/>
    <addaction name="actionFloor"/>
    <addaction name="actionTable"/>
+   <addaction name="actionBed"/>
+   <addaction name="actionChair"/>
+   <addaction name="actionSofa"/>
+   <addaction name="actionStairs"/>
+   <addaction name="actionTV"/>
   </widget>
   <action name="action_New">
    <property name="icon">
@@ -357,6 +362,46 @@
    </property>
    <property name="text">
     <string>ItemProperties</string>
+   </property>
+  </action>
+  <action name="actionBed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Bed</string>
+   </property>
+  </action>
+  <action name="actionChair">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Chair</string>
+   </property>
+  </action>
+  <action name="actionSofa">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Sofa</string>
+   </property>
+  </action>
+  <action name="actionStairs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Stairs</string>
+   </property>
+  </action>
+  <action name="actionTV">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>TV</string>
    </property>
   </action>
  </widget>
