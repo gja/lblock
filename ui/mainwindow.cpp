@@ -328,6 +328,9 @@ void MainWindow::slotShowFloor(int n, bool force)
 				else 
 					gitem = createGenericItem(item.toElement());
 
+				if(gitem->getName() == currentItem)
+					gitem->setBrush(QBrush(Qt::red, Qt::SolidPattern));
+
 				itemsList<<gitem;
 				scene->addItem(gitem);
 			}
@@ -347,11 +350,9 @@ void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
 
 	floor.appendChild(elem);
 
-	slotShowFloor(current_floor, true);
+	slotItemSelected(elem.attribute("name"));
 
 	slotMakeDirty();
-
-	slotItemSelected(elem.attribute("name"));
 }
 
 void MainWindow::slotItemSelected(const QString &name)
@@ -366,6 +367,8 @@ void MainWindow::slotItemSelected(const QString &name)
 			emit itemSelected(item.toElement());
 			break;
 		}
+
+	slotShowFloor(current_floor, true);
 }
 
 void MainWindow::slotRefresh()
