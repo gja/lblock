@@ -1,6 +1,7 @@
 #include "floortopview.h"
 #include "constants.h"
 #include "lblockgraphicsitem.h"
+#include "addwindow.h"
 
 #include <QMouseEvent>
 #include <QGraphicsLineItem>
@@ -137,7 +138,8 @@ void FloorTopView::setCurrentItemType(const QString &string)
 
 void FloorTopView::addWindow()
 {
-	qDebug("Window");
+	AddWindow window;
+	window.exec();
 }
 
 void FloorTopView::addDoor()
