@@ -297,6 +297,15 @@ inline LBlockGraphicsItem *createWall(const QDomElement &wall)
 	return item;
 }
 
+inline LBlockGraphicsItem *createGenericItem(const QDomElement &item)
+{
+	LBlockGraphicsItem *gitem = new LBlockGraphicsItem(0, 0, item.attribute("length").toFloat() * PIXELS_PER_FOOT, item.attribute("width", "0.5").toFloat() * PIXELS_PER_FOOT, item.attribute("name"));
+	gitem->setBrush(QBrush(Qt::black, Qt::SolidPattern));
+	gitem->setPos(item.attribute("x").toFloat() * PIXELS_PER_FOOT, item.attribute("z").toFloat() * PIXELS_PER_FOOT);
+	gitem->rotate(item.attribute("rotation").toFloat());
+	return gitem;
+}
+
 void MainWindow::slotShowFloor(int n, bool force)
 {
 	if (current_floor == n && !force)
@@ -309,13 +318,19 @@ void MainWindow::slotShowFloor(int n, bool force)
 
 	for (floor = doc.elementsByTagName("floors").item(0).toElement().firstChild(); !floor.isNull(); floor = floor.nextSibling())
 		if (floor.toElement().attribute("id") == QString::number(n)) 
-			for (QDomNode item = floor.toElement().elementsByTagName("item").item(0); !item.isNull(); item = item.nextSibling())
+			for (QDomNode item = floor.toElement().elementsByTagName("item").item(0); !item.isNull(); item = item.nextSibling()) {
 
 				if (item.toElement().attribute("type") == "wall") {
 					QGraphicsItem *gitem = createWall(item.toElement());
 					itemsList<<gitem;
 					scene->addItem(gitem);
 				}
+				else {
+					QGraphicsItem *gitem = createGenericItem(item.toElement());
+					itemsList<<gitem;
+					scene->addItem(gitem);
+				}
+			}
 }
 
 void MainWindow::slotNewItem(const QHash <QString, QString> &hash)

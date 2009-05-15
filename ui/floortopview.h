@@ -29,7 +29,10 @@ class FloorTopView : public QGraphicsView {
 	virtual void mouseReleaseEvent(QMouseEvent *event);
 	virtual void leaveEvent(QEvent *event);
 
-	QString getCurrentItemType();
+	const inline QString &getCurrentItemType()
+	{
+		return currentItemType;
+	}
 
     signals:
 

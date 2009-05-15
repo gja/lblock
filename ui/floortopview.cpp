@@ -5,7 +5,7 @@
 #include <QGraphicsLineItem>
 #include <math.h>
 
-FloorTopView::FloorTopView(QWidget *parent) : QGraphicsView(parent), creatingItem(false), currentItem(NULL)
+FloorTopView::FloorTopView(QWidget *parent) : QGraphicsView(parent), creatingItem(false), currentItem(NULL), currentItemType("none")
 {
 }
 
@@ -34,7 +34,8 @@ void FloorTopView::deleteItem()
 
 void FloorTopView::mousePressEvent(QMouseEvent *event)
 {
-	createItem(event->pos());
+	if (getCurrentItemType() != "none")
+		createItem(event->pos());
 }
 
 void FloorTopView::leaveEvent(QEvent *event)
@@ -54,20 +55,27 @@ void FloorTopView::mouseReleaseEvent(QMouseEvent *event)
 		properties["z"] = QString::number((float) startingPos.y() / PIXELS_PER_FOOT);
 
 		QPoint rel = event->pos() - startingPos;
-		float rot = atan((float) rel.y() / float(rel.x())) * 180. / M_PI;
-		if (rel.x() < 0)
-			rot += 180.;
-		if (rot < 0)
-			rot += 360;
-		properties["rotation"] = QString::number(rot);
 
 		if (getCurrentItemType() == "wall") {
+
+			float rot = atan((float) rel.y() / float(rel.x())) * 180. / M_PI;
+			if (rel.x() < 0)
+				rot += 180.;
+			if (rot < 0)
+				rot += 360;
+			properties["rotation"] = QString::number(rot);
 			qreal length = sqrt(pow(rel.x(), 2) + pow(rel.y(), 2));
 			properties["length"] = QString::number(length / PIXELS_PER_FOOT);
 			properties["height"] = "10";
 			properties["thickness"] = "0.5";
 			properties["innerTexture"] = "white";
 			properties["outerTexture"] = "white";
+		} else if (getCurrentItemType() == "table" || getCurrentItemType() == "chair" || getCurrentItemType() == "bed" || getCurrentItemType() == "sofa" || getCurrentItemType() == "tv") {
+			properties["rotation"] = "0.0";
+			properties["length"] = QString::number((float) rel.x() / PIXELS_PER_FOOT);
+			properties["width"] = QString::number((float) rel.y() / PIXELS_PER_FOOT);
+			properties["height"] = "4.0";
+			properties["texture"] = "white";
 		}
 
 		emit newItem(properties);
@@ -81,21 +89,21 @@ void FloorTopView::mouseMoveEvent(QMouseEvent *event)
 		return;
 
 	QPoint rel = event->pos() - startingPos;
-	qreal length = sqrt(pow(rel.x(), 2) + pow(rel.y(), 2));
 
-	float rot = atan((float) rel.y() / float(rel.x())) * 180. / M_PI;
-	if (rel.x() < 0)
-		rot += 180.;
-	if (rot < 0)
-		rot += 360;
+	if (getCurrentItemType() == "wall") {
+		qreal length = sqrt(pow(rel.x(), 2) + pow(rel.y(), 2));
 
-	currentItem->setRect(0, 0, length, PIXELS_PER_FOOT / 2);
-	currentItem->setTransform(QTransform().translate(startingPos.x(), startingPos.y()).rotate(rot));
-}
+		float rot = atan((float) rel.y() / float(rel.x())) * 180. / M_PI;
+		if (rel.x() < 0)
+			rot += 180.;
+		if (rot < 0)
+			rot += 360;
 
-QString FloorTopView::getCurrentItemType()
-{
-	return "wall";
+		currentItem->setRect(0, 0, length, PIXELS_PER_FOOT / 2);
+		currentItem->setTransform(QTransform().translate(startingPos.x(), startingPos.y()).rotate(rot));
+	} else if (getCurrentItemType() == "table" || getCurrentItemType() == "chair" || getCurrentItemType() == "bed" || getCurrentItemType() == "sofa" || getCurrentItemType() == "tv") {
+		currentItem->setRect(startingPos.x(), startingPos.y(), rel.x(), rel.y());
+	}
 }
 
 void FloorTopView::setCurrentItemType(const QString &string)
