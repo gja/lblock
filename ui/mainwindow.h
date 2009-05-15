@@ -47,6 +47,9 @@ class MainWindow : public QMainWindow {
 	/// This stores the current floor
 	int current_floor;
 
+	/// This stores the current Item
+	QString currentItem;
+
     public:
 	MainWindow (QWidget *parent = NULL);
 

@@ -321,17 +321,15 @@ void MainWindow::slotShowFloor(int n, bool force)
 	for (floor = doc.elementsByTagName("floors").item(0).toElement().firstChild(); !floor.isNull(); floor = floor.nextSibling())
 		if (floor.toElement().attribute("id") == QString::number(n)) 
 			for (QDomNode item = floor.toElement().elementsByTagName("item").item(0); !item.isNull(); item = item.nextSibling()) {
+				LBlockGraphicsItem *gitem = NULL;
 
-				if (item.toElement().attribute("type") == "wall") {
-					QGraphicsItem *gitem = createWall(item.toElement());
-					itemsList<<gitem;
-					scene->addItem(gitem);
-				}
-				else {
-					QGraphicsItem *gitem = createGenericItem(item.toElement());
-					itemsList<<gitem;
-					scene->addItem(gitem);
-				}
+				if (item.toElement().attribute("type") == "wall") 
+					gitem = createWall(item.toElement());
+				else 
+					gitem = createGenericItem(item.toElement());
+
+				itemsList<<gitem;
+				scene->addItem(gitem);
 			}
 }
 
@@ -358,6 +356,8 @@ void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
 
 void MainWindow::slotItemSelected(const QString &name)
 {
+	currentItem = name;
+
 	QDomElement floor = getCurrentFloor(doc, current_floor).toElement();
 
 	QDomNode item;

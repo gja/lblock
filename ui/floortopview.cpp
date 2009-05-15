@@ -1,5 +1,6 @@
 #include "floortopview.h"
 #include "constants.h"
+#include "lblockgraphicsitem.h"
 
 #include <QMouseEvent>
 #include <QGraphicsLineItem>
@@ -36,6 +37,11 @@ void FloorTopView::mousePressEvent(QMouseEvent *event)
 {
 	if (getCurrentItemType() != "none")
 		createItem(event->pos());
+	else {
+		LBlockGraphicsItem *item = dynamic_cast<LBlockGraphicsItem *>(itemAt(event->pos()));
+		if (item)
+			emit itemSelected(item->getName());
+	}
 }
 
 void FloorTopView::leaveEvent(QEvent *event)
