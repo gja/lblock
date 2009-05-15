@@ -301,7 +301,7 @@ inline LBlockGraphicsItem *createWall(const QDomElement &wall)
 
 inline LBlockGraphicsItem *createGenericItem(const QDomElement &item)
 {
-	LBlockGraphicsItem *gitem = new LBlockGraphicsItem(0, 0, item.attribute("width").toFloat() * PIXELS_PER_FOOT, item.attribute("length", "0.5").toFloat() * PIXELS_PER_FOOT, item.attribute("name"));
+	LBlockGraphicsItem *gitem = new LBlockGraphicsItem(0, 0, item.attribute("length").toFloat() * PIXELS_PER_FOOT, item.attribute("width", "0.5").toFloat() * PIXELS_PER_FOOT, item.attribute("name"));
 	gitem->setBrush(QBrush(Qt::black, Qt::SolidPattern));
 	gitem->setPos(item.attribute("x").toFloat() * PIXELS_PER_FOOT, item.attribute("z").toFloat() * PIXELS_PER_FOOT);
 	gitem->rotate(item.attribute("rotation").toFloat());

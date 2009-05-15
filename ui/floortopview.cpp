@@ -97,8 +97,8 @@ void FloorTopView::mouseReleaseEvent(QMouseEvent *event)
 			properties["outerTexture"] = "white";
 		} else if (getCurrentItemType() == "table" || getCurrentItemType() == "chair" || getCurrentItemType() == "bed" || getCurrentItemType() == "sofa" || getCurrentItemType() == "tv") {
 			properties["rotation"] = "0.0";
-			properties["length"] = QString::number((float) rel.y() / PIXELS_PER_FOOT);
-			properties["width"] = QString::number((float) rel.x() / PIXELS_PER_FOOT);
+			properties["length"] = QString::number((float) rel.x() / PIXELS_PER_FOOT);
+			properties["width"] = QString::number((float) rel.y() / PIXELS_PER_FOOT);
 			properties["height"] = "4.0";
 			properties["texture"] = "white";
 		}
