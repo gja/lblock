@@ -5,7 +5,7 @@ void LBlockGraphicsItem::setName(const QString &basename)
 	name = basename;
 }
 
-QString LBlockGraphicsItem::getName()
+const QString &LBlockGraphicsItem::getName()
 {
 	return name;
 }

@@ -14,7 +14,7 @@ class LBlockGraphicsItem : public QGraphicsRectItem
 	void setName(const QString &);
 
 	/// This returns the name of the string
-	QString getName();
+	const QString &getName();
 
 	/// Constructor
 	LBlockGraphicsItem(float, float, float, float, const QString &);

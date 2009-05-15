@@ -43,6 +43,10 @@ class FloorTopView : public QGraphicsView {
 
     public slots:
 	void setCurrentItemType(const QString &string);
+
+	void addDoor();
+
+	void addWindow();
 };
 
 #endif

@@ -5,6 +5,8 @@
 #include <QMouseEvent>
 #include <QGraphicsLineItem>
 #include <math.h>
+#include <QMenu>
+#include <QIcon>
 
 FloorTopView::FloorTopView(QWidget *parent) : QGraphicsView(parent), creatingItem(false), currentItem(NULL), currentItemType("none")
 {
@@ -35,6 +37,22 @@ void FloorTopView::deleteItem()
 
 void FloorTopView::mousePressEvent(QMouseEvent *event)
 {
+	if (event->button() == Qt::RightButton) {
+		LBlockGraphicsItem *item = dynamic_cast<LBlockGraphicsItem *>(itemAt(event->pos()));
+		if (item) {
+			if (item->getName().startsWith("wall")) {
+				QMenu menu;
+				menu.addAction(QIcon(":/icons/icons/list-add.png"), "Add Window", this, SLOT(addWindow()));
+				menu.addAction(QIcon(":/icons/icons/list-add.png"), "Add Door", this, SLOT(addDoor()));
+				menu.exec(mapToGlobal(event->pos()));
+			}
+
+			emit itemSelected(item->getName());
+		}
+
+		return;
+	}
+
 	if (getCurrentItemType() != "none")
 		createItem(event->pos());
 	else {
@@ -115,4 +133,14 @@ void FloorTopView::mouseMoveEvent(QMouseEvent *event)
 void FloorTopView::setCurrentItemType(const QString &string)
 {
 	currentItemType = string;
+}
+
+void FloorTopView::addWindow()
+{
+	qDebug("Window");
+}
+
+void FloorTopView::addDoor()
+{
+	qDebug("Door");
 }
