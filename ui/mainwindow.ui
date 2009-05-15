@@ -182,6 +182,7 @@
    <attribute name="toolBarBreak">
     <bool>true</bool>
    </attribute>
+   <addaction name="actionNone"/>
    <addaction name="actionWall"/>
    <addaction name="actionFloor"/>
    <addaction name="actionTable"/>
@@ -402,6 +403,17 @@
    </property>
    <property name="text">
     <string>TV</string>
+   </property>
+  </action>
+  <action name="actionNone">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Select</string>
    </property>
   </action>
  </widget>

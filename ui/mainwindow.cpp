@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	scene = new QGraphicsScene;
 	ui->graphicsView->setScene(scene);
 
+	group.addAction(ui->actionNone);
 	group.addAction(ui->actionBed);
 	group.addAction(ui->actionChair);
 	group.addAction(ui->actionFloor);
@@ -46,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotMakeDirty()));
 	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotRefresh()));
 
+	connect(ui->actionNone, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
 	connect(ui->actionBed, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
 	connect(ui->actionChair, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
 	connect(ui->actionFloor, SIGNAL(toggled(bool)), this, SLOT(currentChanged(bool)));
