@@ -6,6 +6,7 @@
 #include <QKeyEvent>
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QDebug>
 
 #include <QDomDocument>
 #include <QFile>
@@ -148,6 +149,9 @@ void GLBox::keyPressEvent( QKeyEvent *e)
 			newposx += WALK_STEP * cos(angle);
 			newposz += WALK_STEP * sin(angle);
 			break;
+
+		case Qt::Key_Space:
+			qDebug()<<posx<<posy<<posz<<left_right<<up_down;
 	}
 
 	// If we have a collision, then don't move
