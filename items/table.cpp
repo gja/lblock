@@ -21,13 +21,13 @@ void Table::generateList()
 
 		// Top Edge
 		glVertex3f(0.0f, height, 0.0f);
-		glVertex3f(0.0f, height, width);
-		glVertex3f(length, height, width);
+		glVertex3f(0.0f, height, -width);
+		glVertex3f(length, height, -width);
 		glVertex3f(length, height, 0.0f);
 
 		glVertex3f(0.0f, height - 0.2f, 0.0f);
-		glVertex3f(0.0f, height - 0.2f, width);
-		glVertex3f(length, height - 0.2f, width);
+		glVertex3f(0.0f, height - 0.2f, -width);
+		glVertex3f(length, height - 0.2f, -width);
 		glVertex3f(length, height - 0.2f, 0.0f);
 		
 
@@ -39,16 +39,16 @@ void Table::generateList()
 
 		glVertex3f(0.0f, height, 0.0f);
 		glVertex3f(0.0f, height - 0.2f, 0.0f);
-		glVertex3f(0.0f, height -0.2f, width);
-		glVertex3f(0.0f, height, width);
+		glVertex3f(0.0f, height -0.2f, -width);
+		glVertex3f(0.0f, height, -width);
 
-		glVertex3f(0.0f, height, width);
-		glVertex3f(0.0f, height - 0.2f, width);
-		glVertex3f(length, height, width);
-		glVertex3f(length, height - 0.2f, width);
+		glVertex3f(0.0f, height, -width);
+		glVertex3f(0.0f, height - 0.2f, -width);
+		glVertex3f(length, height, -width);
+		glVertex3f(length, height - 0.2f, -width);
 
-		glVertex3f(length, height, width);
-		glVertex3f(length, height - 0.2f, width);
+		glVertex3f(length, height, -width);
+		glVertex3f(length, height - 0.2f, -width);
 		glVertex3f(length, height, 0.0f);
 		glVertex3f(length, height - 0.2f, 0.0f);
 		
@@ -74,46 +74,46 @@ void Table::generateList()
 		glVertex3f(0.2f, height - 0.2f, 0.0f);
 		
 		//Leg 2
-		glVertex3f(0.0f, height - 0.2f, width - 0.2f);
-		glVertex3f(0.0f, 0.0f, width - 0.2f);
-		glVertex3f(0.2f, 0.0f, width - 0.2f);
-		glVertex3f(0.2f, height - 0.2f, width - 0.2f);
+		glVertex3f(0.0f, height - 0.2f, -width + 0.2f);
+		glVertex3f(0.0f, 0.0f, -width + 0.2f);
+		glVertex3f(0.2f, 0.0f, -width + 0.2f);
+		glVertex3f(0.2f, height - 0.2f, -width + 0.2f);
 
-		glVertex3f(0.0f, height - 0.2f, width - 0.2f);
-		glVertex3f(0.0f, 0.0f, width - 0.2f);
-		glVertex3f(0.0f, 0.0f, width);
-		glVertex3f(0.0f, height - 0.2f, width);
+		glVertex3f(0.0f, height - 0.2f, -width + 0.2f);
+		glVertex3f(0.0f, 0.0f, -width + 0.2f);
+		glVertex3f(0.0f, 0.0f, -width);
+		glVertex3f(0.0f, height - 0.2f, -width);
 
-		glVertex3f(0.0f, height - 0.2f, width);
-		glVertex3f(0.0f, 0.0f, width);
-		glVertex3f(0.2f, 0.0f, width);
-		glVertex3f(0.2f, height - 0.2f, width);
+		glVertex3f(0.0f, height - 0.2f, -width);
+		glVertex3f(0.0f, 0.0f, -width);
+		glVertex3f(0.2f, 0.0f, -width);
+		glVertex3f(0.2f, height - 0.2f, -width);
 
-		glVertex3f(0.2f, height - 0.2f, width);
-		glVertex3f(0.2f, 0.0f, width);
-		glVertex3f(0.2f, 0.0f, width - 0.2f);
-		glVertex3f(0.2f, height - 0.2f, width - 0.2f);
+		glVertex3f(0.2f, height - 0.2f, -width);
+		glVertex3f(0.2f, 0.0f, -width);
+		glVertex3f(0.2f, 0.0f, -width + 0.2f);
+		glVertex3f(0.2f, height - 0.2f, -width + 0.2f);
 
 		//Leg 3
-		glVertex3f(length - 0.2f, height - 0.2f, width - 0.2f);
-		glVertex3f(length - 0.2f, 0.0f, width - 0.2f);
-		glVertex3f(length, 0.0f, width - 0.2f);
-		glVertex3f(length, height - 0.2f, width - 0.2f);
+		glVertex3f(length - 0.2f, height - 0.2f, -width + 0.2f);
+		glVertex3f(length - 0.2f, 0.0f, -width + 0.2f);
+		glVertex3f(length, 0.0f, -width + 0.2f);
+		glVertex3f(length, height - 0.2f, -width + 0.2f);
 
-		glVertex3f(length - 0.2f, height - 0.2f, width - 0.2f);
-		glVertex3f(length - 0.2f, 0.0f, width - 0.2f);
-		glVertex3f(length - 0.2f, 0.0f, width);
-		glVertex3f(length - 0.2f, height - 0.2f, width);
+		glVertex3f(length - 0.2f, height - 0.2f, -width + 0.2f);
+		glVertex3f(length - 0.2f, 0.0f, -width + 0.2f);
+		glVertex3f(length - 0.2f, 0.0f, -width);
+		glVertex3f(length - 0.2f, height - 0.2f, -width);
 
-		glVertex3f(length - 0.2f, height - 0.2f, width);
-		glVertex3f(length - 0.2f, 0.0f, width);
-		glVertex3f(length, 0.0f, width);
-		glVertex3f(length, height - 0.2f, width);
+		glVertex3f(length - 0.2f, height - 0.2f, -width);
+		glVertex3f(length - 0.2f, 0.0f, -width);
+		glVertex3f(length, 0.0f, -width);
+		glVertex3f(length, height - 0.2f, -width);
 
-		glVertex3f(length, height - 0.2f, width);
-		glVertex3f(length, 0.0f, width);
-		glVertex3f(length, 0.0f, width - 0.2f);
-		glVertex3f(length, height - 0.2f, width - 0.2f);
+		glVertex3f(length, height - 0.2f, -width);
+		glVertex3f(length, 0.0f, -width);
+		glVertex3f(length, 0.0f, -width + 0.2f);
+		glVertex3f(length, height - 0.2f, -width + 0.2f);
 
 		//Leg 4
 		glVertex3f(length - 0.2f, height - 0.2f, 0.0f);
