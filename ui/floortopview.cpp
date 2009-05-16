@@ -101,6 +101,13 @@ void FloorTopView::mouseReleaseEvent(QMouseEvent *event)
 			properties["width"] = QString::number((float) rel.y() / PIXELS_PER_FOOT);
 			properties["height"] = "4.0";
 			properties["texture"] = "white";
+		} else if (getCurrentItemType() == "floor") {
+			properties["rotation"] = "0.0";
+			properties["length"] = QString::number((float) rel.x() / PIXELS_PER_FOOT);
+			properties["width"] = QString::number((float) rel.y() / PIXELS_PER_FOOT);
+			properties["thickness"] = "0.1";
+			properties["upperTexture"] = "white";
+			properties["lowerTexture"] = "white";
 		}
 
 		emit newItem(properties);
@@ -126,7 +133,7 @@ void FloorTopView::mouseMoveEvent(QMouseEvent *event)
 
 		currentItem->setRect(0, 0, length, PIXELS_PER_FOOT / 2);
 		currentItem->setTransform(QTransform().translate(startingPos.x(), startingPos.y()).rotate(rot));
-	} else if (getCurrentItemType() == "table" || getCurrentItemType() == "chair" || getCurrentItemType() == "bed" || getCurrentItemType() == "sofa" || getCurrentItemType() == "tv") {
+	} else if (getCurrentItemType() == "table" || getCurrentItemType() == "chair" || getCurrentItemType() == "bed" || getCurrentItemType() == "sofa" || getCurrentItemType() == "tv" || getCurrentItemType() == "floor") {
 		currentItem->setRect(startingPos.x(), startingPos.y(), rel.x(), rel.y());
 	}
 }

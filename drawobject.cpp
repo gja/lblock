@@ -86,23 +86,13 @@ void GLBox::drawObject(const QDomDocument *doc)
 
 				addObject(wall);
 			} else if (type == "floor") {
-				QString texture = e.attribute("texture");
-				qDebug()<<"Adding Floor:"<<x<<y<<z<<rotation;
-				Floor *floor = new Floor(x, y, z, rotation, textures[texture]);
-
-				// now we start parsing the windows
-				for (QDomNode w = e.firstChild(); !w.isNull(); w = w.nextSibling()) {
-					QDomElement tmp = w.toElement();
-
-					if (tmp.tagName() == "point") {
-						QString x = tmp.attribute("x");
-						QString y = tmp.attribute("y");
-						floor->addPoint(x.toFloat(), y.toFloat());
-
-						qDebug()<<"Added Point:"<<x<<y;
-					}
-				}
-
+				QString lowerTexture = e.attribute("lowerTexture");
+				QString upperTexture = e.attribute("upperTexture");
+				QString length = e.attribute("length");
+				QString width = e.attribute("width");
+				QString thickness = e.attribute("thickness");
+				qDebug()<<"Adding Floor:"<<x<<y<<z<<rotation<<length<<width<<lowerTexture<<upperTexture<<thickness;
+				Floor *floor = new Floor(x, y, z, rotation, length.toFloat(), width.toFloat(), textures[upperTexture], textures[lowerTexture], thickness.toFloat());
 				addObject(floor);
 			}
 

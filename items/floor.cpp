@@ -7,35 +7,21 @@
 
 void Floor::generateList()
 {
-	// lower wall
-	QList <QPointF> list = points;
-
+	// lower side
 	glBindTexture(GL_TEXTURE_2D, lowerTexture.texture);
-	glBegin(GL_POLYGON);
-
-	while ( ! list.isEmpty() ) {
-		QPointF point = list.takeFirst();
-		float x = point.x();
-		float z = point.y();
-
-		glTexCoord2f(x / lowerTexture.sizex, z / lowerTexture.sizey); glVertex3f(x, 0.0f, -z);
-	}
-
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, -0.0f);
+		glTexCoord2f(0.0f, width / lowerTexture.sizey); glVertex3f(0.0f, 0.0f, -width);
+		glTexCoord2f(length / lowerTexture.sizex, width / lowerTexture.sizey); glVertex3f(length, 0.0f, -width);
+		glTexCoord2f(length / lowerTexture.sizex, 0.0f); glVertex3f(length, 0.0f, 0.0f);
 	glEnd();
 
-	// upper part
-	list = points;
-
+	// upper side
 	glBindTexture(GL_TEXTURE_2D, upperTexture.texture);
-	glBegin(GL_POLYGON);
-
-	while ( ! list.isEmpty() ) {
-		QPointF point = list.takeFirst();
-		float x = point.x();
-		float z = point.y();
-
-		glTexCoord2f(x / upperTexture.sizex, z / upperTexture.sizey); glVertex3f(x, thickness, -z);
-	}
-
+	glBegin(GL_QUADS);
+		glTexCoord2f(0.0f, 0.0f); glVertex3f(0.0f, 0.0f, -0.0f);
+		glTexCoord2f(0.0f, width / lowerTexture.sizey); glVertex3f(0.0f, 0.0f, -width);
+		glTexCoord2f(length / lowerTexture.sizex, width / lowerTexture.sizey); glVertex3f(length, 0.0f, -width);
+		glTexCoord2f(length / lowerTexture.sizex, 0.0f); glVertex3f(length, 0.0f, 0.0f);
 	glEnd();
 }

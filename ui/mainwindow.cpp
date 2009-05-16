@@ -294,8 +294,18 @@ inline LBlockGraphicsItem *createWall(const QDomElement &wall)
 {
 	LBlockGraphicsItem *item = new LBlockGraphicsItem(0, 0, wall.attribute("length").toFloat() * PIXELS_PER_FOOT, wall.attribute("thickness", "0.5").toFloat() * PIXELS_PER_FOOT, wall.attribute("name"));
 	item->setBrush(QBrush(Qt::black, Qt::SolidPattern));
-	item->setPos(wall.attribute("x").toFloat() * PIXELS_PER_FOOT, wall.attribute("z").toFloat() * PIXELS_PER_FOOT);
 	item->rotate(wall.attribute("rotation").toFloat());
+	item->setPos(wall.attribute("x").toFloat() * PIXELS_PER_FOOT, wall.attribute("z").toFloat() * PIXELS_PER_FOOT);
+	return item;
+}
+
+inline LBlockGraphicsItem *createFloor(const QDomElement &floor)
+{
+	LBlockGraphicsItem *item = new LBlockGraphicsItem(0, 0, floor.attribute("length").toFloat() * PIXELS_PER_FOOT, floor.attribute("width", "0.5").toFloat() * PIXELS_PER_FOOT, floor.attribute("name"));
+	item->setZValue(-1.0);
+	item->setBrush(QBrush(Qt::white, Qt::SolidPattern));
+	item->rotate(floor.attribute("rotation").toFloat());
+	item->setPos(floor.attribute("x").toFloat() * PIXELS_PER_FOOT, floor.attribute("z").toFloat() * PIXELS_PER_FOOT);
 	return item;
 }
 
@@ -303,8 +313,8 @@ inline LBlockGraphicsItem *createGenericItem(const QDomElement &item)
 {
 	LBlockGraphicsItem *gitem = new LBlockGraphicsItem(0, 0, item.attribute("length").toFloat() * PIXELS_PER_FOOT, item.attribute("width", "0.5").toFloat() * PIXELS_PER_FOOT, item.attribute("name"));
 	gitem->setBrush(QBrush(Qt::black, Qt::SolidPattern));
-	gitem->setPos(item.attribute("x").toFloat() * PIXELS_PER_FOOT, item.attribute("z").toFloat() * PIXELS_PER_FOOT);
 	gitem->rotate(item.attribute("rotation").toFloat());
+	gitem->setPos(item.attribute("x").toFloat() * PIXELS_PER_FOOT, item.attribute("z").toFloat() * PIXELS_PER_FOOT);
 	return gitem;
 }
 
@@ -325,7 +335,9 @@ void MainWindow::slotShowFloor(int n, bool force)
 
 				if (item.toElement().attribute("type") == "wall") 
 					gitem = createWall(item.toElement());
-				else 
+				else if (item.toElement().attribute("type") == "floor")
+					gitem = createFloor(item.toElement());
+				else
 					gitem = createGenericItem(item.toElement());
 
 				if(gitem->getName() == currentItem)

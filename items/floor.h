@@ -14,9 +14,6 @@
  */
 class Floor : public Item {
 
-	/// A set of points which defines the area for which the floor should be added.
-	QList <QPointF> points;
-
 	/// This contains the lower texture of the floor.
 	Texture lowerTexture;
 
@@ -26,27 +23,13 @@ class Floor : public Item {
 	/// The thickness of the floor.
 	float thickness;
 
-    public:
+	/// The length of the floor
+	float length;
 	
-	/**
-	 * This function is used to add points to the floor structure.
-	 * Add points in a clockwise fashion. (0,0) will be added for you.
-	 * \param x The x coordinate
-	 * \param z The z coordinate
-	 */
-	inline void addPoint(float x, float z)
-	{
-		addPoint(QPointF(x, z));
-	}
+	/// The width of the floor
+	float width;
 
-	/**
-	 * This function is used to add the point into a list of points
-	 * \param point Contains the point (x,z).
-	 */
-	inline void addPoint(const QPointF &point)
-	{
-		points<<point;
-	}
+    public:
 
 	/**
 	 * This is the constructor. It creates the floor for a given set of parameters
@@ -58,10 +41,9 @@ class Floor : public Item {
 	 * \param lt It contains the lower texture
 	 * \param t The thickness of the floor, default value is 0.1
 	 */
-	Floor(float x, float y, float z, float r, const Texture &ut = Texture(0xFFFFFF), const Texture &lt = Texture(0xFFFFFF), float t = 0.1f)
-		: Item(x, y, z, r), upperTexture(ut), lowerTexture(lt), thickness(t)
+	Floor(float x, float y, float z, float r, float l, float w, const Texture &ut = Texture(0xFFFFFF), const Texture &lt = Texture(0xFFFFFF), float t = 0.1f)
+		: Item(x, y, z, r), upperTexture(ut), lowerTexture(lt), thickness(t), length(l), width(w)
 	{
-		addPoint(0.0f, 0.0f);
 	}
 
 	/// This generates the call list to draw the floor
