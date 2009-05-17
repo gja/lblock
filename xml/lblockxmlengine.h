@@ -6,8 +6,7 @@
 #include <QList>
 #include <QString>
 
-typedef QHash<QString, QString> LBlockValues;
-typedef QList<LBlockValues> LBlockValuesList;
+#include "lblockvalues.h"
 
 class LBlockXmlEngine : public QDomDocument
 {
@@ -30,7 +29,7 @@ class LBlockXmlEngine : public QDomDocument
 	/// This returns on item on the floor by name
 	/// \param n The Floor
 	/// \param name The name of the Item
-	QDomElement getItemOnFloor(int n, const QString &name);
+	LBlockValues getItemOnFloor(int n, const QString &name);
 
 	/// This adds an Item to the Floor
 	/// \param n The Floor

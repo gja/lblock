@@ -351,10 +351,10 @@ void MainWindow::slotItemSelected(const QString &name)
 {
 	currentItem = name;
 
-	QDomElement item = doc.getItemOnFloor(current_floor, name);
-	if (! item.isNull())
+	LBlockValues item = doc.getItemOnFloor(current_floor, name);
+	if (! item.element().isNull())
 	{
-		emit itemSelected(item);
+		emit itemSelected(item.element());
 	}
 
 	slotShowFloor(current_floor, true);

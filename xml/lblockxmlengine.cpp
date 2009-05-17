@@ -10,7 +10,7 @@ QDomNode LBlockXmlEngine::getCurrentFloor(int n)
 
 LBlockValues elementToHash(const QDomElement &elem)
 {
-	QHash<QString, QString> hash;
+	LBlockValues hash(elem);
 
 	QDomNamedNodeMap attributes = elem.attributes();
 	for (int i = 0; i < attributes.length(); i++) {
@@ -59,14 +59,14 @@ void LBlockXmlEngine::addItemOnFloor(int n, const LBlockValues &hash)
 	floor.appendChild(elem);
 }
 
-QDomElement LBlockXmlEngine::getItemOnFloor(int n, const QString &name)
+LBlockValues LBlockXmlEngine::getItemOnFloor(int n, const QString &name)
 {
 	QDomElement floor = getCurrentFloor(n).toElement();
 
 	QDomNode item;
 	for (item = floor.elementsByTagName("item").item(0); !item.isNull(); item = item.nextSibling())
 		if (item.toElement().attribute("name") == name)
-			return item.toElement();
+			return elementToHash(item.toElement());
 		
-	return QDomElement();
+	return LBlockValues();
 }
