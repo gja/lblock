@@ -21,20 +21,21 @@ ItemPropertiesDialog::~ItemPropertiesDialog()
 	delete model;
 }
 
-void ItemPropertiesDialog::setItem(const QDomElement &e)
+void ItemPropertiesDialog::setItem(const LBlockValues &e)
 {
 	elem = e;
 
 	if (model)
 		delete model;
 
-	model = new ItemPropertiesModel(elem);
+	model = new ItemPropertiesModel(elem.element());
 	ui->view->setModel(model);
 }
 
 void ItemPropertiesDialog::slotModifyAttribute(const QString &name)
 {
-	QString value = QInputDialog::getText(this, "Edit Attribute", QString("Enter Value for ") + name, QLineEdit::Normal, elem.attribute(name));
-	elem.setAttribute(name, value);
+	QString value = QInputDialog::getText(this, "Edit Attribute", QString("Enter Value for ") + name, QLineEdit::Normal, elem[name]);
+	elem[name] = value;
+	elem.writeToElement();
 	emit dirty();
 }

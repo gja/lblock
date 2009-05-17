@@ -19,10 +19,17 @@ class LBlockValues : public QHash<QString, QString>
 	LBlockValues(const QHash<QString, QString> hash) : QHash<QString, QString>(hash), elem()
 	{}
 
+	LBlockValues(const LBlockValues &other) : QHash<QString, QString>(other), elem(other.elem)
+	{
+	}
+
 	const QDomElement &element()
 	{
 		return elem;
 	}
+
+	/// This writes back to the element
+	void writeToElement();
 };
 
 typedef QList<LBlockValues> LBlockValuesList;

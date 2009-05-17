@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "itempropertiesmodel.h"
+#include "lblockvalues.h"
 
 namespace Ui {
 	class ItemPropertiesDialog;
@@ -15,7 +16,7 @@ class ItemPropertiesDialog : public QDialog {
 
 	ItemPropertiesModel *model;
 
-	QDomElement elem;
+	LBlockValues elem;
 
     public:
 	ItemPropertiesDialog(QWidget *parent = NULL);
@@ -24,7 +25,7 @@ class ItemPropertiesDialog : public QDialog {
 	
 
     public slots:
-	void setItem(const QDomElement &elem);
+	void setItem(const LBlockValues &e);
 
 	void slotModifyAttribute(const QString &);
 	

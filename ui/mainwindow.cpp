@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	connect(ui->graphicsView, SIGNAL(newItem(QHash<QString, QString>)), this, SLOT(slotNewItem(QHash<QString, QString>)));
 	connect(ui->graphicsView, SIGNAL(itemSelected(QString)), this, SLOT(slotItemSelected(QString)));
 
-	connect(this, SIGNAL(itemSelected(QDomElement)), &itemProperties, SLOT(setItem(QDomElement)));
+	connect(this, SIGNAL(itemSelected(LBlockValues)), &itemProperties, SLOT(setItem(LBlockValues)));
 
 	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotMakeDirty()));
 	connect(&itemProperties, SIGNAL(dirty()), this, SLOT(slotRefresh()));
@@ -354,7 +354,7 @@ void MainWindow::slotItemSelected(const QString &name)
 	LBlockValues item = doc.getItemOnFloor(current_floor, name);
 	if (! item.element().isNull())
 	{
-		emit itemSelected(item.element());
+		emit itemSelected(item);
 	}
 
 	slotShowFloor(current_floor, true);

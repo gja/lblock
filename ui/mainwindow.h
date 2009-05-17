@@ -68,7 +68,7 @@ class MainWindow : public QMainWindow {
 
 	void enableButtons(bool);
 
-	void itemSelected(QDomElement);
+	void itemSelected(LBlockValues);
 
 	void currentItemChanged(QString);
 
