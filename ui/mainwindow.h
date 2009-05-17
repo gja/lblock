@@ -5,8 +5,6 @@
 #include "lblockxmlengine.h"
 #include "itemproperties.h"
 
-#include <QDomDocument>
-#include <QDomElement>
 #include <QMainWindow>
 #include <QActionGroup>
 #include <QHash>

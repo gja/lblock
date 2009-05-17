@@ -68,23 +68,15 @@ MainWindow::~MainWindow()
 	delete scene;
 }
 
-inline QDomNode getCurrentFloor(const QDomDocument &doc, int n)
-{
-	QDomNode floor;
-	for (floor = doc.elementsByTagName("floors").item(0).toElement().firstChild(); !floor.isNull(); floor = floor.nextSibling())
-		if (floor.toElement().attribute("id") == QString::number(n))
-			return floor;
-}
-
 void MainWindow::clear()
 {
 	texturesWindow.refresh();
 
-	QDomElement elem = doc.documentElement().toElement().elementsByTagName("properties").item(0).toElement();
+	LBlockValues properties = doc.getProperties();
 
-	int grid = elem.attribute("grid", "10").toInt();
-	int length = elem.attribute("length", "60").toInt();
-	int width = elem.attribute("width", "40").toInt();
+	int grid = properties.value("grid", "10").toInt();
+	int length = properties.value("length", "60").toInt();
+	int width = properties.value("width", "40").toInt();
 
 	if (! itemsList.isEmpty()) {
 		qDeleteAll(itemsList);
@@ -94,7 +86,7 @@ void MainWindow::clear()
 	scene->clear();
 	scene->setSceneRect(0, 0, length * PIXELS_PER_FOOT, width * PIXELS_PER_FOOT);
 
-	ui->floorNumber->setRange(elem.attribute("lowest", "0").toInt(), elem.attribute("highest", "0").toInt());
+	ui->floorNumber->setRange(properties.value("lowest", "0").toInt(), properties.value("highest", "0").toInt());
 	ui->floorNumber->setValue(current_floor);
 	ui->floorNumber->update();
 
@@ -160,9 +152,8 @@ void MainWindow::slotOpen()
 	clear();
 	slotMakeClean();
 
-	QDomElement elem = doc.documentElement().elementsByTagName("properties").item(0).toElement();
+	current_floor = doc.getProperties().value("lowest", "0").toInt();
 
-	current_floor = elem.attribute("lowest").toInt();
 	slotShowFloor(current_floor, true);
 }
 
@@ -290,31 +281,31 @@ void MainWindow::slotExecute()
 	widget->show();
 }
 
-inline LBlockGraphicsItem *createWall(const QDomElement &wall)
+inline LBlockGraphicsItem *createWall(const LBlockValues &values)
 {
-	LBlockGraphicsItem *item = new LBlockGraphicsItem(0, 0, wall.attribute("length").toFloat() * PIXELS_PER_FOOT, wall.attribute("thickness", "0.5").toFloat() * PIXELS_PER_FOOT, wall.attribute("name"));
+	LBlockGraphicsItem *item = new LBlockGraphicsItem(0, 0, values.value("length").toFloat() * PIXELS_PER_FOOT, values.value("thickness", "0.5").toFloat() * PIXELS_PER_FOOT, values.value("name"));
 	item->setBrush(QBrush(Qt::black, Qt::SolidPattern));
-	item->rotate(wall.attribute("rotation").toFloat());
-	item->setPos(wall.attribute("x").toFloat() * PIXELS_PER_FOOT, wall.attribute("z").toFloat() * PIXELS_PER_FOOT);
+	item->rotate(values.value("rotation").toFloat());
+	item->setPos(values.value("x").toFloat() * PIXELS_PER_FOOT, values.value("z").toFloat() * PIXELS_PER_FOOT);
 	return item;
 }
 
-inline LBlockGraphicsItem *createFloor(const QDomElement &floor)
+inline LBlockGraphicsItem *createFloor(const LBlockValues &values)
 {
-	LBlockGraphicsItem *item = new LBlockGraphicsItem(0, 0, floor.attribute("length").toFloat() * PIXELS_PER_FOOT, floor.attribute("width", "0.5").toFloat() * PIXELS_PER_FOOT, floor.attribute("name"));
+	LBlockGraphicsItem *item = new LBlockGraphicsItem(0, 0, values.value("length").toFloat() * PIXELS_PER_FOOT, values.value("width", "0.5").toFloat() * PIXELS_PER_FOOT, values.value("name"));
 	item->setZValue(-1.0);
-	item->setBrush(QBrush(Qt::white, Qt::SolidPattern));
-	item->rotate(floor.attribute("rotation").toFloat());
-	item->setPos(floor.attribute("x").toFloat() * PIXELS_PER_FOOT, floor.attribute("z").toFloat() * PIXELS_PER_FOOT);
+	item->setBrush(QBrush(Qt::black, Qt::SolidPattern));
+	item->rotate(values.value("rotation").toFloat());
+	item->setPos(values.value("x").toFloat() * PIXELS_PER_FOOT, values.value("z").toFloat() * PIXELS_PER_FOOT);
 	return item;
 }
 
-inline LBlockGraphicsItem *createGenericItem(const QDomElement &item)
+inline LBlockGraphicsItem *createGenericItem(const LBlockValues &values)
 {
-	LBlockGraphicsItem *gitem = new LBlockGraphicsItem(0, 0, item.attribute("length").toFloat() * PIXELS_PER_FOOT, item.attribute("width", "0.5").toFloat() * PIXELS_PER_FOOT, item.attribute("name"));
+	LBlockGraphicsItem *gitem = new LBlockGraphicsItem(0, 0, values.value("length").toFloat() * PIXELS_PER_FOOT, values.value("width", "0.5").toFloat() * PIXELS_PER_FOOT, values.value("name"));
 	gitem->setBrush(QBrush(Qt::black, Qt::SolidPattern));
-	gitem->rotate(item.attribute("rotation").toFloat());
-	gitem->setPos(item.attribute("x").toFloat() * PIXELS_PER_FOOT, item.attribute("z").toFloat() * PIXELS_PER_FOOT);
+	gitem->rotate(values.value("rotation").toFloat());
+	gitem->setPos(values.value("x").toFloat() * PIXELS_PER_FOOT, values.value("z").toFloat() * PIXELS_PER_FOOT);
 	return gitem;
 }
 
@@ -326,43 +317,32 @@ void MainWindow::slotShowFloor(int n, bool force)
 	current_floor = n;
 	clear();
 
-	QDomNode floor;
+	LBlockValuesList list = doc.getItemsOnFloor(current_floor);
 
-	for (floor = doc.elementsByTagName("floors").item(0).toElement().firstChild(); !floor.isNull(); floor = floor.nextSibling())
-		if (floor.toElement().attribute("id") == QString::number(n)) 
-			for (QDomNode item = floor.toElement().elementsByTagName("item").item(0); !item.isNull(); item = item.nextSibling()) {
-				LBlockGraphicsItem *gitem = NULL;
+	foreach(LBlockValues item, list) {
+		LBlockGraphicsItem *gitem = NULL;
 
-				if (item.toElement().attribute("type") == "wall") 
-					gitem = createWall(item.toElement());
-				else if (item.toElement().attribute("type") == "floor")
-					gitem = createFloor(item.toElement());
-				else
-					gitem = createGenericItem(item.toElement());
+		if (item.value("type") == "wall") 
+			gitem = createWall(item);
+		else if (item.value("type") == "floor")
+			gitem = createFloor(item);
+		else
+			gitem = createGenericItem(item);
 
-				if(gitem->getName() == currentItem)
-					gitem->setBrush(QBrush(Qt::red, Qt::SolidPattern));
+		if(gitem->getName() == currentItem)
+			gitem->setBrush(QBrush(Qt::red, Qt::SolidPattern));
 
-				itemsList<<gitem;
-				scene->addItem(gitem);
-			}
+		itemsList<<gitem;
+		scene->addItem(gitem);
+	}
+
 }
 
 void MainWindow::slotNewItem(const QHash <QString, QString> &hash)
 {
-	QDomElement floor = getCurrentFloor(doc, current_floor).toElement();
+	doc.addItemOnFloor(current_floor, hash);
 
-	QDomElement elem = doc.createElement("item");
-	QHashIterator<QString, QString> i(hash);
-
-	while (i.hasNext()) {
-		i.next();
-		elem.setAttribute(i.key(), i.value());
-	}
-
-	floor.appendChild(elem);
-
-	slotItemSelected(elem.attribute("name"));
+	slotItemSelected(hash.value("name"));
 
 	slotMakeDirty();
 }
@@ -371,14 +351,11 @@ void MainWindow::slotItemSelected(const QString &name)
 {
 	currentItem = name;
 
-	QDomElement floor = getCurrentFloor(doc, current_floor).toElement();
-
-	QDomNode item;
-	for (item = floor.elementsByTagName("item").item(0); !item.isNull(); item = item.nextSibling())
-		if (item.toElement().attribute("name") == name) {
-			emit itemSelected(item.toElement());
-			break;
-		}
+	QDomElement item = doc.getItemOnFloor(current_floor, name);
+	if (! item.isNull())
+	{
+		emit itemSelected(item);
+	}
 
 	slotShowFloor(current_floor, true);
 }
