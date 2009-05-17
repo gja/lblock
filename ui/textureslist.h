@@ -5,12 +5,12 @@
 #include <QList>
 #include <QStandardItem>
 
-class QDomDocument;
+#include "lblockxmlengine.h"
 
 class TexturesList : public QStandardItemModel
 {
 	/// This is the XML Document
-	QDomDocument *doc;
+	LBlockXmlEngine *doc;
 
 	/// This has a list of all the items (if we need to delete)
 	QList<QStandardItem *> items;
@@ -19,7 +19,7 @@ class TexturesList : public QStandardItemModel
 	void clear();
 
     public:
-	TexturesList(QDomDocument *doc, QObject *parent = NULL);
+	TexturesList(LBlockXmlEngine *doc, QObject *parent = NULL);
 
 	/**
 	 * This clears the list, parses the document

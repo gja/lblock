@@ -5,11 +5,10 @@
 
 #include <QFileDialog>
 #include <QBuffer>
-#include <QDomElement>
 #include <QColorDialog>
 #include <QPalette>
 
-ModifyTexture::ModifyTexture(QDomDocument *d, QWidget *parent) : QDialog(parent), doc(d)
+ModifyTexture::ModifyTexture(LBlockXmlEngine *d, QWidget *parent) : QDialog(parent), doc(d)
 {
 	ui = new Ui::EditTexture();
 	ui->setupUi(this);
@@ -71,28 +70,15 @@ void ModifyTexture::slotChangeImage()
 	value = array.toBase64();
 }
 
-EditTexture::EditTexture(QString n, QDomDocument *doc, QWidget *parent) : ModifyTexture(doc, parent)
+EditTexture::EditTexture(QString n, LBlockXmlEngine *doc, QWidget *parent) : ModifyTexture(doc, parent), elem()
 {
-	QDomElement root = doc->documentElement().toElement();
-	QDomElement textures = root.elementsByTagName("textures").item(0).toElement();
+	elem = doc->getTexture(n);
 
-	for (QDomNode i = textures.firstChild(); !i.isNull(); i = i.nextSibling())
-	{
-		QDomElement e = i.toElement();
-
-		QString xmlname = e.attribute("name");
-
-		if (xmlname == n) {
-			name = xmlname;
-			elem = e;
-			value = e.attribute("value");
-			color = e.attribute("color", "0xFFFFFF");
-			xscale = e.attribute("xscale", "1.0");
-			yscale = e.attribute("yscale", "1.0");
-			
-			break;
-		}
-	}
+	name = n;
+	value = elem.value("value");
+	color = elem.value("color", "0xFFFFFF");
+	xscale = elem.value("xscale", "1.0");
+	yscale = elem.value("yscale", "1.0");
 
 	QByteArray array = QByteArray::fromBase64(value.toAscii());
 
@@ -115,14 +101,15 @@ void EditTexture::slotVerifyAndAccept()
 	xscale = QString::number(ui->xscale->value());
 	yscale = QString::number(ui->yscale->value());
 
-	elem.setAttribute("xscale", xscale);
-	elem.setAttribute("yscale", yscale);
-	elem.setAttribute("color", color);
+	elem["xscale"] = xscale;
+	elem["yscale"] = yscale;
+	elem["color"] = color;
+	elem.writeToElement();
 
 	accept();
 }
 
-NewTexture::NewTexture(QDomDocument *doc, QWidget *parent) : ModifyTexture(doc, parent)
+NewTexture::NewTexture(LBlockXmlEngine *doc, QWidget *parent) : ModifyTexture(doc, parent)
 {
 }
 
@@ -138,17 +125,14 @@ void NewTexture::slotVerifyAndAccept()
 		return;
 	}
 
-	QDomElement root = doc->documentElement().toElement();
-	QDomElement textures = root.elementsByTagName("textures").item(0).toElement();
+	LBlockValues elem;
+	elem["name"] = name;
+	elem["value"] = value;
+	elem["xscale"] = xscale;
+	elem["yscale"] = yscale;
+	elem["color"] = color;
 
-	QDomElement elem = doc->createElement("texture");
-	textures.appendChild(elem);
-
-	elem.setAttribute("name", name);
-	elem.setAttribute("value", value);
-	elem.setAttribute("xscale", xscale);
-	elem.setAttribute("yscale", yscale);
-	elem.setAttribute("color", color);
+	doc->addTexture(elem);
 
 	accept();
 }

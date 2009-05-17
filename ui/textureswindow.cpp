@@ -4,7 +4,7 @@
 
 #include <QMessageBox>
 
-TexturesWindow::TexturesWindow(QDomDocument *d, QWidget *parent) : QDialog(parent), model(d, this), doc(d)
+TexturesWindow::TexturesWindow(LBlockXmlEngine *d, QWidget *parent) : QDialog(parent), model(d, this), doc(d)
 {
 	ui = new Ui::TexturesWindow;
 	ui->setupUi(this);
@@ -58,20 +58,9 @@ void TexturesWindow::slotRemoveTexture(QString item)
 	if (response != QMessageBox::Ok)
 		return;
 
-	QDomElement root = doc->documentElement().toElement();
-	QDomElement textures = root.elementsByTagName("textures").item(0).toElement();
 
-	for (QDomNode i = textures.firstChild(); !i.isNull(); i = i.nextSibling())
-	{
-		QDomElement e = i.toElement();
+	doc->removeTexture(item);
 
-		QString xmlname = e.attribute("name");
-
-		if (xmlname == item) {
-			textures.removeChild(i);
-			refresh();
-			emit(dirty());
-			return;
-		}
-	}
+	refresh();
+	emit(dirty());
 }

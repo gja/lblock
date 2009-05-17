@@ -95,3 +95,52 @@ void LBlockXmlEngine::ensureFloorsExist(int lowest, int highest)
 		}
 
 }
+
+LBlockValues LBlockXmlEngine::getTexture(const QString &name)
+{
+	QDomElement textures = documentElement().toElement().elementsByTagName("textures").item(0).toElement();
+
+	for (QDomNode i = textures.firstChild(); !i.isNull(); i = i.nextSibling())
+	{
+		QDomElement e = i.toElement();
+
+		if (e.attribute("name") == name)
+			return elementToHash(e);
+	}
+}
+
+void LBlockXmlEngine::addTexture(const LBlockValues &values)
+{
+	QDomElement textures = documentElement().toElement().elementsByTagName("textures").item(0).toElement();
+
+	QDomElement elem = createElement("texture");
+	textures.appendChild(elem);
+
+	foreach(QString key, values.keys())
+		elem.setAttribute(key, values[key]);
+}
+
+void LBlockXmlEngine::removeTexture(const QString &name)
+{
+	QDomElement textures = documentElement().toElement().elementsByTagName("textures").item(0).toElement();
+
+	for (QDomNode i = textures.firstChild(); !i.isNull(); i = i.nextSibling())
+	{
+		QDomElement e = i.toElement();
+
+		if (e.attribute("name") == name)
+			textures.removeChild(i);
+	}
+}
+
+LBlockValuesList LBlockXmlEngine::getTexturesList()
+{
+
+	QDomElement textures = documentElement().toElement().elementsByTagName("textures").item(0).toElement();
+	LBlockValuesList list;
+
+	for (QDomNode i = textures.firstChild(); !i.isNull(); i = i.nextSibling())
+		list<<elementToHash(i.toElement());
+
+	return list;
+}

@@ -3,9 +3,6 @@
 #include <QStandardItemModel>
 #include <QList>
 #include <QStandardItem>
-#include <QDomDocument>
-#include <QDomElement>
-
 
 void TexturesList::clear()
 {
@@ -14,7 +11,7 @@ void TexturesList::clear()
 	items.clear();
 }
 
-TexturesList::TexturesList(QDomDocument *d, QObject *parent) : QStandardItemModel(parent)
+TexturesList::TexturesList(LBlockXmlEngine *d, QObject *parent) : QStandardItemModel(parent)
 {
 	doc = d;
 }
@@ -23,16 +20,11 @@ void TexturesList::parse()
 {
 	clear();
 
-	QDomElement root = doc->documentElement().toElement();
-
-	QDomElement textures = root.elementsByTagName("textures").item(0).toElement();
-
-	for (QDomNode i = textures.firstChild(); !i.isNull(); i = i.nextSibling())
-	{
-		QDomElement e = i.toElement();
-
-		QString name = e.attribute("name");
-		QString value = e.attribute("value");
+	LBlockValuesList list = doc->getTexturesList();
+	
+	foreach(LBlockValues texture, list) {
+		QString name = texture["name"];
+		QString value = texture["value"];
 
 		QByteArray array = QByteArray::fromBase64(value.toAscii());
 

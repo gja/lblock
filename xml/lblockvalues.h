@@ -23,6 +23,8 @@ class LBlockValues : public QHash<QString, QString>
 	{
 	}
 
+	LBlockValues operator=(const LBlockValues &other);
+
 	const QDomElement &element()
 	{
 		return elem;

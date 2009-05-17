@@ -6,6 +6,7 @@
 #include <QString>
 
 #include "textureslist.h"
+#include "lblockxmlengine.h"
 
 namespace Ui {
 	class TexturesWindow;
@@ -18,10 +19,10 @@ class TexturesWindow : public QDialog {
 
 	TexturesList model;
 
-	QDomDocument *doc;
+	LBlockXmlEngine *doc;
 
     public:
-	TexturesWindow(QDomDocument *doc, QWidget *parent = NULL);
+	TexturesWindow(LBlockXmlEngine *doc, QWidget *parent = NULL);
 
 	~TexturesWindow();
 

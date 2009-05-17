@@ -3,9 +3,9 @@
 
 #include <QDialog>
 #include <QString>
-#include <QDomElement>
 
-class QDomDocument;
+#include "lblockxmlengine.h"
+
 namespace Ui {
 	class EditTexture;
 }
@@ -34,11 +34,11 @@ class ModifyTexture : public QDialog
 	QString yscale;
 
 	/// The XML Document containing the textures
-	QDomDocument *doc;
+	LBlockXmlEngine *doc;
 
     public:
 
-	ModifyTexture(QDomDocument *doc, QWidget *parent = NULL);
+	ModifyTexture(LBlockXmlEngine *doc, QWidget *parent = NULL);
 
 	virtual ~ModifyTexture();
 
@@ -59,10 +59,10 @@ class EditTexture : public ModifyTexture
 {
 	Q_OBJECT
 
-	QDomElement elem;
+	LBlockValues elem;
 
     public:
-	EditTexture(QString name, QDomDocument *doc, QWidget *parent = NULL);
+	EditTexture(QString name, LBlockXmlEngine *doc, QWidget *parent = NULL);
 
     public slots:
 
@@ -75,7 +75,7 @@ class NewTexture : public ModifyTexture
 
     public:
 
-	NewTexture(QDomDocument *doc, QWidget *parent = NULL);
+	NewTexture(LBlockXmlEngine *doc, QWidget *parent = NULL);
 
     public slots:
 

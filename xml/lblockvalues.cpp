@@ -9,3 +9,14 @@ void LBlockValues::writeToElement()
 		elem.setAttribute(i.key(), i.value());
 	}
 }
+
+LBlockValues LBlockValues::operator=(const LBlockValues &other)
+{
+	elem = other.elem;
+
+	clear();
+	foreach(QString key, other.keys())
+		insert(key, other[key]);
+
+	return *this;
+}

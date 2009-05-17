@@ -40,6 +40,21 @@ class LBlockXmlEngine : public QDomDocument
 	/// \param lower The lowest floor
 	/// \param upper The top most floor
 	void ensureFloorsExist(int lower, int upper);
+
+	/// This returns a list of all the textures
+	LBlockValuesList getTexturesList();
+
+	/// This adds a texture
+	/// \param values The values of the Texture
+	void addTexture(const LBlockValues &values);
+
+	/// The gets a named texture
+	/// \param name The name of the Texture
+	LBlockValues getTexture(const QString &name);
+
+	/// Remove the named texture
+	/// \param name The name of the Texture
+	void removeTexture(const QString &name);
 };
 
 #endif
