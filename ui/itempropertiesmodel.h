@@ -1,17 +1,18 @@
 #ifndef ITEMPROPERTIESMODEL_H
 #define ITEMPROPERTIESMODEL_H
 
+#include "lblockvalues.h"
+
 #include <QStandardItemModel>
-#include <QDomElement>
 #include <QList>
 
 class ItemPropertiesModel : public QStandardItemModel {
-	QDomElement elem;
+	LBlockValues elem;
 
 	QList<QStandardItem *> items;
 
     public:
-	ItemPropertiesModel(const QDomElement &e);
+	ItemPropertiesModel(const LBlockValues &e);
 
 	ItemPropertiesModel();
 

@@ -2,9 +2,6 @@
 
 #include <QStandardItemModel>
 #include <QStandardItem>
-#include <QDomElement>
-#include <QDomNode>
-#include <QDomNamedNodeMap>
 
 inline void initializeModel(ItemPropertiesModel *t)
 {
@@ -15,14 +12,13 @@ inline void initializeModel(ItemPropertiesModel *t)
 	t->setHorizontalHeaderLabels(list);
 }
 
-ItemPropertiesModel::ItemPropertiesModel(const QDomElement &e) : QStandardItemModel(), elem(e)
+#include <QDebug>
+ItemPropertiesModel::ItemPropertiesModel(const LBlockValues &e) : QStandardItemModel(), elem(e)
 {
 	initializeModel(this);
 
-	QDomNamedNodeMap attributes = elem.attributes();
-	for (int i = 0; i < attributes.length(); i++) {
-		QDomAttr item = attributes.item(i).toAttr();
-		QStandardItem *row = new QStandardItem(item.name());
+	foreach(QString attribute, elem.keys()) {
+		QStandardItem *row = new QStandardItem(attribute);
 		row->setEditable(false);
 		items<<row;
 		appendRow(row);

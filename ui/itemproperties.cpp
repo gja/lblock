@@ -1,10 +1,7 @@
 #include "itemproperties.h"
 #include "ui_itemproperties.h"
 
-#include <QDomElement>
 #include <QInputDialog>
-#include <QDomDocument>
-#include <QHash>
 
 ItemPropertiesDialog::ItemPropertiesDialog(QWidget *parent) : QDialog(parent)
 {
@@ -28,7 +25,7 @@ void ItemPropertiesDialog::setItem(const LBlockValues &e)
 	if (model)
 		delete model;
 
-	model = new ItemPropertiesModel(elem.element());
+	model = new ItemPropertiesModel(elem);
 	ui->view->setModel(model);
 }
 
