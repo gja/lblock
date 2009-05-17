@@ -17,7 +17,8 @@ add_subdirectory(items)
 
 QT4_ADD_RESOURCES(RESOURCE_FILES icons.qrc)
 
-set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp)
+set (SOURCES main.cpp glbox.cpp drawobject.cpp texture.cpp item.cpp
+	lblockxmlengine.cpp)
 QT4_WRAP_CPP(SOURCES glbox.h)
 
 add_executable(lblock ${SOURCES} ${RESOURCE_FILES})

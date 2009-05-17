@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "textureswindow.h"
+#include "lblockxmlengine.h"
 #include "itemproperties.h"
 
 #include <QDomDocument>
@@ -36,7 +37,7 @@ class MainWindow : public QMainWindow {
 	QString filename;
 
 	/// This stores the document currently being read
-	QDomDocument doc;
+	LBlockXmlEngine doc;
 
 	/// This stores the scene to draw everything
 	QGraphicsScene *scene;
