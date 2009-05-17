@@ -70,3 +70,28 @@ LBlockValues LBlockXmlEngine::getItemOnFloor(int n, const QString &name)
 		
 	return LBlockValues();
 }
+
+void LBlockXmlEngine::ensureFloorsExist(int lowest, int highest)
+{
+	QDomElement floors = documentElement().toElement().elementsByTagName("floors").item(0).toElement();
+	QDomNodeList floorList = floors.elementsByTagName("floor");
+
+	QHash <int, bool> createdFloors;
+
+	for (int i = 0; i < floorList.count(); i++) {
+		QDomNode floor = floorList.item(i);
+		int floor_number = floor.toElement().attribute("id", "0").toInt();
+		if (floor_number < lowest || floor_number > highest)
+			floors.removeChild(floor);
+		else
+			createdFloors[floor_number] = true;
+	}
+
+	for (int i = lowest; i <= highest; i++)
+		if (! createdFloors[i]) {
+			QDomElement elem = createElement("floor");
+			floors.appendChild(elem);
+			elem.setAttribute("id", QString::number(i));
+		}
+
+}

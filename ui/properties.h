@@ -7,17 +7,17 @@
 namespace Ui {
 	class PropertiesDialog;
 }
-class QDomDocument;
+class LBlockXmlEngine;
 
 class PropertiesDialog : public QDialog {
 	Q_OBJECT
 
 	Ui::PropertiesDialog *ui;
 
-	QDomDocument *doc;
+	LBlockXmlEngine *doc;
 
     public:
-	PropertiesDialog(QDomDocument *doc, QWidget *parent = NULL);
+	PropertiesDialog(LBlockXmlEngine *doc, QWidget *parent = NULL);
 
 	~PropertiesDialog();
 	

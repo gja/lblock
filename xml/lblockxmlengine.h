@@ -35,6 +35,11 @@ class LBlockXmlEngine : public QDomDocument
 	/// \param n The Floor
 	/// \param hash A Hash containing the properties
 	void addItemOnFloor(int n, const LBlockValues &hash);
+
+	/// This ensures that the appropriate floors have been created
+	/// \param lower The lowest floor
+	/// \param upper The top most floor
+	void ensureFloorsExist(int lower, int upper);
 };
 
 #endif

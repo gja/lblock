@@ -1,22 +1,20 @@
 #include "properties.h"
 #include "ui_properties.h"
+#include "lblockxmlengine.h"
 
-#include <QDomElement>
-#include <QDomDocument>
-#include <QHash>
 
-PropertiesDialog::PropertiesDialog(QDomDocument *d, QWidget *parent) : QDialog(parent), doc(d)
+PropertiesDialog::PropertiesDialog(LBlockXmlEngine *d, QWidget *parent) : QDialog(parent), doc(d)
 {
 	ui = new Ui::PropertiesDialog;
 	ui->setupUi(this);
 
-	QDomElement properties = doc->documentElement().toElement().elementsByTagName("properties").item(0).toElement();
+	LBlockValues properties = doc->getProperties();
 
-	ui->length->setValue(properties.attribute("length", "60").toInt());
-	ui->width->setValue(properties.attribute("width", "40").toInt());
-	ui->grid->setValue(properties.attribute("grid", "10").toInt());
-	ui->lowest->setValue(properties.attribute("lowest", "0").toInt());
-	ui->highest->setValue(properties.attribute("highest", "0").toInt());
+	ui->length->setValue(properties.value("length", "60").toInt());
+	ui->width->setValue(properties.value("width", "40").toInt());
+	ui->grid->setValue(properties.value("grid", "10").toInt());
+	ui->lowest->setValue(properties.value("lowest", "0").toInt());
+	ui->highest->setValue(properties.value("highest", "0").toInt());
 }
 
 void PropertiesDialog::slotVerifyAndAccept()
@@ -25,34 +23,16 @@ void PropertiesDialog::slotVerifyAndAccept()
 	if (ui->lowest->value() > ui->highest->value())
 		return;
 
-	QDomElement elem = doc->documentElement().toElement().elementsByTagName("properties").item(0).toElement();
+	LBlockValues elem = doc->getProperties();
 
-	elem.setAttribute("length", ui->length->value());
-	elem.setAttribute("width", ui->width->value());
-	elem.setAttribute("grid", ui->grid->value());
-	elem.setAttribute("lowest", ui->lowest->value());
-	elem.setAttribute("highest", ui->highest->value());
+	elem["length"] = QString::number(ui->length->value());
+	elem["width"] = QString::number(ui->width->value());
+	elem["grid"] = QString::number(ui->grid->value());
+	elem["lowest"] = QString::number(ui->lowest->value());
+	elem["highest"] = QString::number(ui->highest->value());
+	elem.writeToElement();
 
-	QDomElement floors = doc->documentElement().toElement().elementsByTagName("floors").item(0).toElement();
-	QDomNodeList floorList = floors.elementsByTagName("floor");
-
-	QHash <int, bool> createdFloors;
-
-	for (int i = 0; i < floorList.count(); i++) {
-		QDomNode floor = floorList.item(i);
-		int floor_number = floor.toElement().attribute("id", "0").toInt();
-		if (floor_number < ui->lowest->value() || floor_number > ui->highest->value())
-			floors.removeChild(floor);
-		else
-			createdFloors[floor_number] = true;
-	}
-
-	for (int i = ui->lowest->value(); i <= ui->highest->value(); i++)
-		if (! createdFloors[i]) {
-			QDomElement elem = doc->createElement("floor");
-			floors.appendChild(elem);
-			elem.setAttribute("id", QString::number(i));
-		}
+	doc->ensureFloorsExist(ui->lowest->value(), ui->highest->value());
 
 	accept();
 }
