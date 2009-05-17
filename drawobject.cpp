@@ -9,13 +9,13 @@
 #include "bed.h"
 #include "sofa.h"
 #include "tv.h"
+#include "lblockxmlengine.h"
 
 #include <qgl.h>
 #include <QImage>
-#include <QDomDocument>
 #include <QDebug>
 
-void GLBox::drawObject(const QDomDocument *doc)
+void GLBox::drawObject()
 {
 	QDomElement root = doc->documentElement().toElement();
 

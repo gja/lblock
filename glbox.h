@@ -9,7 +9,7 @@
 #include <QString>
 #include <QTimer>
 
-class QDomDocument;
+class LBlockXmlEngine;
 
 /**
  * This represents the OpenGL widget.
@@ -34,7 +34,7 @@ class GLBox : public QGLWidget
 	}
 
 	/// This stores the Document shown
-	QDomDocument *doc;
+	LBlockXmlEngine *doc;
 
     public:
 	/**
@@ -42,7 +42,7 @@ class GLBox : public QGLWidget
 	 * \param doc An XML Document that we parse to see objects
 	 * \param parent The Widget's Parent (NULL for no parent)
 	 */
-	GLBox(QDomDocument *doc, QWidget* parent = NULL);
+	GLBox(LBlockXmlEngine *doc, QWidget* parent = NULL);
 
 	/// The Destructor
 	~GLBox();
@@ -74,14 +74,15 @@ class GLBox : public QGLWidget
 	 * See the example code below for the usage
 	 * \code
 	 * QFile file("file.xml");
-	 * QDomDocument doc;
-	 * doc.setContents(file);
+	 * LBlockXmlEngine docc;
+	 * docc.setContents(file);
 	 * file.close();
-	 * drawObject(&doc);
+	 * doc = &docc;
+	 * drawObject();
 	 * \endcode
 	 * \param doc A parsed XML DOM Document
 	 */
-	void drawObject(const QDomDocument *doc);
+	void drawObject();
 
 	/**
 	 * This is called whenever a key is pressed.

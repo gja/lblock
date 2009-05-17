@@ -1,6 +1,7 @@
 #include "glbox.h"
 #include "constants.h"
 #include "wall.h"
+#include "lblockxmlengine.h"
 
 #include <QTimer>
 #include <QKeyEvent>
@@ -8,13 +9,12 @@
 #include <QDesktopWidget>
 #include <QDebug>
 
-#include <QDomDocument>
 #include <QFile>
 
 #include <math.h>
 
 // Create a GLBox widget
-GLBox::GLBox(QDomDocument *d, QWidget *parent) : QGLWidget(parent), doc(d)
+GLBox::GLBox(LBlockXmlEngine *d, QWidget *parent) : QGLWidget(parent), doc(d)
 {
 	posx = posz = 0.0;
 	posy = 6.0;		// 6 foot tall, caught you red handed!
@@ -79,7 +79,7 @@ void GLBox::initializeGL()
 
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-	drawObject(doc);
+	drawObject();
 
 	timer.start();
 }
