@@ -169,3 +169,16 @@ void LBlockXmlEngine::addWindowToWall(const LBlockValues &values)
 		item.appendChild(window);
 	}
 }
+
+void LBlockXmlEngine::deleteItem(const QString &name)
+{
+	QDomNodeList items = documentElement().toElement().elementsByTagName("item");
+	for (int i = 0; i < items.length(); i++) {
+		QDomElement item = items.at(i).toElement();
+
+		if (item.attribute("name") != name)
+			continue;
+
+		item.parentNode().removeChild(item);
+	}
+}

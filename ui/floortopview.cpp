@@ -8,6 +8,7 @@
 #include <math.h>
 #include <QMenu>
 #include <QIcon>
+#include <QMessageBox>
 
 FloorTopView::FloorTopView(QWidget *parent) : QGraphicsView(parent), creatingItem(false), currentItem(NULL), currentItemType("none")
 {
@@ -41,14 +42,17 @@ void FloorTopView::mousePressEvent(QMouseEvent *event)
 	if (event->button() == Qt::RightButton) {
 		LBlockGraphicsItem *item = dynamic_cast<LBlockGraphicsItem *>(itemAt(event->pos()));
 		if (item) {
+			QMenu menu;
+			currentItemName = item->getName();
+
 			if (item->getName().startsWith("wall")) {
-				currentWall = item->getName();
-				QMenu menu;
 				menu.addAction(QIcon(":/icons/icons/list-add.png"), "Add Window", this, SLOT(addWindow()));
 				menu.addAction(QIcon(":/icons/icons/list-add.png"), "Add Door", this, SLOT(addDoor()));
-				menu.exec(mapToGlobal(event->pos()));
 			}
 
+			menu.addAction(QIcon(":/icons/icons/list-remove.png"), "Delete Item", this, SLOT(deleteItemFromXML()));
+
+			menu.exec(mapToGlobal(event->pos()));
 			emit itemSelected(item->getName());
 		}
 
@@ -161,12 +165,18 @@ void FloorTopView::addWindow()
 {
 	AddWindow window;
 	if (window.exec() == QDialog::Accepted)
-		parseUsedDialog(doc, currentWall, "window", window);
+		parseUsedDialog(doc, currentItemName, "window", window);
 }
 
 void FloorTopView::addDoor()
 {
 	AddDoor door;
 	if (door.exec() == QDialog::Accepted)
-		parseUsedDialog(doc, currentWall, "door", door);
+		parseUsedDialog(doc, currentItemName, "door", door);
+}
+
+void FloorTopView::deleteItemFromXML()
+{
+	if (QMessageBox::question(NULL, "Confirmation", "Are you sure you want to delete this item", QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
+		doc->deleteItem(currentItemName);
 }

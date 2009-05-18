@@ -59,6 +59,10 @@ class LBlockXmlEngine : public QDomDocument
 	/// This adds a window to a wall
 	/// \param values The Values of the Window
 	void addWindowToWall(const LBlockValues &values);
+
+	/// This deletes and item from the XML
+	/// \param name The name of the Item
+	void deleteItem(const QString &name);
 };
 
 #endif

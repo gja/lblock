@@ -18,8 +18,8 @@ class FloorTopView : public QGraphicsView {
 	QGraphicsRectItem *currentItem;
 	QPoint startingPos;
 
-	/// This is the name of the Wall currently adding a window to
-	QString currentWall;
+	/// This is the name of the Item currently being modified
+	QString currentItemName;
 
 	void createItem(const QPoint &pos);
 	void deleteItem();
@@ -58,6 +58,8 @@ class FloorTopView : public QGraphicsView {
 	void addDoor();
 
 	void addWindow();
+
+	void deleteItemFromXML();
 };
 
 #endif
