@@ -272,7 +272,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::slotProperties()
 {
 	PropertiesDialog *dialog = new PropertiesDialog(&doc);
-	connect(dialog, SIGNAL(accepted()), this, SLOT(clear()));
+	connect(dialog, SIGNAL(accepted()), this, SLOT(slotRefresh()));
 	connect(dialog, SIGNAL(finished(int)), dialog, SLOT(deleteLater()));
 	dialog->show();
 }
