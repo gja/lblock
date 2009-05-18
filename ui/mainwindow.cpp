@@ -294,7 +294,7 @@ inline LBlockGraphicsItem *createFloor(const LBlockValues &values)
 {
 	LBlockGraphicsItem *item = new LBlockGraphicsItem(0, 0, values.value("length").toFloat() * PIXELS_PER_FOOT, values.value("width", "0.5").toFloat() * PIXELS_PER_FOOT, values.value("name"));
 	item->setZValue(-1.0);
-	item->setBrush(QBrush(Qt::black, Qt::SolidPattern));
+	item->setBrush(QBrush(Qt::white, Qt::SolidPattern));
 	item->rotate(values.value("rotation").toFloat());
 	item->setPos(values.value("x").toFloat() * PIXELS_PER_FOOT, values.value("z").toFloat() * PIXELS_PER_FOOT);
 	return item;
