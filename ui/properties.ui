@@ -1,130 +1,174 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>PropertiesDialog</class>
- <widget class="QDialog" name="PropertiesDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="PropertiesDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>236</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Design Properties</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" >
-   <item row="0" column="0" >
-    <widget class="QLabel" name="label" >
-     <property name="text" >
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
       <string>Length Of Plot</string>
      </property>
-    </widget>
-   </item>
-   <item row="1" column="0" >
-    <widget class="QLabel" name="label_2" >
-     <property name="text" >
-      <string>Width Of Plot</string>
+     <property name="buddy">
+      <cstring>length</cstring>
      </property>
     </widget>
    </item>
-   <item row="0" column="1" >
-    <widget class="QSpinBox" name="length" >
-     <property name="layoutDirection" >
+   <item row="0" column="1">
+    <widget class="QSpinBox" name="length">
+     <property name="layoutDirection">
       <enum>Qt::LeftToRight</enum>
      </property>
-     <property name="alignment" >
+     <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <property name="minimum" >
+     <property name="minimum">
       <number>10</number>
      </property>
-     <property name="maximum" >
+     <property name="maximum">
       <number>1000</number>
      </property>
-     <property name="value" >
+     <property name="value">
       <number>60</number>
      </property>
     </widget>
    </item>
-   <item row="1" column="1" >
-    <widget class="QSpinBox" name="width" >
-     <property name="alignment" >
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Width Of Plot</string>
+     </property>
+     <property name="buddy">
+      <cstring>width</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QSpinBox" name="width">
+     <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <property name="minimum" >
+     <property name="minimum">
       <number>10</number>
      </property>
-     <property name="maximum" >
+     <property name="maximum">
       <number>1000</number>
      </property>
-     <property name="value" >
+     <property name="value">
       <number>40</number>
      </property>
     </widget>
    </item>
-   <item row="2" column="0" >
-    <widget class="QLabel" name="label_3" >
-     <property name="text" >
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
       <string>Distance Between Grid Lines</string>
      </property>
-    </widget>
-   </item>
-   <item row="3" column="0" >
-    <widget class="QLabel" name="label_4" >
-     <property name="text" >
-      <string>Lowest Floor</string>
+     <property name="buddy">
+      <cstring>grid</cstring>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" >
-    <widget class="QLabel" name="label_5" >
-     <property name="text" >
-      <string>Top Floor</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1" >
-    <widget class="QSpinBox" name="grid" >
-     <property name="alignment" >
+   <item row="2" column="1">
+    <widget class="QSpinBox" name="grid">
+     <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <property name="minimum" >
+     <property name="minimum">
       <number>1</number>
      </property>
-     <property name="maximum" >
+     <property name="maximum">
       <number>100</number>
      </property>
-     <property name="value" >
+     <property name="value">
       <number>10</number>
      </property>
     </widget>
    </item>
-   <item row="3" column="1" >
-    <widget class="QSpinBox" name="lowest" >
-     <property name="alignment" >
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Lowest Floor</string>
+     </property>
+     <property name="buddy">
+      <cstring>lowest</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QSpinBox" name="lowest">
+     <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <property name="minimum" >
+     <property name="minimum">
       <number>-3</number>
      </property>
     </widget>
    </item>
-   <item row="4" column="1" >
-    <widget class="QSpinBox" name="highest" >
-     <property name="alignment" >
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Top Floor</string>
+     </property>
+     <property name="buddy">
+      <cstring>highest</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QSpinBox" name="highest">
+     <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
-   <item row="5" column="1" >
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="orientation" >
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>Start Position</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="standardButtons" >
+     <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
+   </item>
+   <item row="5" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
+     </property>
+     <item>
+      <widget class="QSpinBox" name="startx">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="starty">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -136,11 +180,11 @@
    <receiver>PropertiesDialog</receiver>
    <slot>slotVerifyAndAccept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>248</x>
      <y>254</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>157</x>
      <y>274</y>
     </hint>
@@ -152,11 +196,11 @@
    <receiver>PropertiesDialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>316</x>
      <y>260</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
     </hint>

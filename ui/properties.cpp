@@ -15,6 +15,8 @@ PropertiesDialog::PropertiesDialog(LBlockXmlEngine *d, QWidget *parent) : QDialo
 	ui->grid->setValue(properties.value("grid", "10").toInt());
 	ui->lowest->setValue(properties.value("lowest", "0").toInt());
 	ui->highest->setValue(properties.value("highest", "0").toInt());
+	ui->startx->setValue(properties.value("startx", "0").toInt());
+	ui->starty->setValue(properties.value("starty", "0").toInt());
 }
 
 void PropertiesDialog::slotVerifyAndAccept()
@@ -30,6 +32,8 @@ void PropertiesDialog::slotVerifyAndAccept()
 	elem["grid"] = QString::number(ui->grid->value());
 	elem["lowest"] = QString::number(ui->lowest->value());
 	elem["highest"] = QString::number(ui->highest->value());
+	elem["startx"] = QString::number(ui->startx->value());
+	elem["starty"] = QString::number(ui->starty->value());
 	elem.writeToElement();
 
 	doc->ensureFloorsExist(ui->lowest->value(), ui->highest->value());

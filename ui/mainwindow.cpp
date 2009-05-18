@@ -111,6 +111,8 @@ void MainWindow::clear()
 		}
 	}
 
+	scene->addEllipse(properties["startx"].toInt() * PIXELS_PER_FOOT - 3, properties["starty"].toInt() * PIXELS_PER_FOOT - 3, 6, 6, QPen(Qt::green), QBrush(Qt::green));
+
 	dirty = true;
 }
 
@@ -123,7 +125,7 @@ void MainWindow::slotNew()
 	doc.setContent(QString(
 "<!DOCTYPE LBlockML>\n"
 "<lblock>\n"
-" <properties width=\"40\" lowest=\"0\" grid=\"10\" length=\"60\" highest=\"0\" />"
+" <properties width=\"40\" lowest=\"0\" grid=\"10\" length=\"60\" highest=\"0\" startx=\"0\" starty=\"0\"/>"
 " <textures />\n"
 " <floors>\n"
 "  <floor id=\"0\" />\n"
