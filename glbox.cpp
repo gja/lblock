@@ -18,7 +18,7 @@ GLBox::GLBox(LBlockXmlEngine *d, QWidget *parent) : QGLWidget(parent), doc(d)
 {
 	LBlockValues properties = doc->getProperties();
 	posx = properties["startx"].toInt();
-	posz = -properties["startz"].toInt();
+	posz = -properties["starty"].toInt();
 
 	posy = 6.0;		// 6 foot tall, caught you red handed!
 	left_right = up_down = 0;
