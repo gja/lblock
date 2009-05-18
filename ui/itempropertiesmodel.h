@@ -10,12 +10,14 @@
  */
 class ItemPropertiesModel : public QStandardItemModel {
 	LBlockValues elem;
+
 	/// This is th list of all the items
 	QList<QStandardItem *> items;
 
     public:
     	/// This is the constuctor with paprameters
 	ItemPropertiesModel(const LBlockValues &e);
+
 	/// This is the empty constructor
 	ItemPropertiesModel();
 

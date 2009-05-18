@@ -22,6 +22,7 @@ class ModifyTexture : public QDialog
 
     protected:
 
+	/// This hold the UI objects
 	Ui::EditTexture *ui;
 	
 	/// The value of the image stored in base64
@@ -44,8 +45,10 @@ class ModifyTexture : public QDialog
 
     public:
 
+	/// Constructor
 	ModifyTexture(LBlockXmlEngine *doc, QWidget *parent = NULL);
 
+	/// Destructor
 	virtual ~ModifyTexture();
 
     public slots:
@@ -64,10 +67,12 @@ class ModifyTexture : public QDialog
 	void error(QString);
 };
 
+/// This class is to modify a Texture
 class EditTexture : public ModifyTexture
 {
 	Q_OBJECT
 
+	/// The XML Element that represents this texture
 	LBlockValues elem;
 
     public:
@@ -78,6 +83,7 @@ class EditTexture : public ModifyTexture
 	void slotVerifyAndAccept();
 };
 
+/// This class is to add a new texture
 class NewTexture : public ModifyTexture
 {
 	Q_OBJECT

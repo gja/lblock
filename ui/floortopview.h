@@ -82,6 +82,7 @@ class FloorTopView : public QGraphicsView {
 	/// This function is called when we need to add a window
 	void addWindow();
 
+	/// This removes and item from XML backend
 	void deleteItemFromXML();
 };
 
