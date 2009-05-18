@@ -18,6 +18,6 @@ class Wall::Door : public Wall::Window
 	inline Door(Wall *parent, GLfloat pos, GLfloat length, const Texture &texture, GLfloat height) : Window(parent, pos, length, texture, 0.0f, height)
 	{
 	}
-}
+};
 
 #endif

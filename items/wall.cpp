@@ -1,5 +1,6 @@
 #include "wall.h"
 #include "window.h"
+#include "door.h"
 
 #include <qgl.h>
 #include <QPoint>
@@ -14,6 +15,12 @@ void Wall::addWindow(float p, float l, const Texture &t, float lh, float uh)
 {
 	Window *w = new Window(this, p, l, t, lh, uh);
 	windows<<w;
+}
+
+void Wall::addDoor(float position, float length, const Texture &texture, float height)
+{
+	Door *d = new Door(this, position, length, texture, height);
+	windows<<d;
 }
 
 Wall::~Wall()
@@ -108,7 +115,13 @@ bool Wall::isCollision(float x, float y, float z)
 
 	collisionMatrix.map(x, z, &newx, &newz);
 
+	foreach(Window *w, windows) {
+		if (dynamic_cast<Door *>(w) && newx > w->position - 1.0 && newx < w->position + w->length + 1.0)
+			return false;
+	}
+
 	if (newx >= -1.0 && newx <= length + 1.0 && newz >= -1.0 && newz <= thickness + 1.0)
 		return true;
 	return false;
 }
+

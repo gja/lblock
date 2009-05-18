@@ -116,10 +116,7 @@ class Wall : public Item
 	 * \param texture The texture of the door
 	 * \param height The height of the door, default value of 7.0
 	 */
-	inline void addDoor(float position, float length, const Texture &texture = Texture(0x7F00FFFF), float height = 7.0)
-	{
-		addWindow(position, length, texture, 0.0f, height);
-	}
+	void addDoor(float position, float length, const Texture &texture = Texture(0x7F00FFFF), float height = 7.0);
 
 	/// This function generates the CallList. This CallList is stored in \ref Item::object
 	virtual void generateList();
