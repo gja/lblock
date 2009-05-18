@@ -3,6 +3,8 @@
 
 #include <qgl.h>
 
+#define quickpoint(x, y, z) glTexCoord2f(((x) + (z)/2) / texture.sizex, ((y) + (z)/2) / texture.sizey); glVertex3f(x, y, z)
+
 /**
  * This abstract class represents an Item. By itself, this class doesn't have much
  * use, and must be inherited for use. This class provides some functions that all
