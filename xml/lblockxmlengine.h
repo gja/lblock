@@ -55,6 +55,10 @@ class LBlockXmlEngine : public QDomDocument
 	/// Remove the named texture
 	/// \param name The name of the Texture
 	void removeTexture(const QString &name);
+
+	/// This adds a window to a wall
+	/// \param values The Values of the Window
+	void addWindowToWall(const LBlockValues &values);
 };
 
 #endif

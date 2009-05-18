@@ -1,8 +1,13 @@
 #include "addwindow.h"
-#include "ui_addwindow.h"
 
 AddWindow::AddWindow(QWidget *parent) : QDialog(parent)
 {
-	ui = new Ui::AddWindow;
-	ui->setupUi(this);
+	ui.setupUi(this);
+}
+
+AddDoor::AddDoor(QWidget *parent) : AddWindow(parent)
+{
+	ui.lowerHeight->setValue(0.0);
+	ui.lowerHeight->hide();
+	ui.label_4->hide();
 }

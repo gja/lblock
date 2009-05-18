@@ -42,6 +42,7 @@ void FloorTopView::mousePressEvent(QMouseEvent *event)
 		LBlockGraphicsItem *item = dynamic_cast<LBlockGraphicsItem *>(itemAt(event->pos()));
 		if (item) {
 			if (item->getName().startsWith("wall")) {
+				currentWall = item->getName();
 				QMenu menu;
 				menu.addAction(QIcon(":/icons/icons/list-add.png"), "Add Window", this, SLOT(addWindow()));
 				menu.addAction(QIcon(":/icons/icons/list-add.png"), "Add Door", this, SLOT(addDoor()));
@@ -143,13 +144,29 @@ void FloorTopView::setCurrentItemType(const QString &string)
 	currentItemType = string;
 }
 
+inline void parseUsedDialog(LBlockXmlEngine *doc, const QString &name, const QString &type, const AddWindow &dialog)
+{
+	LBlockValues values;
+	values["type"] = type;
+	values["name"] = name;
+	values["position"] = QString::number(dialog.ui.position->value());
+	values["length"] = QString::number(dialog.ui.length->value());
+	values["upperHeight"] = QString::number(dialog.ui.upperHeight->value());
+	values["lowerHeight"] = QString::number(dialog.ui.lowerHeight->value());
+	values["texture"] = dialog.ui.texture->text();
+	doc->addWindowToWall(values);
+}
+
 void FloorTopView::addWindow()
 {
 	AddWindow window;
-	window.exec();
+	if (window.exec() == QDialog::Accepted)
+		parseUsedDialog(doc, currentWall, "window", window);
 }
 
 void FloorTopView::addDoor()
 {
-	qDebug("Door");
+	AddDoor door;
+	if (door.exec() == QDialog::Accepted)
+		parseUsedDialog(doc, currentWall, "door", door);
 }

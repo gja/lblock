@@ -3,17 +3,21 @@
 
 #include <QDialog>
 
-namespace Ui {
-	class AddWindow;
-}
+#include "ui_addwindow.h"
 
 class AddWindow : public QDialog {
 	Q_OBJECT
 
-	Ui::AddWindow *ui;
+    public:
+	Ui::AddWindow ui;
+
+	AddWindow(QWidget *parent = NULL);
+};
+
+class AddDoor : public AddWindow {
 
     public:
-	AddWindow(QWidget *parent = NULL);
+	AddDoor(QWidget *parent = NULL);
 };
 
 #endif

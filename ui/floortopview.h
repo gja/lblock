@@ -1,10 +1,12 @@
-#ifndef FLOORTOPVIEW_H
+#ifndef FLOORTOPVIEW_
 #define FLOORTOPVIEW_H
 
 #include <QGraphicsView>
 #include <QPoint>
 #include <QHash>
 #include <QString>
+
+#include "lblockxmlengine.h"
 
 class QMouseEvent;
 class QEvent;
@@ -16,10 +18,15 @@ class FloorTopView : public QGraphicsView {
 	QGraphicsRectItem *currentItem;
 	QPoint startingPos;
 
+	/// This is the name of the Wall currently adding a window to
+	QString currentWall;
+
 	void createItem(const QPoint &pos);
 	void deleteItem();
 
 	QString currentItemType;
+
+	LBlockXmlEngine *doc;
 
     public:
 	FloorTopView(QWidget *parent = NULL);
@@ -32,6 +39,10 @@ class FloorTopView : public QGraphicsView {
 	const inline QString &getCurrentItemType()
 	{
 		return currentItemType;
+	}
+
+	inline void setDoc(LBlockXmlEngine *d) {
+		doc = d;
 	}
 
     signals:

@@ -144,3 +144,28 @@ LBlockValuesList LBlockXmlEngine::getTexturesList()
 
 	return list;
 }
+
+void LBlockXmlEngine::addWindowToWall(const LBlockValues &values)
+{
+	QDomNodeList items = documentElement().toElement().elementsByTagName("item");
+	for (int i = 0; i < items.length(); i++) {
+		QDomElement item = items.at(i).toElement();
+
+		if (item.attribute("name") != values["name"])
+			continue;
+		
+		QDomElement window = createElement(values["type"]);
+		window.setAttribute("length", values["length"]);
+		window.setAttribute("position", values["position"]);
+		window.setAttribute("texture", values["texture"]);
+
+		if (values["type"] == "window") {
+			window.setAttribute("upperHeight", values["upperHeight"]);
+			window.setAttribute("lowerHeight", values["lowerHeight"]);
+		} else {
+			window.setAttribute("height", values["upperHeight"]);
+		}
+
+		item.appendChild(window);
+	}
+}

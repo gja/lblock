@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), texturesWindow(&d
 	connect(this, SIGNAL(currentItemChanged(QString)), ui->graphicsView, SLOT(setCurrentItemType(QString)));
 
 	slotNew();
+
+	ui->graphicsView->setDoc(&doc);
 }
 
 MainWindow::~MainWindow()
