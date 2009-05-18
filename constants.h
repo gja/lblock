@@ -17,6 +17,8 @@
 #define MOVE_BACKWARD_KEY Qt::Key_S
 #define MOVE_LEFT_KEY Qt::Key_A
 #define MOVE_RIGHT_KEY Qt::Key_D
+#define MOVE_UP_KEY Qt::Key_T
+#define MOVE_DOWN_KEY Qt::Key_R
 
 #define PIXELS_PER_FOOT 12
 

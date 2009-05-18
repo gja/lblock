@@ -153,6 +153,14 @@ void GLBox::keyPressEvent( QKeyEvent *e)
 			newposz += WALK_STEP * sin(angle);
 			break;
 
+		case MOVE_UP_KEY:
+			posy += WALK_STEP;
+			break;
+
+		case MOVE_DOWN_KEY:
+			posy -= WALK_STEP;
+			break;
+
 		case Qt::Key_Space:
 			qDebug()<<posx<<posy<<posz<<left_right<<up_down;
 	}
