@@ -10,6 +10,12 @@ namespace Ui {
 	class EditTexture;
 }
 
+/**
+ * This class can be used to load the textures of our choice.
+ * It can be used to pop a dialog for loading the textures. The texture files
+ * are of the extension png, bmp and jpeg.
+ */
+
 class ModifyTexture : public QDialog
 {
 	Q_OBJECT
@@ -43,15 +49,18 @@ class ModifyTexture : public QDialog
 	virtual ~ModifyTexture();
 
     public slots:
-
+	
+	/// This slot is called when all the values are entered and needto be accepted and verified
 	virtual void slotVerifyAndAccept() = 0;
-
+	
+	/// This slot is called when the colour is changed 
 	void slotChangeColor();
-
+	
+	/// This slot is called when the image is changed
 	void slotChangeImage();
 
     signals:
-
+	/// This signal is emitted when there is a error
 	void error(QString);
 };
 

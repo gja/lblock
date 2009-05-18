@@ -16,16 +16,22 @@ namespace Ui {
 
 class QGraphicsScene;
 class QGraphicsItem;
+/**
+ * This class contain functions for all the actions performed on the main screen
+ */
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
-
+	/// This hold all the ui related objects
 	Ui::MainWindow *ui;
-
+	
+	/// This contains the textures used for the window
 	TexturesWindow texturesWindow;
-
+	
+	/// This contains the properties of the item
 	ItemPropertiesDialog itemProperties;
-
+	
+	/// It contains the action for the each button pressed
 	QActionGroup group;
 
 	/// This is true if the file has been modified
@@ -60,53 +66,74 @@ class MainWindow : public QMainWindow {
 	 * \return true if it is safe to close
 	 */
 	bool okToClose();
-
+	
+	/// This function is called when the clse action is performed
 	void closeEvent(QCloseEvent *event);
 
     signals:
+    	/// This function signals an error
 	void error(QString);
 
+	/// This function enables all the buttons on the main window
 	void enableButtons(bool);
-
+	
+	/// This function is for selecting the particular item specified
 	void itemSelected(LBlockValues);
-
+	
+	/// This function signals that the selected item has been changed
 	void currentItemChanged(QString);
 
     public slots:
 
 	/// This function clears everything (except filename)
 	void clear();
-
+	
+	/// This function creates a new file
 	void slotNew();
 
+	/// This function opens the file
 	void slotOpen();
-
+	
+	/// This function saves the selected file
 	void slotSave();
-
+	
+	/// This function is for the save as operation on the file
 	void slotSaveAs();
-
+	
+	/// This function is for the about operation
 	void slotAbout();
 
+	/// This function is for the information related to Qt
 	void slotAboutQt();
-
+	
+	/// This function ensures that file has to be saved once a change has been done
 	void slotMakeDirty();
 
+	/// This function indicates that the file has been saved after recent changes
 	void slotMakeClean();
-
+	
+	/// This function is called when a error occurs
 	void slotErrorHandler(QString);
 
+	/// This function is for execute operation
 	void slotExecute();
-
+	
+	/// This function shows the properties of the file
 	void slotProperties();
-
+	
+	/// This function shows the floor
 	void slotShowFloor(int floor, bool force = false);
-
+	
+	/// This function opens the new item selected
 	void slotNewItem(const QHash<QString, QString> &hash);
-
+	
+	/// This function is called when a item is selected
 	void slotItemSelected(const QString &hash);
-
+	
+	/// This function is for performing refresh
 	void slotRefresh();
-
+	
+	/// This function is to identify the currently changed items
 	void currentChanged(bool toggled);
 };
 
