@@ -165,9 +165,6 @@
    <addaction name="action_Open"/>
    <addaction name="action_Save"/>
    <addaction name="separator"/>
-   <addaction name="actionAdd_Item"/>
-   <addaction name="actionRemove_Item"/>
-   <addaction name="separator"/>
    <addaction name="actionExecute"/>
    <addaction name="separator"/>
    <addaction name="actionQuit"/>
