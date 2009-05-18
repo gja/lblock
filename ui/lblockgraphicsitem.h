@@ -4,6 +4,9 @@
 #include <QGraphicsRectItem>
 #include <QString>
 
+/**
+ * This class contains the items on the screen
+ */
 class LBlockGraphicsItem : public QGraphicsRectItem
 {
 	/// This stores the name of the item
