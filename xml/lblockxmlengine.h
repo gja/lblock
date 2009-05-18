@@ -8,6 +8,9 @@
 
 #include "lblockvalues.h"
 
+/// This class interfaces with XML Document.
+/// Any class that needs to access the XML Backend should
+/// use the methods provided by this class
 class LBlockXmlEngine : public QDomDocument
 {
 	/// The returns a node containing the current floor
