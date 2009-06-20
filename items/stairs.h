@@ -42,7 +42,7 @@ class Stairs : public Item
 	 * \param height It contains the height of the table, default value is 10
 	 * \param texture It represents the inner texture of the tables
 	 */
-	Stairs(float x, float y, float z, float rotation, float length, float width, float height = 5.0f, const Texture &texture = Texture());
+	Stairs(float x, float y, float z, float rotation, float length, float width, float height = 10.0f, const Texture &texture = Texture());
 
 	/// The destructor.
 	~Stairs();

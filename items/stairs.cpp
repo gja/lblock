@@ -17,23 +17,23 @@ void Stairs::generateList()
 {
 	glBindTexture(GL_TEXTURE_2D, texture.texture);
 	glBegin(GL_QUADS);
-	float i = height/9;
-	float j = width/9;
+	float i = 0;
+	float j = 0;
 
 	while(i<height)
 	{
-		glVertex3f(0.0f + j, 0.0f + i, 0.0f);
-		glVertex3f(0.0f + j, 0.0f + i, length - 5.0f);
-		glVertex3f((width - 4.4f) + j, 0.0f + i, length - 5.0f);
-		glVertex3f((width - 4.4f) + j, 0.0f + i, 0.0f);
+		quickpoint(0, i, -j);
+		quickpoint(0, i, -j - width / 9);
+		quickpoint(length, i, -j - width / 9);
+		quickpoint(length, i, -j);
 
-		glVertex3f((width - 4.4f) + j, 0.0f + i, 0.0f);
-		glVertex3f((width - 4.4f) + j, 0.0f + i, length - 5.0f);
-		glVertex3f((width - 4.4f) + j, (height/9) + i, length - 5.0f);
-		glVertex3f((width - 4.4f) + j, (height/9) + i, 0.0f);
+		quickpoint(0, i, -j - width/9);
+		quickpoint(0, i + height/9, -j - width/9);
+		quickpoint(length, i + height/9, -j - width/9);
+		quickpoint(length, i, -j - width/9);
 		
-		i = i+height/9;
-		j = j+width/9;
+		i = i + height/9;
+		j = j + width/9;
 	}
 	
 
@@ -42,14 +42,5 @@ void Stairs::generateList()
 
 bool Stairs::isCollision(float x, float y, float z)
 {
-	if (y < posy || y > posy + height)
-		return false;
-
-	qreal newx, newz;
-
-	collisionMatrix.map(x, z, &newx, &newz);
-
-	if (newx >= -1.0 && newx <= length + 1.0 && newz >= -1.0 && newz <= width + 1.0)
-		return true;
 	return false;
 }
