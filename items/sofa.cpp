@@ -19,176 +19,142 @@ void Sofa::generateList()
 	glBegin(GL_QUADS);
 
 		// Top Edge
-		glVertex3f(0.0f, height/2, 0.0f);
-		glVertex3f(0.0f, height/2, length);
-		glVertex3f(width, height/2, length);
-		glVertex3f(width, height/2, 0.0f);
+		quickpoint(0.0f, (height / 2), 0.0f);
+		quickpoint(0.0f, (height / 2), -width);
+		quickpoint(length, (height / 2), -width);
+		quickpoint(length, (height / 2), 0.0f);
 
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.0f);
-		glVertex3f(0.0f, (height - 0.2f)/2, length);
-		glVertex3f(width, (height - 0.2f)/2, length);
-		glVertex3f(width, (height - 0.2f)/2, 0.0f);
+		quickpoint(0.0f, (height / 2) - 0.2f, 0.0f);
+		quickpoint(0.0f, (height / 2) - 0.2f, -width);
+		quickpoint(length, (height / 2) - 0.2f, -width);
+		quickpoint(length, (height / 2) - 0.2f, 0.0f);
 		
+
 		//Sides covering the top two edges of the table
-		glVertex3f(0.0f, height/2, 0.0f);
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.0f);
-		glVertex3f(width, (height - 0.2f)/2, 0.0f);
-		glVertex3f(width, height/2, 0.0f);
+		quickpoint(0.0f, (height / 2), 0.0f);
+		quickpoint(0.0f, (height / 2) - 0.2f, 0.0f);
+		quickpoint(length, (height / 2) - 0.2f, 0.0f);
+		quickpoint(length, (height / 2), 0.0f);
 
-		glVertex3f(0.0f, height/2, 0.0f);
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.0f);
-		glVertex3f(0.0f, (height -0.2f)/2, length);
-		glVertex3f(0.0f, height/2, length);
+		quickpoint(0.0f, (height / 2), 0.0f);
+		quickpoint(0.0f, (height / 2) - 0.2f, 0.0f);
+		quickpoint(0.0f, (height / 2) -0.2f, -width);
+		quickpoint(0.0f, (height / 2), -width);
 
-		glVertex3f(0.0f, height/2, length);
-		glVertex3f(0.0f, (height - 0.2f)/2, length);
-		glVertex3f(width, height/2, length);
-		glVertex3f(width, (height - 0.2f)/2, length);
+		quickpoint(0.0f, (height / 2), -width);
+		quickpoint(0.0f, (height / 2) - 0.2f, -width);
+		quickpoint(length, (height / 2), -width);
+		quickpoint(length, (height / 2) - 0.2f, -width);
 
-		glVertex3f(width, height/2, length);
-		glVertex3f(width, (height - 0.2f)/2, length);
-		glVertex3f(width, height/2, 0.0f);
-		glVertex3f(width, (height - 0.2f)/2, 0.0f);
+		quickpoint(length, (height / 2), -width);
+		quickpoint(length, (height / 2) - 0.2f, -width);
+		quickpoint(length, (height / 2), 0.0f);
+		quickpoint(length, (height / 2) - 0.2f, 0.0f);
 		
 		//Leg 1
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.0f);
-		glVertex3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(0.6f, 0.0f, 0.0f);
-		glVertex3f(0.6f, (height - 0.2f)/2, 0.0f);
+		quickpoint(0.0f, (height / 2) - 0.2f, 0.0f);
+		quickpoint(0.0f, 0.0f, 0.0f);
+		quickpoint(0.2f, 0.0f, 0.0f);
+		quickpoint(0.2f, (height / 2) - 0.2f, 0.0f);
 
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.0f);
-		glVertex3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(0.0f, 0.0f, 0.2f);
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.2f);
+		quickpoint(0.0f, (height / 2) - 0.2f, 0.0f);
+		quickpoint(0.0f, 0.0f, 0.0f);
+		quickpoint(0.0f, 0.0f, -0.2f);
+		quickpoint(0.0f, (height / 2) - 0.2f, -0.2f);
 
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.2f);
-		glVertex3f(0.0f, 0.0f, 0.2f);
-		glVertex3f(0.6f, 0.0f, 0.2f);
-		glVertex3f(0.6f, (height - 0.2f)/2, 0.2f);
+		quickpoint(0.0f, (height / 2) - 0.2f, -0.2f);
+		quickpoint(0.0f, 0.0f, -0.2f);
+		quickpoint(0.2f, 0.0f, -0.2f);
+		quickpoint(0.2f, (height / 2) - 0.2f, -0.2f);
 
-		glVertex3f(0.6f, (height - 0.2f)/2, 0.2f);
-		glVertex3f(0.6f, 0.0f, 0.2f);
-		glVertex3f(0.6f, 0.0f, 0.0f);
-		glVertex3f(0.6f, (height - 0.2f)/2, 0.0f);
+		quickpoint(0.2f, (height / 2) - 0.2f, -0.2f);
+		quickpoint(0.2f, 0.0f, -0.2f);
+		quickpoint(0.2f, 0.0f, 0.0f);
+		quickpoint(0.2f, (height / 2) - 0.2f, 0.0f);
 		
 		//Leg 2
-		glVertex3f(0.0f, (height - 0.2f)/2, (length - 0.2f));
-		glVertex3f(0.0f, 0.0f, (length - 0.2f));
-		glVertex3f(0.6f, 0.0f, (length - 0.2f));
-		glVertex3f(0.6f, (height - 0.2f)/2, (length - 0.2f));
+		quickpoint(0.0f, (height / 2) - 0.2f, -width + 0.2f);
+		quickpoint(0.0f, 0.0f, -width + 0.2f);
+		quickpoint(0.2f, 0.0f, -width + 0.2f);
+		quickpoint(0.2f, (height / 2) - 0.2f, -width + 0.2f);
 
-		glVertex3f(0.0f, (height - 0.2f)/2, (length - 0.2f));
-		glVertex3f(0.0f, 0.0f, (length - 0.2f));
-		glVertex3f(0.0f, 0.0f, length);
-		glVertex3f(0.0f, (height - 0.2f)/2, length);
+		quickpoint(0.0f, (height / 2) - 0.2f, -width + 0.2f);
+		quickpoint(0.0f, 0.0f, -width + 0.2f);
+		quickpoint(0.0f, 0.0f, -width);
+		quickpoint(0.0f, (height / 2) - 0.2f, -width);
 
-		glVertex3f(0.0f, (height - 0.2f)/2, length);
-		glVertex3f(0.0f, 0.0f, length);
-		glVertex3f(0.6f, 0.0f, length);
-		glVertex3f(0.6f, (height - 0.2f)/2, length);
+		quickpoint(0.0f, (height / 2) - 0.2f, -width);
+		quickpoint(0.0f, 0.0f, -width);
+		quickpoint(0.2f, 0.0f, -width);
+		quickpoint(0.2f, (height / 2) - 0.2f, -width);
 
-		glVertex3f(0.6f, (height - 0.2f)/2, length);
-		glVertex3f(0.6f, 0.0f, length);
-		glVertex3f(0.6f, 0.0f, (length - 0.2f));
-		glVertex3f(0.6f, (height - 0.2f)/2, (length - 0.2f));
+		quickpoint(0.2f, (height / 2) - 0.2f, -width);
+		quickpoint(0.2f, 0.0f, -width);
+		quickpoint(0.2f, 0.0f, -width + 0.2f);
+		quickpoint(0.2f, (height / 2) - 0.2f, -width + 0.2f);
 
 		//Leg 3
-		glVertex3f((width - 0.6f), (height - 0.2f)/2, (length - 0.2f));
-		glVertex3f((width - 0.6f), 0.0f, (length - 0.2f));
-		glVertex3f(width, 0.0f, (length - 0.2f));
-		glVertex3f(width, (height - 0.2f)/2, (length - 0.2f));
+		quickpoint(length - 0.2f, (height / 2) - 0.2f, -width + 0.2f);
+		quickpoint(length - 0.2f, 0.0f, -width + 0.2f);
+		quickpoint(length, 0.0f, -width + 0.2f);
+		quickpoint(length, (height / 2) - 0.2f, -width + 0.2f);
 
-		glVertex3f((width - 0.6f), (height - 0.2f)/2, (length - 0.2f));
-		glVertex3f((width - 0.6f), 0.0f, (length - 0.2f));
-		glVertex3f((width - 0.6f), 0.0f, length);
-		glVertex3f((width - 0.6f), (height - 0.2f)/2, length);
+		quickpoint(length - 0.2f, (height / 2) - 0.2f, -width + 0.2f);
+		quickpoint(length - 0.2f, 0.0f, -width + 0.2f);
+		quickpoint(length - 0.2f, 0.0f, -width);
+		quickpoint(length - 0.2f, (height / 2) - 0.2f, -width);
 
-		glVertex3f((width - 0.6f), (height - 0.2f)/2, length);
-		glVertex3f((width - 0.6f), 0.0f, length);
-		glVertex3f(width, 0.0f, length);
-		glVertex3f(width, (height - 0.2f)/2, length);
+		quickpoint(length - 0.2f, (height / 2) - 0.2f, -width);
+		quickpoint(length - 0.2f, 0.0f, -width);
+		quickpoint(length, 0.0f, -width);
+		quickpoint(length, (height / 2) - 0.2f, -width);
 
-		glVertex3f(width, (height - 0.2f)/2, length);
-		glVertex3f(width, 0.0f, length);
-		glVertex3f(width, 0.0f, (length - 0.2f));
-		glVertex3f(width, (height - 0.2f)/2, (length - 0.2f));
+		quickpoint(length, (height / 2) - 0.2f, -width);
+		quickpoint(length, 0.0f, -width);
+		quickpoint(length, 0.0f, -width + 0.2f);
+		quickpoint(length, (height / 2) - 0.2f, -width + 0.2f);
 
 		//Leg 4
-		glVertex3f((width - 0.6f), (height - 0.2f)/2, 0.0f);
-		glVertex3f((width - 0.6f), 0.0f, 0.0f);
-		glVertex3f(width, 0.0f, 0.0f);
-		glVertex3f(width, (height - 0.2f)/2, 0.0f);
+		quickpoint(length - 0.2f, (height / 2) - 0.2f, 0.0f);
+		quickpoint(length - 0.2f, 0.0f, 0.0f);
+		quickpoint(length, 0.0f, 0.0f);
+		quickpoint(length, (height / 2) - 0.2f, 0.0f);
 
-		glVertex3f((width - 0.6f), (height - 0.2f)/2, 0.0f);
-		glVertex3f((width - 0.6f), 0.0f, 0.0f);
-		glVertex3f((width - 0.6f), 0.0f, 0.2f);
-		glVertex3f((width - 0.6f), (height - 0.2f)/2, 0.2f);
+		quickpoint(length - 0.2f, (height / 2) - 0.2f, 0.0f);
+		quickpoint(length - 0.2f, 0.0f, 0.0f);
+		quickpoint(length - 0.2f, 0.0f, -0.2f);
+		quickpoint(length - 0.2f, (height / 2) - 0.2f, -0.2f);
 
-		glVertex3f((width - 0.6f), (height - 0.2f)/2, 0.2f);
-		glVertex3f((width - 0.6f), 0.0f, 0.2f);
-		glVertex3f(width, 0.0f, 0.2f);
-		glVertex3f(width, (height - 0.2f)/2, 0.2f);
+		quickpoint(length - 0.2f, (height / 2) - 0.2f, -0.2f);
+		quickpoint(length - 0.2f, 0.0f, -0.2f);
+		quickpoint(length, 0.0f, -0.2f);
+		quickpoint(length, (height / 2) - 0.2f, -0.2f);
 
-		glVertex3f(width, (height - 0.2f)/2, 0.2f);
-		glVertex3f(width, 0.0f, 0.2f);
-		glVertex3f(width, 0.0f, 0.0f);
-		glVertex3f(width, (height - 0.2f)/2, 0.0f);
+		quickpoint(length, (height / 2) - 0.2f, -0.2f);
+		quickpoint(length, 0.0f, -0.2f);
+		quickpoint(length, 0.0f, 0.0f);
+		quickpoint(length, (height / 2) - 0.2f, 0.0f);
 
-		//Backrest
-		glVertex3f(width, height/2, length);
-		glVertex3f(width, (height + 5.0f)/2, length);
-		glVertex3f(width, (height + 5.0f)/2, (length - 10.0f));
-		glVertex3f(width, height/2, (length - 10.0f));
+		// Back Rest
+		quickpoint(0, (height / 2), -width);
+		quickpoint(0, height, -width);
+		quickpoint(length, height, -width);
+		quickpoint(length, (height / 2), -width);
 
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.0f);
-		glVertex3f(0.0f, height - 1, 0.0f);
-		glVertex3f(0.6f, height - 1, 0.0f);
-		glVertex3f(0.6f, (height - 0.2f)/2, 0.0f);
+		quickpoint(0, (height / 2), -width + 0.2f);
+		quickpoint(0, height, -width + 0.2f);
+		quickpoint(length, height, -width + 0.2f);
+		quickpoint(length, (height / 2), -width + 0.2f);
 
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.0f);
-		glVertex3f(0.0f, height - 1, 0.0f);
-		glVertex3f(0.0f, height - 1, 0.2f);
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.2f);
+		quickpoint(0, (height / 2), -width);
+		quickpoint(0, (height / 2), -width + 0.2f);
+		quickpoint(0, height, -width + 0.2f);
+		quickpoint(0, height, -width);
 
-		glVertex3f(0.0f, (height - 0.2f)/2, 0.2f);
-		glVertex3f(0.0f, height -1, 0.2f);
-		glVertex3f(0.6f, height -1, 0.2f);
-		glVertex3f(0.6f, (height - 0.2f)/2, 0.2f);
-
-		glVertex3f(0.6f, (height - 0.2f)/2, 0.2f);
-		glVertex3f(0.6f, height - 1, 0.2f);
-		glVertex3f(0.6f, height - 1, 0.0f);
-		glVertex3f(0.6f, (height - 0.2f)/2, 0.0f);
-	 	
-		glVertex3f(0.0f, height - 1, 0.0f);
-		glVertex3f(0.0f, height - 1, 0.2f);
-		glVertex3f(width, height - 1, 0.2f);
-		glVertex3f(width, height - 1, 0.0f);
-
-		glVertex3f(0.0f, (height - 0.2f)/2, (length - 0.2f));
-		glVertex3f(0.0f, height - 1, (length - 0.2f));
-		glVertex3f(0.6f, height - 1, (length - 0.2f));
-		glVertex3f(0.6f, (height - 0.2f)/2, (length - 0.2f));
-
-		glVertex3f(0.0f, (height - 0.2f)/2, (length - 0.2f));
-		glVertex3f(0.0f, height - 1, (length - 0.2f));
-		glVertex3f(0.0f, height - 1, length);
-		glVertex3f(0.0f, (height - 0.2f)/2, length);
-
-		glVertex3f(0.0f, (height - 0.2f)/2, length);
-		glVertex3f(0.0f, height - 1, length);
-		glVertex3f(0.6f, height - 1, length);
-		glVertex3f(0.6f, (height - 0.2f)/2, length);
-
-		glVertex3f(0.6f, (height - 0.2f)/2, length);
-		glVertex3f(0.6f, height - 1, length);
-		glVertex3f(0.6f, height - 1, (length - 0.2f));
-		glVertex3f(0.6f, (height - 0.2f)/2, (length - 0.2f));
-
-		glVertex3f(0.0f, height - 1, length - 0.2f);
-		glVertex3f(0.0f, height - 1, length);
-		glVertex3f(width, height - 1, length);
-		glVertex3f(width, height - 1, length - 0.2f);
+		quickpoint(length, (height / 2), -width);
+		quickpoint(length, (height / 2), -width + 0.2f);
+		quickpoint(length, height, -width + 0.2f);
+		quickpoint(length, height, -width);
 	glEnd();
 }
 
